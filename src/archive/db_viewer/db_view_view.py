@@ -6,7 +6,7 @@ class DatabaseViewerView(QMainWindow):
         super().__init__()
 
         # .ui 파일 로드
-        loadUi("./src/test/db_viewer/dbview.ui", self)
+        loadUi("./src/archive/db_viewer/dbview.ui", self)
 
         # 버튼 및 입력 필드 설정
         self.load_button = self.findChild(type(self.load_button), "load_button")

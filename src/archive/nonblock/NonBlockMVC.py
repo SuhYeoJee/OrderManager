@@ -32,7 +32,7 @@ from PyQt5.uic import loadUi
 class View(QMainWindow):
     def __init__(self):
         super().__init__()
-        loadUi("./src/test/nonblock/view.ui", self)  # .ui 파일 로드
+        loadUi("./src/archive/nonblock/view.ui", self)  # .ui 파일 로드
         # --------------------------
         self.text_area = self.findChild(QTextEdit, "textArea")
         self.run_button = self.findChild(QPushButton, "runButton")

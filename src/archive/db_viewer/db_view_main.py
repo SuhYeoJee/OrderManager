@@ -5,9 +5,9 @@ if __debug__:
 
 import sys
 from PyQt5.QtWidgets import QApplication
-from src.SqlliteInterface import SqlliteInterface
-from src.test.db_viewer.db_view_view import DatabaseViewerView
-from src.test.db_viewer.db_view_ctrl import DatabaseViewerController
+from module.SqlliteInterface import SqlliteInterface
+from src.archive.db_viewer.db_view_view import DatabaseViewerView
+from src.archive.db_viewer.db_view_ctrl import DatabaseViewerController
 
 
 if __name__ == "__main__":

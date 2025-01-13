@@ -12,7 +12,7 @@ class View(QMainWindow):
         loadUi("./ui/MainWindow.ui", self)
         # --------------------------
         self.load_button = self.findChild(QPushButton, "tableComboBtn")
-        self.table_name_combo = self.findChild(QComboBox, "tableComboBox")  # 콤보박스
+        self.table_name_combo = self.findChild(QComboBox, "tableComboBox")
         self.table_widget = self.findChild(QTableWidget, "tableWidget")
     # -------------------------------------------------------------------------------------------
     def show_error(self, message):
