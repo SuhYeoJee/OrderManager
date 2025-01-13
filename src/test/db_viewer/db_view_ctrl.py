@@ -1,9 +1,5 @@
-if __debug__:
-    import sys
-    sys.path.append(r"X:\Github\OrderManager")
-# -------------------------------------------------------------------------------------------
 import sqlite3
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, QTableWidgetItem
+from PyQt5.QtWidgets import QTableWidgetItem
 
 class DatabaseViewerController:
     def __init__(self, model, view):

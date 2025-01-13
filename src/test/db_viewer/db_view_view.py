@@ -1,10 +1,4 @@
-if __debug__:
-    import sys
-    sys.path.append(r"X:\Github\OrderManager")
-# -------------------------------------------------------------------------------------------
-
-
-from PyQt5.QtWidgets import QMainWindow, QMessageBox, QTableWidgetItem, QComboBox
+from PyQt5.QtWidgets import QMainWindow, QMessageBox, QComboBox
 from PyQt5.uic import loadUi
 
 class DatabaseViewerView(QMainWindow):

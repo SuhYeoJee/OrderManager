@@ -9,6 +9,7 @@ from src.SqlliteInterface import SqlliteInterface
 from src.test.db_viewer.db_view_view import DatabaseViewerView
 from src.test.db_viewer.db_view_ctrl import DatabaseViewerController
 
+
 if __name__ == "__main__":
     # MVC 초기화
     app = QApplication(sys.argv)
