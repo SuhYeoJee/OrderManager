@@ -14,14 +14,14 @@ class Controller:
         # --------------------------
         table_names = self.model.sql.get_table_names()
         self.view.set_table_names(table_names)
-        self.view.load_button.clicked.connect(self.handle_load_button)
+        self.view.tableComboBtn.clicked.connect(self.handle_tableComboBtn)
     # -------------------------------------------------------------------------------------------
     # thread 생성 후 view와 연결
-    def handle_load_button(self):
-        table_name = self.view.table_name_combo.currentText().strip()
+    def handle_tableComboBtn(self):
+        table_name = self.view.tableComboBox.currentText().strip()
         query = f"SELECT * FROM {table_name}"
 
-        thread = QueryWorker(self.model,query)
+        thread = QueryWorker(self.model,query,table_name)
         thread.result_signal.connect(self.view.update_table_data)
         thread.finished.connect(lambda: self.cleanup_thread(thread))
         self.threads.append(thread) #목록에 추가

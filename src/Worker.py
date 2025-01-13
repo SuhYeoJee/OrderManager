@@ -16,11 +16,20 @@ class Worker(QThread):
 class QueryWorker(QThread):
     result_signal = pyqtSignal(list)  # 쿼리 결과 전달
 
-    def __init__(self, model, query):
+    def __init__(self, model, query, table_name):
         super().__init__()
         self.model = model
         self.query = query
+        self.table_name = table_name
 
     def run(self):
-        rows = self.model.sql.execute_query(self.query)
-        self.result_signal.emit(rows)  # 쿼리 결과를 시그널로 방출
+        col_names = self.get_table_col_names()
+        res = self.run_execute_query()
+        self.result_signal.emit([col_names]+res)
+
+    def run_execute_query(self):
+        return self.model.sql.execute_query(self.query)
+
+    def get_table_col_names(self):
+        res = self.model.sql.execute_query(f"PRAGMA table_info({self.table_name})")
+        return [column[1] for column in res]
