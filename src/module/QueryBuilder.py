@@ -63,10 +63,10 @@ class QueryBuilder():
         '''INSERT INTO 테이블명 (키1, 키2, ...) VALUES (값1, 값2, ...);'''
         return f'''INSERT INTO "{table_name}" ({",".join(map(self._get_stred_item,items.keys()))}) VALUES ({",".join(map(self._get_stred_item,items.values()))});'''
     # --------------------------
-    def get_select_query(self,table_name:str,items:list,where_option:dict={}):
+    def get_select_query(self,table_name:str,items:list=[],where_option:dict={}):
         '''SELECT col1, col2 ... FROM 테이블명 WHERE 조건'''
         where_str = self._get_where_str(**where_option) if where_option else ''
-        return f'''SELECT {",".join(map(self._get_stred_item,items))} FROM "{table_name}" {where_str};'''
+        return f'''SELECT {",".join(map(self._get_stred_item,items)) if items else "*"} FROM "{table_name}" {where_str};'''
     # --------------------------
     def get_update_query(self,table_name:str,items:dict,where_option:dict={}):
         '''UPDATE 테이블명 SET 키1 = 값1, 키2 = 값2 ... WHERE 조건'''

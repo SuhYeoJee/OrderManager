@@ -31,7 +31,7 @@ class Controller():
 
     def on_insert_request(self,insert_request):
         worker_func = "insert_data"
-        callback_func = self.view.dialogs[insert_request[0]][insert_request[1]].on_empty_func
+        callback_func = self.reload_table
         self.launch_worker(worker_func,callback_func,insert_request)
 
     def on_data_request(self,data_request):
@@ -45,6 +45,9 @@ class Controller():
         data_request = ('controller',self.get_table_name_from_tableNameComboBox())
         self.launch_worker(worker_func,callback_func,data_request)
 
+    def reload_table(self,*args): #after insert,update,delete
+        self.on_table_name()
+
     # --------------------------
     def launch_worker(self,worker_func:str,callback_func,*args):
         thread = Worker(self.model,worker_func,*args)
@@ -53,8 +56,7 @@ class Controller():
         self.threads.append(thread) #목록에 추가
         thread.start()
     # --------------------------
-    def cleanup_thread(self, thread):
-        # 스레드 종료 시 호출 
+    def cleanup_thread(self, thread): # 스레드 종료 시 호출 
         self.threads.remove(thread) #목록에서 제거 
         thread.deleteLater()
     # -------------------------------------------------------------------------------------------

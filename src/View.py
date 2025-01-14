@@ -91,7 +91,7 @@ class InsertDialog(QDialog):
 
     # [send request] -------------------------------------------------------------------------------------------
     def on_load(self):
-        id = self.nameLineEdit.text()
+        id = int(self.idComboBox.currentText())
         self.data_request.emit(self._add_request_header(id))
 
     def on_submit(self):
