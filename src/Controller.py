@@ -18,6 +18,7 @@ class Controller():
         self.view.tableInsertBtn.clicked.connect(lambda: self.on_table_btn('insert'))
         self.view.tableDeleteBtn.clicked.connect(lambda: self.on_table_btn('delete'))
         self.view.tableUpdateBtn.clicked.connect(lambda: self.on_table_btn('update'))
+        self.view.tableSelectBtn.clicked.connect(self.on_table_select_btn)
         # --------------------------
         self.init_signals()
 
@@ -48,11 +49,16 @@ class Controller():
     def on_table_name(self):
         worker_func = "get_all_table_items"
         callback_func = self.view.update_table_data
-        data_request = ('controller',self.get_table_name_from_tableNameComboBox())
+        data_request = ('controller',self.view.get_table_name())
         self.launch_worker(worker_func,callback_func,data_request)
 
     def reload_table(self,*args): #after insert,update,delete
         self.on_table_name()
+
+    def on_table_select_btn(self):
+        worker_func = "select_data"
+        callback_func = self.view.update_table_data
+        self.launch_worker(worker_func,callback_func,self.view.get_select_data())
 
     # --------------------------
     def launch_worker(self,worker_func:str,callback_func,*args):
@@ -68,8 +74,5 @@ class Controller():
     # -------------------------------------------------------------------------------------------
     
     def on_table_btn(self,btn_type):
-        table_name = self.get_table_name_from_tableNameComboBox()
+        table_name = self.view.get_table_name()
         self.view.get_dialog(btn_type,table_name)
-    
-    def get_table_name_from_tableNameComboBox(self):
-        return self.view.tableNameComboBox.currentText().strip()

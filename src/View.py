@@ -38,7 +38,20 @@ class View(QMainWindow):
     def show_error(self, message):
         """에러 메시지 표시"""
         QMessageBox.critical(self, "Error", message)
-    # ===========================================================================================
+
+    def get_table_name(self):
+        return self.tableNameComboBox.currentText().strip()
+
+    def get_select_data(self):
+        table_name = self.get_table_name()
+        sort_col = self.tableSortColComboBox.currentText().strip()
+        sort_type = self.tableSortOpComboBox.currentText().strip()
+        select_col = self.tableSelectColComboBox.currentText().strip()
+        select_type = self.tableSelectOpComboBox.currentText().strip()
+        select_str = self.tableSelectLineEdit.text()
+        return ('select',table_name,(sort_col,sort_type),(select_col,select_type,select_str))
+
+    # [view에 값 표시] ===========================================================================================
     def set_table_names(self, table_names):
         """콤보박스에 테이블 목록 표시"""
         self.tableNameComboBox.clear()
@@ -57,9 +70,17 @@ class View(QMainWindow):
         self.tableWidget.setRowCount(len(res))
         self.tableWidget.setHorizontalHeaderLabels(columns)
 
+        if not self.tableSortColComboBox.count():
+            self.tableSortColComboBox.clear()
+            self.tableSortColComboBox.addItems(columns)
+            self.tableSelectColComboBox.clear()
+            self.tableSelectColComboBox.addItems(columns)
+
         for row_idx, row in enumerate(res):
             for col_idx, value in enumerate(row):
                 self.tableWidget.setItem(row_idx, col_idx, QTableWidgetItem(str(value)))
+
+
 
 # ===========================================================================================
 class BaseDialog(QDialog):

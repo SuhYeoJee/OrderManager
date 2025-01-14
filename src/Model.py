@@ -26,6 +26,13 @@ class Model():
         query = self.qb.get_update_query(update_request[1],update_request[2],where_option={'comparison':[('id','=',id_val)]})
         res = self.sql.execute_query(query)
         return self._add_response_header(update_request,res)
+    
+    def select_data(self,select_request):
+        # ('select',table_name,(sort_col,sort_type),(select_col,select_type,select_str))
+        col_names = self.get_table_col_names(select_request[1])
+        query = self.qb.get_select_query(select_request[1],sort_option=select_request[2])
+        res = [col_names] + self.sql.execute_query(query)
+        return self._add_response_header(select_request,res)
 
     def get_data_by_id(self,data_request):
         query = self.qb .get_select_query(data_request[1],where_option={'comparison':[('id','=',data_request[2])]})
