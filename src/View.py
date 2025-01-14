@@ -14,12 +14,6 @@ class View(QMainWindow):
         super().__init__()
         loadUi("./ui/MainWindow.ui", self)
         # --------------------------
-        self.tableNameComboBtn = self.findChild(QPushButton, "tableNameComboBtn")
-        self.tableNameComboBox = self.findChild(QComboBox, "tableNameComboBox")
-        self.tableWidget = self.findChild(QTableWidget, "tableWidget")
-        self.tableInsertBtn = self.findChild(QPushButton, "tableInsertBtn")
-        self.tableDeleteBtn = self.findChild(QPushButton, "tableDeleteBtn")
-        # --------------------------
         self.dialogs = {
             "insert":{
                 "users":InsertDialog('users'),
@@ -74,21 +68,11 @@ class BaseDialog(QDialog):
         super().__init__(parent)
         loadUi("./ui/insertDialog.ui", self) 
         # --------------------------
-        self.init_ui()
-        # --------------------------
         self.loadBtn.clicked.connect(self.on_load)
         self.submitBtn.clicked.connect(self.on_submit)
         # --------------------------
         self.request_header = ('insert',table_name)
         self.data = None
-
-    def init_ui(self):
-        self.idComboBox = self.findChild(QComboBox, "idComboBox")
-        self.loadBtn = self.findChild(QPushButton, "loadBtn")
-        self.nameLineEdit = self.findChild(QLineEdit, "nameLineEdit")
-        self.ageSpinBox = self.findChild(QSpinBox, "ageSpinBox")  
-        self.cityLineEdit = self.findChild(QLineEdit, "cityLineEdit")
-        self.submitBtn = self.findChild(QPushButton, "submitBtn")
     # --------------------------
     def clear(self):
         self.idComboBox.clear()
