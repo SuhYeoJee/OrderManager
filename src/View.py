@@ -4,17 +4,18 @@ if __debug__:
 # -------------------------------------------------------------------------------------------
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QComboBox, QTableWidget, \
     QTableWidgetItem, QPushButton, QDialog, QLineEdit, QSpinBox
-from PyQt5.QtCore import QThread, pyqtSignal
+from PyQt5.QtCore import pyqtSignal
 from PyQt5.uic import loadUi
 # ===========================================================================================
 
 class View(QMainWindow):
+    id_request = pyqtSignal(tuple)
     def __init__(self):
         super().__init__()
         loadUi("./ui/MainWindow.ui", self)
         # --------------------------
-        self.tableComboBtn = self.findChild(QPushButton, "tableComboBtn")
-        self.tableComboBox = self.findChild(QComboBox, "tableComboBox")
+        self.tableNameComboBtn = self.findChild(QPushButton, "tableNameComboBtn")
+        self.tableNameComboBox = self.findChild(QComboBox, "tableNameComboBox")
         self.tableWidget = self.findChild(QTableWidget, "tableWidget")
         self.tableInsertBtn = self.findChild(QPushButton, "tableInsertBtn")
         # --------------------------
@@ -27,22 +28,23 @@ class View(QMainWindow):
     # -------------------------------------------------------------------------------------------
     def get_insert_dialog(self,table_name):
         dialog = self.dialogs['insert'][table_name]
+        self.id_request.emit(('insert',table_name))
         dialog.clear()
         dialog.show()
         return dialog
     
-
     def show_error(self, message):
         """에러 메시지 표시"""
         QMessageBox.critical(self, "Error", message)
     # ===========================================================================================
     def set_table_names(self, table_names):
         """콤보박스에 테이블 목록 표시"""
-        self.tableComboBox.clear()
-        self.tableComboBox.addItems(table_names)
+        self.tableNameComboBox.clear()
+        self.tableNameComboBox.addItems(table_names)
 
-    def update_table_data(self, res):
+    def update_table_data(self, response):
         '''값을 받아서 테이블에 표시'''
+        res = response[2]
         if not res:
             self.show_error(f"No data found in table")
             return
@@ -59,42 +61,72 @@ class View(QMainWindow):
 
 # ===========================================================================================
 class InsertDialog(QDialog):
-    insert_submitted = pyqtSignal(tuple)
+    insert_request = pyqtSignal(tuple)
+    data_request = pyqtSignal(tuple)
     def __init__(self,table_name,parent=None):
         super().__init__(parent)
         loadUi("./ui/insertDialog.ui", self) 
         # --------------------------
-        self.name_input = self.findChild(QLineEdit, "nameLineEdit")
-        self.age_input = self.findChild(QSpinBox, "ageSpinBox")  
-        self.city_input = self.findChild(QLineEdit, "cityLineEdit")
-        self.submit_button = self.findChild(QPushButton, "submitButton")
+        self.init_ui()
         # --------------------------
-        self.submit_button.clicked.connect(self.on_submit)
+        self.loadBtn.clicked.connect(self.on_load)
+        self.submitBtn.clicked.connect(self.on_submit)
         # --------------------------
-        self.table_name = table_name
+        self.request_header = ('insert',table_name)
         self.data = None
-    # -------------------------------------------------------------------------------------------
-    def on_submit(self):
-        name = self.name_input.text()
-        age = self.age_input.value()
-        city = self.city_input.text()
-        # --------------------------
-        self.data = (self.table_name,{'name':name,'age':age,'city':city})
-        self.insert_submitted.emit(self.data)
-        self.close()
-    # -------------------------------------------------------------------------------------------
+
+    def init_ui(self):
+        self.idComboBox = self.findChild(QComboBox, "idComboBox")
+        self.loadBtn = self.findChild(QPushButton, "loadBtn")
+        self.nameLineEdit = self.findChild(QLineEdit, "nameLineEdit")
+        self.ageSpinBox = self.findChild(QSpinBox, "ageSpinBox")  
+        self.cityLineEdit = self.findChild(QLineEdit, "cityLineEdit")
+        self.submitBtn = self.findChild(QPushButton, "submitBtn")
+    # --------------------------
     def clear(self):
-        self.name_input.clear()
-        self.age_input.setValue(0) 
-        self.city_input.clear()
-# ===========================================================================================
+        self.idComboBox.clear()
+        self.nameLineEdit.clear()
+        self.ageSpinBox.setValue(0) 
+        self.cityLineEdit.clear()
 
+    # [send request] -------------------------------------------------------------------------------------------
+    def on_load(self):
+        id = self.nameLineEdit.text()
+        self.data_request.emit(self._add_request_header(id))
 
+    def on_submit(self):
+        name = self.nameLineEdit.text()
+        age = self.ageSpinBox.value()
+        city = self.cityLineEdit.text()
+        # --------------------------
+        self.data = self._add_request_header({'name':name,'age':age,'city':city})
+        self.insert_request.emit(self.data)
+        self.close()
+    # --------------------------
+    def _add_request_header(self,data):
+        return self.request_header+(data,)
+    # [on_response] -------------------------------------------------------------------------------------------
+    def on_id_response(self,id_response):
+        if self.request_header[1] != id_response[1]: return 
+        self.idComboBox.clear()
+        self.idComboBox.addItems(map(str,id_response[2]))
+
+    def on_data_response(self,data_response):
+        if self.request_header[1] != data_response[1]: return 
+        try:
+            print(data_response[2])
+            [(_, name,age,city)] = data_response[2]
+        except ValueError:
+            ... # 해당 id 없음
+        else:
+            self.nameLineEdit.setText(name)
+            self.ageSpinBox.setValue(age)
+            self.cityLineEdit.setText(city)
+    def on_empty_func(self,*args,**kwargs):...
 # ===========================================================================================
 import sys
 from PyQt5.QtWidgets import QApplication
 if __name__ == "__main__":
-    # MVC 초기화
     app = QApplication(sys.argv)
     view = View()
     view.show()

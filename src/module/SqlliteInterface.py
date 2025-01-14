@@ -35,6 +35,6 @@ class SqlliteInterface():
 # ===========================================================================================
 if __name__ == '__main__':
     sqli = SqlliteInterface()
-    sqli.execute_query('SELECT * FROM users')
-    sqli.execute_query("INSERT INTO users (name, age, city) VALUES ('Bob', '25', 'Busan')")
-    sqli.execute_query('SELECT * FROM users')
+    sqli.execute_query('SELECT id FROM users')
+    # sqli.execute_query("INSERT INTO users (name, age, city) VALUES ('Bob', '25', 'Busan')")
+    # sqli.execute_query('SELECT * FROM users')
