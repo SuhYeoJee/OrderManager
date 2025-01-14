@@ -16,6 +16,8 @@ class Controller():
         self.view.set_table_names(table_names)
         self.view.tableNameComboBtn.clicked.connect(self.on_table_name)
         self.view.tableInsertBtn.clicked.connect(self.on_insert)
+        self.view.tableDeleteBtn.clicked.connect(self.on_delete)
+        
         # --------------------------
         self.init_signals()
 
@@ -23,6 +25,8 @@ class Controller():
         self.view.id_request.connect(self.on_id_request)
         self.view.dialogs['insert']['users'].insert_request.connect(self.on_insert_request)
         self.view.dialogs['insert']['users'].data_request.connect(self.on_data_request)
+        self.view.dialogs['delete']['users'].delete_request.connect(self.on_delete_request)
+        self.view.dialogs['delete']['users'].data_request.connect(self.on_data_request)
     # [view에서 model 호출] -------------------------------------------------------------------------------------------
     def on_id_request(self,id_request):
         worker_func = "get_table_ids"
@@ -33,6 +37,11 @@ class Controller():
         worker_func = "insert_data"
         callback_func = self.reload_table
         self.launch_worker(worker_func,callback_func,insert_request)
+
+    def on_delete_request(self,delete_request):
+        worker_func = "delete_data"
+        callback_func = self.reload_table
+        self.launch_worker(worker_func,callback_func,delete_request)
 
     def on_data_request(self,data_request):
         worker_func = "get_data_by_id"
@@ -63,6 +72,12 @@ class Controller():
     def on_insert(self):
         table_name = self.get_table_name_from_tableNameComboBox()
         self.view.get_insert_dialog(table_name)
+
+    def on_delete(self):
+        table_name = self.get_table_name_from_tableNameComboBox()
+        self.view.get_delete_dialog(table_name)
+
+        
 
     def get_table_name_from_tableNameComboBox(self):
         return self.view.tableNameComboBox.currentText().strip()

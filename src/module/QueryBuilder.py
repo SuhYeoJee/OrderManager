@@ -78,6 +78,11 @@ class QueryBuilder():
         where_str = self._get_where_str(**where_option) if where_option else ''
         return f'''DELETE FROM "{table_name}" {where_str};'''
 
+    def get_delete_query_by_item(self,table_name:str,items:dict):
+        '''DELETE FROM 테이블명 WHERE 조건 - 모두 일치하는 항목 삭제'''
+        sub_where_str = 'WHERE ' + " AND ".join([f'''"{k}" = "{v}"''' for k,v in items.items()])
+        where_str = f'''WHERE id = (SELECT MAX(id) FROM {table_name} {sub_where_str})''' # 중복이 있으면 id가 가장 큰 것을 삭제
+        return f'''DELETE FROM "{table_name}" {where_str};'''
 
 # ===========================================================================================
 if __name__ == '__main__':

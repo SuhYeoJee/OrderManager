@@ -18,17 +18,28 @@ class View(QMainWindow):
         self.tableNameComboBox = self.findChild(QComboBox, "tableNameComboBox")
         self.tableWidget = self.findChild(QTableWidget, "tableWidget")
         self.tableInsertBtn = self.findChild(QPushButton, "tableInsertBtn")
+        self.tableDeleteBtn = self.findChild(QPushButton, "tableDeleteBtn")
         # --------------------------
         self.dialogs = {
             "insert":{
-                "users":InsertDialog(table_name="users"),
-                "sqlite_sequence":InsertDialog(table_name="sqlite_sequence")
+                "users":InsertDialog('users'),
+                "sqlite_sequence":InsertDialog('sqlite_sequence')
+            },
+            "delete":{
+                "users":DeleteDialog('users')
             }
         }
     # -------------------------------------------------------------------------------------------
     def get_insert_dialog(self,table_name):
         dialog = self.dialogs['insert'][table_name]
         self.id_request.emit(('insert',table_name))
+        dialog.clear()
+        dialog.show()
+        return dialog
+    
+    def get_delete_dialog(self,table_name):
+        dialog = self.dialogs['delete'][table_name]
+        self.id_request.emit(('delete',table_name))
         dialog.clear()
         dialog.show()
         return dialog
@@ -60,8 +71,7 @@ class View(QMainWindow):
                 self.tableWidget.setItem(row_idx, col_idx, QTableWidgetItem(str(value)))
 
 # ===========================================================================================
-class InsertDialog(QDialog):
-    insert_request = pyqtSignal(tuple)
+class BaseDialog(QDialog):
     data_request = pyqtSignal(tuple)
     def __init__(self,table_name,parent=None):
         super().__init__(parent)
@@ -94,14 +104,7 @@ class InsertDialog(QDialog):
         id = int(self.idComboBox.currentText())
         self.data_request.emit(self._add_request_header(id))
 
-    def on_submit(self):
-        name = self.nameLineEdit.text()
-        age = self.ageSpinBox.value()
-        city = self.cityLineEdit.text()
-        # --------------------------
-        self.data = self._add_request_header({'name':name,'age':age,'city':city})
-        self.insert_request.emit(self.data)
-        self.close()
+    def on_submit(self):...
     # --------------------------
     def _add_request_header(self,data):
         return self.request_header+(data,)
@@ -123,6 +126,46 @@ class InsertDialog(QDialog):
             self.ageSpinBox.setValue(age)
             self.cityLineEdit.setText(city)
     def on_empty_func(self,*args,**kwargs):...
+# ===========================================================================================
+
+class InsertDialog(BaseDialog):
+    insert_request = pyqtSignal(tuple)
+    def __init__(self,table_name,parent=None):
+        super().__init__(table_name,parent)
+        # --------------------------
+        self.request_header = ('insert',table_name) 
+        self.data = None
+
+    # [send request] -------------------------------------------------------------------------------------------
+    def on_submit(self):
+        name = self.nameLineEdit.text()
+        age = self.ageSpinBox.value()
+        city = self.cityLineEdit.text()
+        # --------------------------
+        self.data = self._add_request_header({'name':name,'age':age,'city':city})
+        self.insert_request.emit(self.data)
+        self.close()
+# ===========================================================================================
+
+class DeleteDialog(BaseDialog):
+    delete_request = pyqtSignal(tuple)
+    def __init__(self,table_name,parent=None):
+        super().__init__(table_name,parent)
+        # --------------------------
+        self.request_header = ('delete',table_name)
+        self.data = None
+
+    # [send request] -------------------------------------------------------------------------------------------
+    def on_submit(self):
+        id = self.idComboBox.currentText()
+        name = self.nameLineEdit.text()
+        age = self.ageSpinBox.value()
+        city = self.cityLineEdit.text()
+        # --------------------------
+        self.data = self._add_request_header({'id':id,'name':name,'age':age,'city':city})
+        self.delete_request.emit(self.data)
+        self.close()
+
 # ===========================================================================================
 import sys
 from PyQt5.QtWidgets import QApplication
