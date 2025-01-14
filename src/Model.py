@@ -8,3 +8,6 @@ from src.module.SqlliteInterface import SqlliteInterface
 class Model:
     def __init__(self):
         self.sql = SqlliteInterface()
+
+    def handle_data(self,data):
+        print(__name__,data)

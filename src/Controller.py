@@ -15,6 +15,10 @@ class Controller:
         table_names = self.model.sql.get_table_names()
         self.view.set_table_names(table_names)
         self.view.tableComboBtn.clicked.connect(self.handle_tableComboBtn)
+        # --------------------------
+        self.view.tableInsertBtn.clicked.connect(self.insert)
+        self.view.dialogs['insert']['users'].insert_submitted.connect(self.model.handle_data)
+        self.view.dialogs['insert']['sqlite_sequence'].insert_submitted.connect(self.model.handle_data)
     # -------------------------------------------------------------------------------------------
     # thread 생성 후 view와 연결
     def handle_tableComboBtn(self):
@@ -31,3 +35,7 @@ class Controller:
     def cleanup_thread(self, thread):
         self.threads.remove(thread) #목록에서 제거 
         thread.deleteLater()
+
+    def insert(self):
+        table_name = self.view.tableComboBox.currentText().strip()
+        self.view.get_insert_dialog(table_name)

@@ -4,19 +4,19 @@ import sqlite3
 conn = sqlite3.connect('mydatabase.db')
 cursor = conn.cursor()
 
-# # 테이블 생성
-# cursor.execute('''
-#     CREATE TABLE users (
-#         id INTEGER PRIMARY KEY AUTOINCREMENT,
-#         name TEXT,
-#         age TEXT,
-#         city TEXT
-#     )
-# ''')
+# 테이블 생성
+cursor.execute('''
+    CREATE TABLE users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        age int,
+        city TEXT
+    )
+''')
 
-# # # 데이터 삽입
-# cursor.execute("INSERT INTO users (name, age, city) VALUES ('Alice', '30', 'Seoul')")
-# cursor.execute("INSERT INTO users (name, age, city) VALUES ('Bob', '25', 'Busan')")
+# # 데이터 삽입
+cursor.execute("INSERT INTO users (name, age, city) VALUES ('Alice', 30, 'Seoul')")
+cursor.execute("INSERT INTO users (name, age, city) VALUES ('Bob', 25, 'Busan')")
 
 
 # 데이터 조회

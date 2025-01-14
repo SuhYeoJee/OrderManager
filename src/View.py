@@ -2,7 +2,9 @@ if __debug__:
     import sys
     sys.path.append(r"X:\Github\OrderManager")
 # -------------------------------------------------------------------------------------------
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QComboBox, QTableWidget, QTableWidgetItem, QPushButton, QDialog, QLineEdit
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QComboBox, QTableWidget, \
+    QTableWidgetItem, QPushButton, QDialog, QLineEdit, QSpinBox
+from PyQt5.QtCore import QThread, pyqtSignal
 from PyQt5.uic import loadUi
 # ===========================================================================================
 
@@ -15,23 +17,32 @@ class View(QMainWindow):
         self.tableComboBox = self.findChild(QComboBox, "tableComboBox")
         self.tableWidget = self.findChild(QTableWidget, "tableWidget")
         self.tableInsertBtn = self.findChild(QPushButton, "tableInsertBtn")
+        # --------------------------
+        self.dialogs = {
+            "insert":{
+                "users":InsertDialog(table_name="users"),
+                "sqlite_sequence":InsertDialog(table_name="sqlite_sequence")
+            }
+        }
     # -------------------------------------------------------------------------------------------
-        self.tableInsertBtn.clicked.connect(self.show_insert_dialog)
-    # ===========================================================================================
-    def show_insert_dialog(self):
-        dialog = InsertDialog(self)
-        dialog.exec_()
+    def get_insert_dialog(self,table_name):
+        dialog = self.dialogs['insert'][table_name]
+        dialog.clear()
+        dialog.show()
+        return dialog
+    
 
     def show_error(self, message):
-        """에러 메시지를 표시합니다."""
+        """에러 메시지 표시"""
         QMessageBox.critical(self, "Error", message)
     # ===========================================================================================
     def set_table_names(self, table_names):
-        """콤보박스에 테이블 목록을 설정합니다."""
+        """콤보박스에 테이블 목록 표시"""
         self.tableComboBox.clear()
         self.tableComboBox.addItems(table_names)
 
     def update_table_data(self, res):
+        '''값을 받아서 테이블에 표시'''
         if not res:
             self.show_error(f"No data found in table")
             return
@@ -46,27 +57,37 @@ class View(QMainWindow):
             for col_idx, value in enumerate(row):
                 self.tableWidget.setItem(row_idx, col_idx, QTableWidgetItem(str(value)))
 
-
-
 # ===========================================================================================
-# Insert Dialog (UI 로드 후 처리)
 class InsertDialog(QDialog):
-    def __init__(self, parent=None):
+    insert_submitted = pyqtSignal(tuple)
+    def __init__(self,table_name,parent=None):
         super().__init__(parent)
-        loadUi("./ui/insertDialog.ui", self)  # insertDialog.ui 파일 로드
-
-    #     # UI 요소 접근
-    #     self.name_input = self.findChild(QLineEdit, "nameInput")  # QLineEdit 객체 접근
-    #     self.submit_button = self.findChild(QPushButton, "submitButton")  # QPushButton 객체 접근
-
-    #     # 버튼 클릭 이벤트 연결
-    #     self.submit_button.clicked.connect(self.on_submit)
-
-    # def on_submit(self):
-    #     # 사용자가 입력한 값을 가져옵니다.
-    #     name = self.name_input.text()
-    #     print(f"Submitted Name: {name}")
-    #     self.accept()  # Dialog 닫기
+        loadUi("./ui/insertDialog.ui", self) 
+        # --------------------------
+        self.name_input = self.findChild(QLineEdit, "nameLineEdit")
+        self.age_input = self.findChild(QSpinBox, "ageSpinBox")  
+        self.city_input = self.findChild(QLineEdit, "cityLineEdit")
+        self.submit_button = self.findChild(QPushButton, "submitButton")
+        # --------------------------
+        self.submit_button.clicked.connect(self.on_submit)
+        # --------------------------
+        self.table_name = table_name
+        self.data = None
+    # -------------------------------------------------------------------------------------------
+    def on_submit(self):
+        name = self.name_input.text()
+        age = self.age_input.value()
+        city = self.city_input.text()
+        # --------------------------
+        self.data = (self.table_name,{'name':name,'age':age,'city':city})
+        self.insert_submitted.emit(self.data)
+        self.close()
+    # -------------------------------------------------------------------------------------------
+    def clear(self):
+        self.name_input.clear()
+        self.age_input.setValue(0) 
+        self.city_input.clear()
+# ===========================================================================================
 
 
 # ===========================================================================================

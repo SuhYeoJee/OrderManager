@@ -26,7 +26,10 @@ class SqlliteInterface():
     def execute_query(self,query):
         self.cursor.execute(query)
         rows = self.cursor.fetchall()
+        print('# ------------------------------------------')
+        print(query)
         print(rows)
+        print('# ------------------------------------------')
         return rows
     
 # ===========================================================================================
