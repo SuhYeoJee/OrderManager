@@ -15,20 +15,19 @@ class Controller():
         table_names = self.model.sql.get_table_names()
         self.view.set_table_names(table_names)
         self.view.tableNameComboBtn.clicked.connect(self.on_table_name)
-        self.view.tableInsertBtn.clicked.connect(self.on_insert)
-        self.view.tableDeleteBtn.clicked.connect(self.on_delete)
-        self.view.tableUpdateBtn.clicked.connect(self.on_update)
-        
+        self.view.tableInsertBtn.clicked.connect(lambda: self.on_table_btn('insert'))
+        self.view.tableDeleteBtn.clicked.connect(lambda: self.on_table_btn('delete'))
+        self.view.tableUpdateBtn.clicked.connect(lambda: self.on_table_btn('update'))
         # --------------------------
         self.init_signals()
 
     def init_signals(self):
         self.view.id_request.connect(self.on_id_request)
-        self.view.dialogs['insert']['users'].insert_request.connect(self.on_insert_request)
+        self.view.dialogs['insert']['users'].insert_request.connect(lambda x:self.on_table_request('insert',x))
+        self.view.dialogs['delete']['users'].delete_request.connect(lambda x:self.on_table_request('delete',x))
+        self.view.dialogs['update']['users'].update_request.connect(lambda x:self.on_table_request('update',x))
         self.view.dialogs['insert']['users'].data_request.connect(self.on_data_request)
-        self.view.dialogs['delete']['users'].delete_request.connect(self.on_delete_request)
         self.view.dialogs['delete']['users'].data_request.connect(self.on_data_request)
-        self.view.dialogs['update']['users'].update_request.connect(self.on_update_request)
         self.view.dialogs['update']['users'].data_request.connect(self.on_data_request)
     # [view에서 model 호출] -------------------------------------------------------------------------------------------
     def on_id_request(self,id_request):
@@ -36,20 +35,10 @@ class Controller():
         callback_func = self.view.dialogs[id_request[0]][id_request[1]].on_id_response
         self.launch_worker(worker_func,callback_func,id_request)
 
-    def on_insert_request(self,insert_request):
-        worker_func = "insert_data"
+    def on_table_request(self,request_type,request):
+        worker_func = f"{request_type}_data"
         callback_func = self.reload_table
-        self.launch_worker(worker_func,callback_func,insert_request)
-
-    def on_delete_request(self,delete_request):
-        worker_func = "delete_data"
-        callback_func = self.reload_table
-        self.launch_worker(worker_func,callback_func,delete_request)
-
-    def on_update_request(self,update_request):
-        worker_func = "update_data"
-        callback_func = self.reload_table
-        self.launch_worker(worker_func,callback_func,update_request)
+        self.launch_worker(worker_func,callback_func,request)
 
     def on_data_request(self,data_request):
         worker_func = "get_data_by_id"
@@ -77,19 +66,10 @@ class Controller():
         self.threads.remove(thread) #목록에서 제거 
         thread.deleteLater()
     # -------------------------------------------------------------------------------------------
-    def on_insert(self):
+    
+    def on_table_btn(self,btn_type):
         table_name = self.get_table_name_from_tableNameComboBox()
-        self.view.get_insert_dialog(table_name)
-
-    def on_delete(self):
-        table_name = self.get_table_name_from_tableNameComboBox()
-        self.view.get_delete_dialog(table_name)
-
-    def on_update(self):
-        table_name = self.get_table_name_from_tableNameComboBox()
-        self.view.get_update_dialog(table_name)
-
-        
-
+        self.view.get_dialog(btn_type,table_name)
+    
     def get_table_name_from_tableNameComboBox(self):
         return self.view.tableNameComboBox.currentText().strip()

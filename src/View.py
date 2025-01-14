@@ -33,27 +33,13 @@ class View(QMainWindow):
             }
         }
     # -------------------------------------------------------------------------------------------
-    def get_insert_dialog(self,table_name):
-        dialog = self.dialogs['insert'][table_name]
-        self.id_request.emit(('insert',table_name))
+    
+    def get_dialog(self,dialog_type,table_name):
+        dialog = self.dialogs[dialog_type][table_name]
+        self.id_request.emit((dialog_type,table_name))
         dialog.clear()
         dialog.show()
         return dialog
-    
-    def get_delete_dialog(self,table_name):
-        dialog = self.dialogs['delete'][table_name]
-        self.id_request.emit(('delete',table_name))
-        dialog.clear()
-        dialog.show()
-        return dialog
-    
-    def get_update_dialog(self,table_name):
-        dialog = self.dialogs['update'][table_name]
-        self.id_request.emit(('update',table_name))
-        dialog.clear()
-        dialog.show()
-        return dialog
-    
     
     def show_error(self, message):
         """에러 메시지 표시"""
