@@ -27,6 +27,9 @@ class View(QMainWindow):
             },
             "delete":{
                 "users":DeleteDialog('users')
+            },
+            "update":{
+                "users":UpdateDialog('users')
             }
         }
     # -------------------------------------------------------------------------------------------
@@ -43,6 +46,14 @@ class View(QMainWindow):
         dialog.clear()
         dialog.show()
         return dialog
+    
+    def get_update_dialog(self,table_name):
+        dialog = self.dialogs['update'][table_name]
+        self.id_request.emit(('update',table_name))
+        dialog.clear()
+        dialog.show()
+        return dialog
+    
     
     def show_error(self, message):
         """에러 메시지 표시"""
@@ -164,6 +175,27 @@ class DeleteDialog(BaseDialog):
         # --------------------------
         self.data = self._add_request_header({'id':id,'name':name,'age':age,'city':city})
         self.delete_request.emit(self.data)
+        self.close()
+
+# ===========================================================================================
+
+class UpdateDialog(BaseDialog):
+    update_request = pyqtSignal(tuple)
+    def __init__(self,table_name,parent=None):
+        super().__init__(table_name,parent)
+        # --------------------------
+        self.request_header = ('update',table_name)
+        self.data = None
+
+    # [send request] -------------------------------------------------------------------------------------------
+    def on_submit(self):
+        id = self.idComboBox.currentText()
+        name = self.nameLineEdit.text()
+        age = self.ageSpinBox.value()
+        city = self.cityLineEdit.text()
+        # --------------------------
+        self.data = self._add_request_header({'id':id,'name':name,'age':age,'city':city})
+        self.update_request.emit(self.data)
         self.close()
 
 # ===========================================================================================

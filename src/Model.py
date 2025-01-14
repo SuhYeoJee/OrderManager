@@ -20,6 +20,12 @@ class Model():
         query = self.qb.get_delete_query(delete_request[1],where_option={'comparison':[('id','=',delete_request[2]['id'])]})
         res = self.sql.execute_query(query)
         return self._add_response_header(delete_request,res)
+    
+    def update_data(self,update_request):
+        id_val = update_request[2].pop('id')
+        query = self.qb.get_update_query(update_request[1],update_request[2],where_option={'comparison':[('id','=',id_val)]})
+        res = self.sql.execute_query(query)
+        return self._add_response_header(update_request,res)
 
     def get_data_by_id(self,data_request):
         query = self.qb .get_select_query(data_request[1],where_option={'comparison':[('id','=',data_request[2])]})
