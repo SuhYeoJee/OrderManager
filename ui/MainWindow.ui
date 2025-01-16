@@ -203,6 +203,26 @@
         <string>=</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>IN</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>LIKE</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>부재</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>존재</string>
+       </property>
+      </item>
      </widget>
      <widget class="QComboBox" name="tableSelectColComboBox">
       <property name="geometry">

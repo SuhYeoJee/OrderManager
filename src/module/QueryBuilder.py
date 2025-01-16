@@ -17,7 +17,7 @@ class QueryBuilder():
         likepattern: LIKE
             [(컬럼,패턴)]
         isnull: IS NULL / IS NOT NULL
-            [(컬럼,True(값 존재)),(컬럼,False(값 부재))]
+            [(컬럼,True(값 부재)),(컬럼,False(값 존재))]
 
         조건식 논리를 스트링으로 입력 (기본: AND 연결)
         논리: AND, OR, NOT
