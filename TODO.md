@@ -4,14 +4,17 @@
 # 일단 DB 관리자를 만들자. 
 - [x] DB 명령어 생성 모듈
 - [x] DB 인터페이스 모듈
-- [ ] DB 뷰어
-    - [ ] INSERT
-    - [ ] UPDATE
-    - [ ] DELETE
-    - [ ] SELECT
+- [X] DB 뷰어
 - [ ] DB 설계
 - [ ] DB 테스트값 입력
 
+bindings 사용하는 쿼리로 변경 필
+(_get_stred_item)를 value에 대해 안쓰는게 목적
+- [x] insert
+- [ ] select
+- [ ] update
+- [ ] delete
+- [ ] where
 
 ##### DB 뷰어
 프로그램의 동작 5할이 DB를 구경하는 것이다. 

@@ -63,6 +63,11 @@ class QueryBuilder():
         '''INSERT INTO 테이블명 (키1, 키2, ...) VALUES (값1, 값2, ...);'''
         return f'''INSERT INTO "{table_name}" ({",".join(map(self._get_stred_item,items.keys()))}) VALUES ({",".join(map(self._get_stred_item,items.values()))});'''
     # --------------------------
+    def get_insert_query_with_bindings(self,table_name:str,items:dict)->str:
+        '''INSERT INTO 테이블명 (키1, 키2, ...) VALUES (?,?,...);, [값1,값2,...]'''
+        bindings = list(items.values())
+        return f'''INSERT INTO "{table_name}" ({",".join(map(self._get_stred_item,items.keys()))}) VALUES ({",".join(['?']*len(bindings))});''',bindings
+    # --------------------------
     def get_select_query(self,table_name:str,items:list=[],where_option:dict={},sort_option:tuple={'id','오름차순'}):
         '''SELECT col1, col2 ... FROM 테이블명 WHERE 조건 ORDER BY col ASC/DESC'''
         where_str = self._get_where_str(**where_option) if where_option else ''

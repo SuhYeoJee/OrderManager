@@ -4,11 +4,13 @@ if __debug__:
 # -------------------------------------------------------------------------------------------
 from src.module.SqlliteInterface import SqlliteInterface
 from src.module.QueryBuilder import QueryBuilder
+DB_PATH='./config/NOVA.db'
+
 
 # Model
 class Model():
     def __init__(self):
-        self.sql = SqlliteInterface()
+        self.sql = SqlliteInterface(DB_PATH)
         self.qb = QueryBuilder()
 
     def insert_data(self,insert_request):
