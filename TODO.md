@@ -6,15 +6,21 @@
 - [x] DB 인터페이스 모듈
 - [X] DB 뷰어
 - [ ] DB 설계
+    - [ ] segment
+    - [ ] item
+    - [ ] order
+    - [ ] sp
+    - [ ] ip
 - [ ] DB 테스트값 입력
 
-bindings 사용하는 쿼리로 변경 필
+- [ ] test코드 // 외래키, check 조건 추가, 리스트반환 동작 확인하기
+- [ ] bindings 사용하는 쿼리로 변경 필
 (_get_stred_item)를 value에 대해 안쓰는게 목적
-- [x] insert
-- [ ] select
-- [ ] update
-- [ ] delete
-- [ ] where
+    - [x] insert
+    - [ ] select
+    - [ ] update
+    - [ ] delete
+    - [ ] where
 
 ##### DB 뷰어
 프로그램의 동작 5할이 DB를 구경하는 것이다. 
