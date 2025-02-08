@@ -23,11 +23,11 @@ class SqlliteInterface():
         return [table[0] for table in tables]
 
     @ensure_connect
-    def execute_query(self,query):
-        self.cursor.execute(query)
+    def execute_query(self,query,bindings:list=[]):
+        self.cursor.execute(query,bindings)
         rows = self.cursor.fetchall()
         print('# ------------------------------------------')
-        print(query)
+        print(query,bindings)
         print(rows)
         print('# ------------------------------------------')
         return rows

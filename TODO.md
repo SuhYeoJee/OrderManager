@@ -7,13 +7,7 @@
 - [ ] DB 뷰어
 
 - [ ] test코드 // 외래키, check 조건 추가, 리스트반환 동작 확인하기
-- [ ] bindings 사용하는 쿼리로 변경 필
-(_get_stred_item)를 value에 대해 안쓰는게 목적
-    - [x] insert
-    - [x] select
-    - [ ] update
-    - [ ] delete
-    - [x] where
+- [x] bindings 사용하는 쿼리로 변경 필
 
 ##### DB 뷰어
 DB 셀렉트 & TABLE 뷰를 만들자. 

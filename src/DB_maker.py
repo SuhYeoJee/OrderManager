@@ -30,7 +30,7 @@ class DBMaker():
     def insert_test_vals(self,table_name,test_vals:list):
         qb = QueryBuilder()
         for test_val in test_vals:
-            query,bindings = qb.get_insert_query_with_bindings(table_name,test_val)
+            query,bindings = qb.get_insert_query(table_name,test_val)
             self.cursor.execute(query,bindings)
         self.show_table(table_name)
         print('# ------------------------------------------')

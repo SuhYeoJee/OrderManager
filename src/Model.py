@@ -4,7 +4,8 @@ if __debug__:
 # -------------------------------------------------------------------------------------------
 from src.module.SqlliteInterface import SqlliteInterface
 from src.module.QueryBuilder import QueryBuilder
-DB_PATH='./config/NOVA.db'
+# DB_PATH='./config/NOVA.db'
+DB_PATH='./mydatabase.db'
 
 
 # Model
@@ -14,19 +15,19 @@ class Model():
         self.qb = QueryBuilder()
 
     def insert_data(self,insert_request):
-        query = self.qb .get_insert_query(insert_request[1],insert_request[2])
-        res = self.sql.execute_query(query)
+        query,bindings = self.qb.get_insert_query(insert_request[1],insert_request[2])
+        res = self.sql.execute_query(query,bindings)
         return self._add_response_header(insert_request,res)
     
     def delete_data(self,delete_request):
-        query = self.qb.get_delete_query(delete_request[1],where_option={'comparison':[('id','=',delete_request[2]['id'])]})
-        res = self.sql.execute_query(query)
+        query,bindings = self.qb.get_delete_query(delete_request[1],where_option={'comparison':[('id','=',delete_request[2]['id'])]})
+        res = self.sql.execute_query(query,bindings)
         return self._add_response_header(delete_request,res)
     
     def update_data(self,update_request):
         id_val = update_request[2].pop('id')
-        query = self.qb.get_update_query(update_request[1],update_request[2],where_option={'comparison':[('id','=',id_val)]})
-        res = self.sql.execute_query(query)
+        query,bindings = self.qb.get_update_query(update_request[1],update_request[2],where_option={'comparison':[('id','=',id_val)]})
+        res = self.sql.execute_query(query,bindings)
         return self._add_response_header(update_request,res)
     
     def select_data(self,select_request):
@@ -59,21 +60,21 @@ class Model():
             elif select_type in ['존재']:
                 where_option = {'isnull':[(select_col,False)]}
 
-            query = self.qb.get_select_query(select_request[1],where_option=where_option,sort_option=select_request[2])
-            res = [col_names] + self.sql.execute_query(query)
+            query,bindings = self.qb.get_select_query(select_request[1],where_option=where_option,sort_option=select_request[2])
+            res = [col_names] + self.sql.execute_query(query,bindings)
         except Exception as e: # 올바르지 않은 검색 쿼리
             res = [('오류',)] + [('올바르지 않은 검색 쿼리.',),(e.__str__(),),(e.__doc__,)]
 
         return self._add_response_header(select_request,res)
 
     def get_data_by_id(self,data_request):
-        query = self.qb .get_select_query(data_request[1],where_option={'comparison':[('id','=',data_request[2])]})
-        res = self.sql.execute_query(query)
+        query,bindings = self.qb.get_select_query(data_request[1],where_option={'comparison':[('id','=',data_request[2])]})
+        res = self.sql.execute_query(query,bindings)
         return self._add_response_header(data_request,res)
 
     def get_table_ids(self,id_request):
-        query = self.qb .get_select_query(id_request[1],['id'])
-        res = [x[0] for x in self.sql.execute_query(query)]
+        query,bindings = self.qb.get_select_query(id_request[1],['id'])
+        res = [x[0] for x in self.sql.execute_query(query,bindings)]
         return self._add_response_header(id_request,res)
     
     def get_all_table_items(self,table_request):
