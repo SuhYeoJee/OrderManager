@@ -10,7 +10,7 @@
 - [ ] bindings 사용하는 쿼리로 변경 필
 (_get_stred_item)를 value에 대해 안쓰는게 목적
     - [x] insert
-    - [ ] select
+    - [x] select
     - [ ] update
     - [ ] delete
     - [x] where
