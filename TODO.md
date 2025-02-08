@@ -13,12 +13,14 @@
     - [ ] select
     - [ ] update
     - [ ] delete
-    - [ ] where
+    - [x] where
 
 ##### DB 뷰어
 DB 셀렉트 & TABLE 뷰를 만들자. 
 
 DB 뷰어가 COL이름을 제대로 읽으려면 쿼리를 2번 보내야하는데 그거 처리 RUN 함수에서 호출 2번 하고 묶는걸로 수정
+
+ㄴ 이게 대체 무슨 소리야
 
 - [ ] 테이블 다이얼로그 제작
     - [ ] customer
