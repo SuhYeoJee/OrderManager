@@ -46,6 +46,7 @@ class DBMaker():
         for db_name in self.data:
             conn = sqlite3.connect(f'{self.db_dir_path}{db_name}.db')
             self.cursor = conn.cursor()
+            self.cursor.execute("PRAGMA foreign_keys = ON;")
 
             for table_name,table_data in self.data[db_name].items():
                 self.create_table(table_name,table_data["table"])
