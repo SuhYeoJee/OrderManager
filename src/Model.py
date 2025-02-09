@@ -4,8 +4,8 @@ if __debug__:
 # -------------------------------------------------------------------------------------------
 from src.module.SqlliteInterface import SqlliteInterface
 from src.module.QueryBuilder import QueryBuilder
-DB_PATH='./config/NOVA.db'
-# DB_PATH='./mydatabase.db'
+# DB_PATH='./config/NOVA.db'
+DB_PATH='./mydatabase.db'
 
 
 # Model

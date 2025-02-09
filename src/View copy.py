@@ -16,13 +16,14 @@ class View(QMainWindow):
         # --------------------------
         self.dialogs = {
             "insert":{
-                "users":UserDialog('insert','users'),
+                "users":InsertDialog('users'),
+                "sqlite_sequence":InsertDialog('sqlite_sequence')
             },
             "delete":{
-                "users":UserDialog('delete','users'),
+                "users":DeleteDialog('users')
             },
             "update":{
-                "users":UserDialog('update','users'),
+                "users":UpdateDialog('users')
             }
         }
     # -------------------------------------------------------------------------------------------
@@ -79,53 +80,36 @@ class View(QMainWindow):
             for col_idx, value in enumerate(row):
                 self.tableWidget.setItem(row_idx, col_idx, QTableWidgetItem(str(value)))
 
+
+
 # ===========================================================================================
 class BaseDialog(QDialog):
     data_request = pyqtSignal(tuple)
-    insert_request = pyqtSignal(tuple)
-    delete_request = pyqtSignal(tuple)
-    update_request = pyqtSignal(tuple)
-    def __init__(self,dialog_type,table_name,parent=None):
+    def __init__(self,table_name,parent=None):
         super().__init__(parent)
-        loadUi(f"./ui/{table_name}Dialog.ui", self) 
-        # --------------------------
-        self.request_header = (dialog_type,table_name)
-        self.on_submit = getattr(self, f"on_{dialog_type}_submit", None)
-        self.data = None
+        loadUi("./ui/insertDialog.ui", self) 
         # --------------------------
         self.loadBtn.clicked.connect(self.on_load)
         self.submitBtn.clicked.connect(self.on_submit)
+        # --------------------------
+        self.request_header = ('insert',table_name)
+        self.data = None
     # --------------------------
-    def clear(self):...
-    def get_inputs(self)->dict:...
-    def set_datas(self,datas:tuple):...
-    # --------------------------
-    def on_empty_func(self,*args,**kwargs):...
+    def clear(self):
+        self.idComboBox.clear()
+        self.nameLineEdit.clear()
+        self.ageSpinBox.setValue(0) 
+        self.cityLineEdit.clear()
+
     # [send request] -------------------------------------------------------------------------------------------
     def on_load(self):
         id = int(self.idComboBox.currentText())
         self.data_request.emit(self._add_request_header(id))
 
-    def on_insert_submit(self):
-        inputs = self.get_inputs()
-        inputs.pop('id')
-        self.data = self._add_request_header(inputs)
-        self.insert_request.emit(self.data)
-        self.close()
-
-    def on_delete_submit(self):
-        self.data = self._add_request_header(self.get_inputs())
-        self.delete_request.emit(self.data)
-        self.close()
-
-    def on_update_submit(self):
-        self.data = self._add_request_header(self.get_inputs())
-        self.update_request.emit(self.data)
-        self.close()
+    def on_submit(self):...
     # --------------------------
     def _add_request_header(self,data):
         return self.request_header+(data,)
-    
     # [on_response] -------------------------------------------------------------------------------------------
     def on_id_response(self,id_response):
         if self.request_header[1] != id_response[1]: return 
@@ -136,37 +120,74 @@ class BaseDialog(QDialog):
         if self.request_header[1] != data_response[1]: return 
         try:
             print(data_response[2])
-            [datas] = data_response[2]
+            [(_, name,age,city)] = data_response[2]
         except ValueError:
             ... # 해당 id 없음
         else:
-            self.set_datas(datas)
+            self.nameLineEdit.setText(name)
+            self.ageSpinBox.setValue(age)
+            self.cityLineEdit.setText(city)
+    def on_empty_func(self,*args,**kwargs):...
+# ===========================================================================================
 
+class InsertDialog(BaseDialog):
+    insert_request = pyqtSignal(tuple)
+    def __init__(self,table_name,parent=None):
+        super().__init__(table_name,parent)
+        # --------------------------
+        self.request_header = ('insert',table_name) 
+        self.data = None
 
-class UserDialog(BaseDialog):
-    def __init__(self,dialog_type,table_name,parent=None):
-        super().__init__(dialog_type,table_name,parent)
-        self.cols = ['id', 'name', 'age', 'city']
-    # --------------------------
-    def clear(self):
-        self.idComboBox.clear()
-        self.nameLineEdit.clear()
-        self.ageSpinBox.setValue(0) 
-        self.cityLineEdit.clear()
-    # --------------------------
-    def get_inputs(self):
+    # [send request] -------------------------------------------------------------------------------------------
+    def on_submit(self):
+        name = self.nameLineEdit.text()
+        age = self.ageSpinBox.value()
+        city = self.cityLineEdit.text()
+        # --------------------------
+        self.data = self._add_request_header({'name':name,'age':age,'city':city})
+        self.insert_request.emit(self.data)
+        self.close()
+# ===========================================================================================
+
+class DeleteDialog(BaseDialog):
+    delete_request = pyqtSignal(tuple)
+    def __init__(self,table_name,parent=None):
+        super().__init__(table_name,parent)
+        # --------------------------
+        self.request_header = ('delete',table_name)
+        self.data = None
+
+    # [send request] -------------------------------------------------------------------------------------------
+    def on_submit(self):
         id = self.idComboBox.currentText()
         name = self.nameLineEdit.text()
         age = self.ageSpinBox.value()
         city = self.cityLineEdit.text()
-        return dict(zip(self.cols, (id,name,age,city)))
-    # --------------------------
-    def set_datas(self,datas:tuple):
-        (id, name,age,city) = datas
-        self.nameLineEdit.setText(name)
-        self.ageSpinBox.setValue(age)
-        self.cityLineEdit.setText(city)
-    
+        # --------------------------
+        self.data = self._add_request_header({'id':id,'name':name,'age':age,'city':city})
+        self.delete_request.emit(self.data)
+        self.close()
+
+# ===========================================================================================
+
+class UpdateDialog(BaseDialog):
+    update_request = pyqtSignal(tuple)
+    def __init__(self,table_name,parent=None):
+        super().__init__(table_name,parent)
+        # --------------------------
+        self.request_header = ('update',table_name)
+        self.data = None
+
+    # [send request] -------------------------------------------------------------------------------------------
+    def on_submit(self):
+        id = self.idComboBox.currentText()
+        name = self.nameLineEdit.text()
+        age = self.ageSpinBox.value()
+        city = self.cityLineEdit.text()
+        # --------------------------
+        self.data = self._add_request_header({'id':id,'name':name,'age':age,'city':city})
+        self.update_request.emit(self.data)
+        self.close()
 
 # ===========================================================================================
 import sys

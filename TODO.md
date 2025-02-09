@@ -30,5 +30,7 @@ DB 뷰어가 COL이름을 제대로 읽으려면 쿼리를 2번 보내야하는�
     - [ ] ip
 
 - [ ] view에서 다이얼로그 초기화
+    - [x] BaseDialog 정의
+    - [ ] BaseDialog를 상속하는 클래스에서 테이블별 동작 정의
 - [ ] controller.init_signals에서 동작 매핑 
 - [ ] select 결과에서 다이얼로그로 바로 여는 버튼 추가
