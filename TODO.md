@@ -17,12 +17,12 @@ DB 뷰어가 COL이름을 제대로 읽으려면 쿼리를 2번 보내야하는�
 ㄴ 이게 대체 무슨 소리야
 
 - [ ] 테이블 다이얼로그 제작
-    - [ ] customer
-    - [ ] powder
-    - [ ] shank
-    - [ ] submaterial
-    - [ ] diamond
-    - [ ] bond
+    - [x] customer
+    - [x] powder
+    - [x] shank
+    - [x] submaterial (=diamond)
+    - [x] diamond
+    - [ ] bond - 진행중
     - [ ] segment
     - [ ] item
     - [ ] orders
