@@ -19,7 +19,7 @@ class BaseDialog(QDialog):
         # --------------------------
         self.request_header = (dialog_type,table_name)
         self.on_submit = getattr(self, f"on_{dialog_type}_submit", None)
-        self.data = None
+        self.cols, self.data = None, None
         # --------------------------
         self.loadBtn.clicked.connect(self.on_load)
         self.submitBtn.clicked.connect(self.on_submit)
@@ -63,11 +63,12 @@ class BaseDialog(QDialog):
     def _add_request_header(self,data):
         return self.request_header+(data,)
     # [on_response] -------------------------------------------------------------------------------------------
-
     def on_pre_response(self,pre_response):
+        '''다이얼로그 사전정보: 전체 cols,테이블에 존재하는 id목록, 외래키 제약'''
         if self.request_header[1] != pre_response[1]: return 
-        self.set_ids(pre_response[2][0])
-        self.set_fks(pre_response[2][1])
+        self.cols = pre_response[2][0]
+        self.set_ids(pre_response[2][1])
+        self.set_fks(pre_response[2][2])
     # --------------------------
     def on_data_response(self,data_response):
         if self.request_header[1] != data_response[1]: return 
@@ -82,7 +83,6 @@ class BaseDialog(QDialog):
 class UserDialog(BaseDialog):
     def __init__(self,dialog_type,table_name,parent=None):
         super().__init__(dialog_type,table_name,parent)
-        self.cols = ['id', 'name', 'age', 'city']
     # --------------------------
     def clear(self):
         self.idComboBox.clear()
@@ -113,7 +113,6 @@ class UserDialog(BaseDialog):
 class CustomerDialog(BaseDialog):
     def __init__(self,dialog_type,table_name,parent=None):
         super().__init__(dialog_type,table_name,parent)
-        self.cols = ['id', 'name', 'code', 'description', 'reg_date', 'update_date']
     # --------------------------
     def clear(self):
         self.idComboBox.clear()
@@ -141,4 +140,14 @@ class CustomerDialog(BaseDialog):
         self.descriptionPlainTextEdit.setPlainText(description)
         self.reg_dateDateTimeEdit.setDateTime(QDateTime.fromString(reg_date,DATETIME_FORMAT))
         self.update_dateDateTimeEdit.setDateTime(QDateTime.fromString(update_date,DATETIME_FORMAT))
-        
+
+class PowderDialog(BaseDialog):...
+class ShankDialog(BaseDialog):...
+class SubmaterialDialog(BaseDialog):...
+class DiamondDialog(BaseDialog):...
+class BondDialog(BaseDialog):...
+class SegmentDialog(BaseDialog):...
+class ItemDialog(BaseDialog):...
+class OrdersDialog(BaseDialog):...
+class SpDialog(BaseDialog):...
+class IpDialog(BaseDialog):...

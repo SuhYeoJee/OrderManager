@@ -6,16 +6,16 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox,QTableWidgetI
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.uic import loadUi
 # --------------------------
-from src.Dialog import CustomerDialog
+from src.Dialog import *
 # ===========================================================================================
 
 class View(QMainWindow):
     pre_request = pyqtSignal(tuple)
-    def __init__(self):
+    def __init__(self,tables):
         super().__init__()
         loadUi("./ui/MainWindow.ui", self)
         # --------------------------
-        self.dialog_infos = {"customer":CustomerDialog}
+        self.dialog_infos = {table: globals().get(f"{table.capitalize()}Dialog") for table in tables}
         self.dialogs = {action: {key: cls(action, key) for key, cls in self.dialog_infos.items()} for action in ['insert', 'delete', 'update']}
     # -------------------------------------------------------------------------------------------
     

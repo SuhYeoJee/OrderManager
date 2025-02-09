@@ -12,7 +12,7 @@ from src.Controller import Controller
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     model = Model()
-    view = View()
+    view = View(model.table_names)
     controller = Controller(model, view)
     # --------------------------
     view.show()

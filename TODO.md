@@ -2,16 +2,11 @@
 
 
 # 일단 DB 관리자를 만들자. 
-- [x] DB 명령어 생성 모듈
-- [x] DB 인터페이스 모듈
 - [ ] DB 뷰어
-
 - [ ] test코드 // 외래키, check 조건 추가, 리스트반환 동작 확인하기
     - [x] 사용 가능한 vals 반환하기
     - [x] 외래키목록 가져오기 
     - [ ] 콤보박스에 리스트 등록
-
-- [x] bindings 사용하는 쿼리로 변경 필
 
 
 ##### DB 뷰어
@@ -34,16 +29,25 @@ DB 뷰어가 COL이름을 제대로 읽으려면 쿼리를 2번 보내야하는�
     - [ ] sp
     - [ ] ip
 
-- [ ] view에서 다이얼로그 초기화
-    - [x] BaseDialog 정의
-    - [ ] BaseDialog를 상속하는 클래스에서 테이블별 동작 정의
-- [ ] controller.init_signals에서 동작 매핑 
 - [ ] select 결과에서 다이얼로그로 바로 여는 버튼 추가
 
+## 유지보수
 
 ### 다이얼로그 등록하는 방법
-
 1. Dialog.py에 다이얼로그 객체 생성
     - clear, set_fks, get_inputs, set_datas 정의
-2. View.dialog_infos에 {"테이블명":클래스} 쌍 추가
-3. (자동화됨) Controller.init_signals에 추가 
+2. ~~(자동화됨) View.dialog_infos에 {"테이블명":클래스} 쌍 추가~~
+3. ~~(자동화됨) Controller.init_signals에 추가 ~~
+- ui 폴더에 {table_name}Dialog.ui 있어야함
+- db에 table_name 테이블 있어야함
+
+
+다이얼로그 객체 생성할 때 
+cols 자동으로 가져오는 방법 없나 
+model이 넘겨주면 되긴 할텐데 
+다이얼로그를 모델에 꽂을라면.. 
+좀 빡세긴함..
+pre 가져올때 달라고하면 되나
+pre리스폰스에 cols추가하기 
+
+내가해냄

@@ -19,8 +19,9 @@ class SqlliteInterface():
     @ensure_connect
     def get_table_names(self):
         self.cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-        tables = self.cursor.fetchall()
-        return [table[0] for table in tables]
+        res = [table[0] for table in self.cursor.fetchall()]
+        res.remove("sqlite_sequence")
+        return res 
 
     @ensure_connect
     def execute_query(self,query,bindings:list=[]):

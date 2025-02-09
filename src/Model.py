@@ -13,6 +13,7 @@ class Model():
     def __init__(self):
         self.sql = SqlliteInterface(DB_PATH)
         self.qb = QueryBuilder()
+        self.table_names = self.sql.get_table_names()
 
     def insert_data(self,insert_request):
         query,bindings = self.qb.get_insert_query(insert_request[1],insert_request[2])
@@ -72,8 +73,8 @@ class Model():
         res = self.sql.execute_query(query,bindings)
         return self._add_response_header(data_request,res)
 
-    def get_table_ids(self,id_request):
-        query,bindings = self.qb.get_select_query(id_request[1],['id'])
+    def get_table_ids(self,table_name):
+        query,bindings = self.qb.get_select_query(table_name,['id'])
         res = [x[0] for x in self.sql.execute_query(query,bindings)]
         return res
     
@@ -111,9 +112,12 @@ class Model():
 
 
     def get_pre_infos(self,pre_request):
-        res = self.get_table_ids(pre_request)
-        fks = self.get_foreign_key_values(pre_request[1])
-        return self._add_response_header(pre_request,(res,fks))
+        '''다이얼로그 사전정보: 전체 cols,테이블에 존재하는 id목록, 외래키 제약'''
+        table_name = pre_request[1]
+        cols = self.get_table_col_names(table_name)
+        ids = self.get_table_ids(table_name)
+        fks = self.get_foreign_key_values(table_name)
+        return self._add_response_header(pre_request,(cols,ids,fks))
 
     def _add_response_header(self,request,data):
         return request[:2]+(data,)
