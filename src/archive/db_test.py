@@ -5,25 +5,24 @@ conn = sqlite3.connect('mydatabase.db')
 cursor = conn.cursor()
 
 # 테이블 생성
-# cursor.execute('''
-# CREATE TABLE my_table (
-#     id INTEGER PRIMARY KEY,
-#     data TEXT,
-#     reg_date DATETIME DEFAULT CURRENT_TIMESTAMP, -- 생성 날짜 자동 저장
-#     update_date DATETIME DEFAULT CURRENT_TIMESTAMP -- 수정 날짜 기본값
-# );
-
-# ''')
-
 cursor.execute('''
-CREATE TRIGGER update_date_trigger
-AFTER UPDATE ON my_table
-BEGIN
-    UPDATE my_table
-    SET update_date = CURRENT_TIMESTAMP
-    WHERE id = NEW.id;
-END;
+CREATE TABLE my_table4 (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT REFERENCES users(name),
+    age REAL,
+    city TEXT
+);
 ''')
+
+# cursor.execute('''
+# CREATE TRIGGER update_date_trigger
+# AFTER UPDATE ON my_table
+# BEGIN
+#     UPDATE my_table
+#     SET update_date = CURRENT_TIMESTAMP
+#     WHERE id = NEW.id;
+# END;
+# ''')
 
 
 # # 데이터 삽입

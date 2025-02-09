@@ -75,7 +75,7 @@ class Model():
     def get_table_ids(self,id_request):
         query,bindings = self.qb.get_select_query(id_request[1],['id'])
         res = [x[0] for x in self.sql.execute_query(query,bindings)]
-        return self._add_response_header(id_request,res)
+        return res
     
     def get_all_table_items(self,table_request):
         col_names = self.get_table_col_names(table_request[1])
@@ -90,6 +90,30 @@ class Model():
     def get_table_col_type(self,table_name,col_name):
         res = self.sql.execute_query(f"PRAGMA table_info({table_name})")
         return next((col[2] for col in res if col[1] == col_name), None)
+
+    def get_foreign_key_values(self, table_name)->dict:
+        '''
+        외래키 제약조건에서 사용 가능한 값을 반환. 
+        조건이 없으면 None, 사용 가능한 항목이 없으면 빈 리스트 반환.
+        결과는 {col_name: [val1, val2, ...]} 형태의 딕셔너리.
+        '''
+        res = self.sql.execute_query(f"PRAGMA foreign_key_list({table_name})")
+        if not res:
+            return None
+
+        result = {}
+        for fk in res:
+            ref_table,col_name,ref_col = fk[2:5]
+            query = f'SELECT DISTINCT "{ref_col}" FROM "{ref_table}"'
+            ref_values = self.sql.execute_query(query)
+            result[col_name] = [x[0] for x in ref_values] if ref_values else []
+        return result if result else None
+
+
+    def get_pre_infos(self,pre_request):
+        res = self.get_table_ids(pre_request)
+        fks = self.get_foreign_key_values(pre_request[1])
+        return self._add_response_header(pre_request,(res,fks))
 
     def _add_response_header(self,request,data):
         return request[:2]+(data,)

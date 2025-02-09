@@ -23,18 +23,24 @@ class Controller():
         self.init_signals()
 
     def init_signals(self):
-        self.view.id_request.connect(self.on_id_request)
+        self.view.pre_request.connect(self.on_pre_request)
         self.view.dialogs['insert']['users'].insert_request.connect(lambda x:self.on_table_request('insert',x))
         self.view.dialogs['delete']['users'].delete_request.connect(lambda x:self.on_table_request('delete',x))
         self.view.dialogs['update']['users'].update_request.connect(lambda x:self.on_table_request('update',x))
         self.view.dialogs['insert']['users'].data_request.connect(self.on_data_request)
         self.view.dialogs['delete']['users'].data_request.connect(self.on_data_request)
         self.view.dialogs['update']['users'].data_request.connect(self.on_data_request)
+        self.view.dialogs['insert']['my_table4'].insert_request.connect(lambda x:self.on_table_request('insert',x))
+        self.view.dialogs['delete']['my_table4'].delete_request.connect(lambda x:self.on_table_request('delete',x))
+        self.view.dialogs['update']['my_table4'].update_request.connect(lambda x:self.on_table_request('update',x))
+        self.view.dialogs['insert']['my_table4'].data_request.connect(self.on_data_request)
+        self.view.dialogs['delete']['my_table4'].data_request.connect(self.on_data_request)
+        self.view.dialogs['update']['my_table4'].data_request.connect(self.on_data_request)
     # [view에서 model 호출] -------------------------------------------------------------------------------------------
-    def on_id_request(self,id_request):
-        worker_func = "get_table_ids"
-        callback_func = self.view.dialogs[id_request[0]][id_request[1]].on_id_response
-        self.launch_worker(worker_func,callback_func,id_request)
+    def on_pre_request(self,pre_request):
+        worker_func = "get_pre_infos"
+        callback_func = self.view.dialogs[pre_request[0]][pre_request[1]].on_pre_response
+        self.launch_worker(worker_func,callback_func,pre_request)
 
     def on_table_request(self,request_type,request):
         worker_func = f"{request_type}_data"
