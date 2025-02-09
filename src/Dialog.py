@@ -2,9 +2,11 @@ if __debug__:
     import sys
     sys.path.append(r"X:\Github\OrderManager")
 # -------------------------------------------------------------------------------------------
-from PyQt5.QtWidgets import QDialog
-from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtWidgets import QDialog, QComboBox, QLineEdit, QPlainTextEdit,QDateTimeEdit
+from PyQt5.QtCore import pyqtSignal,QDateTime
 from PyQt5.uic import loadUi
+# --------------------------
+DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
 # ===========================================================================================
 class BaseDialog(QDialog):
     data_request = pyqtSignal(tuple)
@@ -39,6 +41,8 @@ class BaseDialog(QDialog):
     def on_insert_submit(self):
         inputs = self.get_inputs()
         inputs.pop('id')
+        inputs.pop('reg_date')
+        inputs.pop('update_date')
         self.data = self._add_request_header(inputs)
         self.insert_request.emit(self.data)
         self.close()
@@ -49,7 +53,10 @@ class BaseDialog(QDialog):
         self.close()
     # --------------------------
     def on_update_submit(self):
-        self.data = self._add_request_header(self.get_inputs())
+        inputs = self.get_inputs()
+        inputs.pop('reg_date')
+        inputs.pop('update_date')
+        self.data = self._add_request_header(inputs)
         self.update_request.emit(self.data)
         self.close()
     # --------------------------
@@ -89,7 +96,6 @@ class UserDialog(BaseDialog):
         except:
             ...
         # 여기서 fks를 combobox에 세팅
-
     # --------------------------
     def get_inputs(self):
         id = self.idComboBox.currentText()
@@ -103,3 +109,36 @@ class UserDialog(BaseDialog):
         self.nameLineEdit.setText(name)
         self.ageSpinBox.setValue(age)
         self.cityLineEdit.setText(city)
+
+class CustomerDialog(BaseDialog):
+    def __init__(self,dialog_type,table_name,parent=None):
+        super().__init__(dialog_type,table_name,parent)
+        self.cols = ['id', 'name', 'code', 'description', 'reg_date', 'update_date']
+    # --------------------------
+    def clear(self):
+        self.idComboBox.clear()
+        self.nameLineEdit.clear()
+        self.codeLineEdit.clear()
+        self.descriptionPlainTextEdit.clear()
+        self.reg_dateDateTimeEdit.setDateTime(QDateTime(2000, 1, 1, 0, 0))
+        self.update_dateDateTimeEdit.setDateTime(QDateTime(2000, 1, 1, 0, 0))
+
+    def set_fks(self,fks:dict): return #외래키 없음
+    # --------------------------
+    def get_inputs(self):
+        id = self.idComboBox.currentText()
+        name = self.nameLineEdit.text()
+        code = self.codeLineEdit.text()
+        description = self.descriptionPlainTextEdit.toPlainText()
+        reg_date = self.reg_dateDateTimeEdit.dateTime().toString(DATETIME_FORMAT)
+        update_date = self.update_dateDateTimeEdit.dateTime().toString(DATETIME_FORMAT)
+        return dict(zip(self.cols, (id,name,code, description,reg_date,update_date)))
+    # --------------------------
+    def set_datas(self,datas:tuple):
+        (id,name,code, description,reg_date,update_date) = datas
+        self.nameLineEdit.setText(name)
+        self.codeLineEdit.setText(code)
+        self.descriptionPlainTextEdit.setPlainText(description)
+        self.reg_dateDateTimeEdit.setDateTime(QDateTime.fromString(reg_date,DATETIME_FORMAT))
+        self.update_dateDateTimeEdit.setDateTime(QDateTime.fromString(update_date,DATETIME_FORMAT))
+        

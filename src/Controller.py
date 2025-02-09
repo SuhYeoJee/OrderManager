@@ -24,18 +24,12 @@ class Controller():
 
     def init_signals(self):
         self.view.pre_request.connect(self.on_pre_request)
-        self.view.dialogs['insert']['users'].insert_request.connect(lambda x:self.on_table_request('insert',x))
-        self.view.dialogs['delete']['users'].delete_request.connect(lambda x:self.on_table_request('delete',x))
-        self.view.dialogs['update']['users'].update_request.connect(lambda x:self.on_table_request('update',x))
-        self.view.dialogs['insert']['users'].data_request.connect(self.on_data_request)
-        self.view.dialogs['delete']['users'].data_request.connect(self.on_data_request)
-        self.view.dialogs['update']['users'].data_request.connect(self.on_data_request)
-        self.view.dialogs['insert']['my_table4'].insert_request.connect(lambda x:self.on_table_request('insert',x))
-        self.view.dialogs['delete']['my_table4'].delete_request.connect(lambda x:self.on_table_request('delete',x))
-        self.view.dialogs['update']['my_table4'].update_request.connect(lambda x:self.on_table_request('update',x))
-        self.view.dialogs['insert']['my_table4'].data_request.connect(self.on_data_request)
-        self.view.dialogs['delete']['my_table4'].data_request.connect(self.on_data_request)
-        self.view.dialogs['update']['my_table4'].data_request.connect(self.on_data_request)
+        for action in ['insert', 'delete', 'update']:
+            for table_name in self.view.dialog_infos.keys():
+                dialog = self.view.dialogs[action][table_name]
+                getattr(dialog, f'{action}_request').connect(lambda x, action=action: self.on_table_request(action, x))
+                dialog.data_request.connect(self.on_data_request)
+            
     # [view에서 model 호출] -------------------------------------------------------------------------------------------
     def on_pre_request(self,pre_request):
         worker_func = "get_pre_infos"

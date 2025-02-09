@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox,QTableWidgetI
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.uic import loadUi
 # --------------------------
-from src.Dialog import UserDialog
+from src.Dialog import CustomerDialog
 # ===========================================================================================
 
 class View(QMainWindow):
@@ -15,20 +15,8 @@ class View(QMainWindow):
         super().__init__()
         loadUi("./ui/MainWindow.ui", self)
         # --------------------------
-        self.dialogs = {
-            "insert":{
-                "users":UserDialog('insert','users'),
-                "my_table4":UserDialog('insert','my_table4'),
-            },
-            "delete":{
-                "users":UserDialog('delete','users'),
-                "my_table4":UserDialog('delete','my_table4'),
-            },
-            "update":{
-                "users":UserDialog('update','users'),
-                "my_table4":UserDialog('update','my_table4'),
-            }
-        }
+        self.dialog_infos = {"customer":CustomerDialog}
+        self.dialogs = {action: {key: cls(action, key) for key, cls in self.dialog_infos.items()} for action in ['insert', 'delete', 'update']}
     # -------------------------------------------------------------------------------------------
     
     def get_dialog(self,dialog_type,table_name):

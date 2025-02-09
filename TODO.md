@@ -13,6 +13,7 @@
 
 - [x] bindings 사용하는 쿼리로 변경 필
 
+
 ##### DB 뷰어
 DB 셀렉트 & TABLE 뷰를 만들자. 
 
@@ -21,7 +22,7 @@ DB 뷰어가 COL이름을 제대로 읽으려면 쿼리를 2번 보내야하는�
 ㄴ 이게 대체 무슨 소리야
 
 - [ ] 테이블 다이얼로그 제작
-    - [x] customer
+    - [x] (연결완료)customer
     - [x] powder
     - [x] shank
     - [x] submaterial (=diamond)
@@ -38,3 +39,11 @@ DB 뷰어가 COL이름을 제대로 읽으려면 쿼리를 2번 보내야하는�
     - [ ] BaseDialog를 상속하는 클래스에서 테이블별 동작 정의
 - [ ] controller.init_signals에서 동작 매핑 
 - [ ] select 결과에서 다이얼로그로 바로 여는 버튼 추가
+
+
+### 다이얼로그 등록하는 방법
+
+1. Dialog.py에 다이얼로그 객체 생성
+    - clear, set_fks, get_inputs, set_datas 정의
+2. View.dialog_infos에 {"테이블명":클래스} 쌍 추가
+3. (자동화됨) Controller.init_signals에 추가 
