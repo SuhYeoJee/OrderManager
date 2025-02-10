@@ -7,7 +7,11 @@ from PyQt5.QtCore import pyqtSignal,QDateTime
 from PyQt5.uic import loadUi
 import re
 # --------------------------
+from src.module.SqlliteInterface import SqlliteInterface
+# --------------------------
+DB_PATH='./config/NOVA.db'
 DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
+TABLES = SqlliteInterface(DB_PATH).get_table_names()
 # ===========================================================================================
 class BaseDialog(QDialog):
     data_request = pyqtSignal(tuple)
@@ -30,7 +34,12 @@ class BaseDialog(QDialog):
         input_widgets = self.findChildren((QLineEdit, QComboBox, QDateTimeEdit,QPlainTextEdit,QSpinBox,QDoubleSpinBox))
         return [widget for widget in input_widgets if widget.objectName()]
     # --------------------------
-    def set_fks(self,datas):...
+    def set_fks(self,datas):
+        if datas:
+            for col_name,items in datas.items():
+                combobox = getattr(self,f'{col_name}ComboBox')
+                combobox.clear()
+                combobox.addItems(map(str,['']+items))
     # --------------------------
     def set_ids(self,ids):
         self.idComboBox.clear()
@@ -134,28 +143,9 @@ class BaseDialog(QDialog):
         else:
             self.set_datas(datas)
 # ===========================================================================================
-class CustomerDialog(BaseDialog):
-    def __init__(self,dialog_type,table_name,parent=None):
-        super().__init__(dialog_type,table_name,parent)
-
-
-class PowderDialog(BaseDialog):
-    def __init__(self,dialog_type,table_name,parent=None):
-        super().__init__(dialog_type,table_name,parent)
-class ShankDialog(BaseDialog):
-    def __init__(self,dialog_type,table_name,parent=None):
-        super().__init__(dialog_type,table_name,parent)
-class SubmaterialDialog(BaseDialog):
-    def __init__(self,dialog_type,table_name,parent=None):
-        super().__init__(dialog_type,table_name,parent)
-class DiamondDialog(BaseDialog):
-    def __init__(self,dialog_type,table_name,parent=None):
-        super().__init__(dialog_type,table_name,parent)
-class BondDialog(BaseDialog):
-    def __init__(self,dialog_type,table_name,parent=None):
-        super().__init__(dialog_type,table_name,parent)
-class SegmentDialog(BaseDialog):...
-class ItemDialog(BaseDialog):...
-class OrdersDialog(BaseDialog):...
-class SpDialog(BaseDialog):...
-class IpDialog(BaseDialog):...
+# 클래스 자동생성
+for table_name in TABLES:
+    class_name = f'{table_name.capitalize()}Dialog'
+    globals()[class_name] = type(class_name, (BaseDialog,), {
+        '__init__': lambda self, dialog_type, table_name, parent=None: super(type(self), self).__init__(dialog_type, table_name, parent)
+    })
