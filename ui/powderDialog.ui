@@ -101,7 +101,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="densityDoubleSpinBox"/>
+       <widget class="QDoubleSpinBox" name="densityDoubleSpinBox">
+        <property name="maximum">
+         <double>999999.989999999990687</double>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -115,7 +122,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="priceDoubleSpinBox"/>
+       <widget class="QDoubleSpinBox" name="priceDoubleSpinBox">
+        <property name="maximum">
+         <double>999999.989999999990687</double>
+        </property>
+        <property name="singleStep">
+         <double>0.100000000000000</double>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -129,7 +143,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="inventorySpinBox"/>
+       <widget class="QSpinBox" name="inventorySpinBox">
+        <property name="maximum">
+         <number>999999</number>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>

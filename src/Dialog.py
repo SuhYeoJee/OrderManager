@@ -2,9 +2,10 @@ if __debug__:
     import sys
     sys.path.append(r"X:\Github\OrderManager")
 # -------------------------------------------------------------------------------------------
-from PyQt5.QtWidgets import QDialog, QComboBox, QLineEdit, QPlainTextEdit,QDateTimeEdit
+from PyQt5.QtWidgets import QDialog, QComboBox, QLineEdit, QPlainTextEdit,QDateTimeEdit,QSpinBox, QDoubleSpinBox
 from PyQt5.QtCore import pyqtSignal,QDateTime
 from PyQt5.uic import loadUi
+import re
 # --------------------------
 DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
 # ===========================================================================================
@@ -20,18 +21,71 @@ class BaseDialog(QDialog):
         self.request_header = (dialog_type,table_name)
         self.on_submit = getattr(self, f"on_{dialog_type}_submit", None)
         self.cols, self.data = None, None
+        self.input_widgets = self.get_input_widgets()
         # --------------------------
         self.loadBtn.clicked.connect(self.on_load)
         self.submitBtn.clicked.connect(self.on_submit)
+    
+    def get_input_widgets(self):
+        input_widgets = self.findChildren((QLineEdit, QComboBox, QDateTimeEdit,QPlainTextEdit,QSpinBox,QDoubleSpinBox))
+        return [widget for widget in input_widgets if widget.objectName()]
     # --------------------------
-    def clear(self):...
     def set_fks(self,datas):...
-    def get_inputs(self)->dict:...
-    def set_datas(self,datas:tuple):...
+    # --------------------------
     def set_ids(self,ids):
         self.idComboBox.clear()
         self.idComboBox.addItems(map(str,ids))
     # --------------------------
+    def clear(self)->None:
+        '''모든 입력위젯 비우기'''
+        clear_handlers = {
+            QLineEdit: lambda widget: widget.clear(),
+            QComboBox: lambda widget: widget.setCurrentIndex(0),
+            QSpinBox: lambda widget: widget.setValue(0),
+            QDoubleSpinBox: lambda widget: widget.setValue(0),
+            QPlainTextEdit: lambda widget: widget.clear(),
+            QDateTimeEdit: lambda widget: widget.setDateTime(QDateTime(2000, 1, 1, 0, 0))
+        }
+        [handler(widget) for widget in self.input_widgets if (handler := clear_handlers.get(type(widget)))]
+    # --------------------------
+    def get_inputs(self)->dict:
+        '''모든 입력위젯의 값 {"col_name":val}로 반환 '''
+        value_handlers = {
+            QLineEdit: lambda widget: widget.text(),
+            QComboBox: lambda widget: widget.currentText(),
+            QSpinBox: lambda widget: widget.value(),
+            QDoubleSpinBox: lambda widget: widget.value(),
+            QPlainTextEdit: lambda widget: widget.toPlainText(),
+            QDateTimeEdit: lambda widget: widget.dateTime().toString(DATETIME_FORMAT)
+        }
+        excepts = ['qt_spinbox_lineedit']
+        res = {self.get_key_from_object_name(widget.objectName()): handler(widget) 
+                for widget in self.input_widgets 
+                if (handler := value_handlers.get(type(widget))) and widget.objectName() not in excepts}
+        
+        print(res)
+        return res
+    # --------------------------
+    def set_datas(self, datas:tuple) -> None:
+        '''모든 입력 위젯에 값 설정하기'''
+        set_handlers = {
+            QLineEdit: lambda widget, value: widget.setText(str(value)),
+            QComboBox: lambda widget, value: widget.setCurrentText(str(value)),
+            QSpinBox: lambda widget, value: widget.setValue(value),
+            QDoubleSpinBox: lambda widget, value: widget.setValue(value),
+            QPlainTextEdit: lambda widget, value: widget.setPlainText(str(value)),
+            QDateTimeEdit: lambda widget, value: widget.setDateTime(QDateTime.fromString(value,DATETIME_FORMAT))
+        }
+        data_dict = dict(zip(self.cols,datas))
+        [handler(widget,value) 
+            for widget in self.input_widgets 
+            if (handler := set_handlers.get(type(widget))) and (value := data_dict.get(self.get_key_from_object_name(widget.objectName()))) is not None]
+    # --------------------------
+    def get_key_from_object_name(self,object_name):
+        # col_name = 첫 번째 대문자 이전
+        match = re.match(r'^[^A-Z]*', object_name)
+        return match.group(0) if match else object_name
+    
     def on_empty_func(self,*args,**kwargs):...
     # [send request] -------------------------------------------------------------------------------------------
     def on_load(self):
@@ -80,72 +134,26 @@ class BaseDialog(QDialog):
         else:
             self.set_datas(datas)
 # ===========================================================================================
-class UserDialog(BaseDialog):
-    def __init__(self,dialog_type,table_name,parent=None):
-        super().__init__(dialog_type,table_name,parent)
-    # --------------------------
-    def clear(self):
-        self.idComboBox.clear()
-        self.nameLineEdit.clear()
-        self.ageSpinBox.setValue(0) 
-        self.cityLineEdit.clear()
-
-    def set_fks(self,fks:dict):
-        try:
-            self.idComboBox.addItems(map(str,fks['name'])) 
-        except:
-            ...
-        # 여기서 fks를 combobox에 세팅
-    # --------------------------
-    def get_inputs(self):
-        id = self.idComboBox.currentText()
-        name = self.nameLineEdit.text()
-        age = self.ageSpinBox.value()
-        city = self.cityLineEdit.text()
-        return dict(zip(self.cols, (id,name,age,city)))
-    # --------------------------
-    def set_datas(self,datas:tuple):
-        (id, name,age,city) = datas
-        self.nameLineEdit.setText(name)
-        self.ageSpinBox.setValue(age)
-        self.cityLineEdit.setText(city)
-
 class CustomerDialog(BaseDialog):
     def __init__(self,dialog_type,table_name,parent=None):
         super().__init__(dialog_type,table_name,parent)
-    # --------------------------
-    def clear(self):
-        self.idComboBox.clear()
-        self.nameLineEdit.clear()
-        self.codeLineEdit.clear()
-        self.descriptionPlainTextEdit.clear()
-        self.reg_dateDateTimeEdit.setDateTime(QDateTime(2000, 1, 1, 0, 0))
-        self.update_dateDateTimeEdit.setDateTime(QDateTime(2000, 1, 1, 0, 0))
 
-    def set_fks(self,fks:dict): return #외래키 없음
-    # --------------------------
-    def get_inputs(self):
-        id = self.idComboBox.currentText()
-        name = self.nameLineEdit.text()
-        code = self.codeLineEdit.text()
-        description = self.descriptionPlainTextEdit.toPlainText()
-        reg_date = self.reg_dateDateTimeEdit.dateTime().toString(DATETIME_FORMAT)
-        update_date = self.update_dateDateTimeEdit.dateTime().toString(DATETIME_FORMAT)
-        return dict(zip(self.cols, (id,name,code, description,reg_date,update_date)))
-    # --------------------------
-    def set_datas(self,datas:tuple):
-        (id,name,code, description,reg_date,update_date) = datas
-        self.nameLineEdit.setText(name)
-        self.codeLineEdit.setText(code)
-        self.descriptionPlainTextEdit.setPlainText(description)
-        self.reg_dateDateTimeEdit.setDateTime(QDateTime.fromString(reg_date,DATETIME_FORMAT))
-        self.update_dateDateTimeEdit.setDateTime(QDateTime.fromString(update_date,DATETIME_FORMAT))
 
-class PowderDialog(BaseDialog):...
-class ShankDialog(BaseDialog):...
-class SubmaterialDialog(BaseDialog):...
-class DiamondDialog(BaseDialog):...
-class BondDialog(BaseDialog):...
+class PowderDialog(BaseDialog):
+    def __init__(self,dialog_type,table_name,parent=None):
+        super().__init__(dialog_type,table_name,parent)
+class ShankDialog(BaseDialog):
+    def __init__(self,dialog_type,table_name,parent=None):
+        super().__init__(dialog_type,table_name,parent)
+class SubmaterialDialog(BaseDialog):
+    def __init__(self,dialog_type,table_name,parent=None):
+        super().__init__(dialog_type,table_name,parent)
+class DiamondDialog(BaseDialog):
+    def __init__(self,dialog_type,table_name,parent=None):
+        super().__init__(dialog_type,table_name,parent)
+class BondDialog(BaseDialog):
+    def __init__(self,dialog_type,table_name,parent=None):
+        super().__init__(dialog_type,table_name,parent)
 class SegmentDialog(BaseDialog):...
 class ItemDialog(BaseDialog):...
 class OrdersDialog(BaseDialog):...
