@@ -2,7 +2,7 @@ if __debug__:
     import sys
     sys.path.append(r"X:\Github\OrderManager")
 # -------------------------------------------------------------------------------------------
-from PyQt5.QtWidgets import QDialog, QComboBox, QLineEdit, QPlainTextEdit,QDateTimeEdit,QSpinBox, QDoubleSpinBox
+from PyQt5.QtWidgets import QDialog, QComboBox, QLineEdit, QPlainTextEdit,QDateTimeEdit,QDateEdit,QSpinBox, QDoubleSpinBox
 from PyQt5.QtCore import pyqtSignal,QDateTime
 from PyQt5.uic import loadUi
 import re
@@ -31,7 +31,7 @@ class BaseDialog(QDialog):
         self.submitBtn.clicked.connect(self.on_submit)
     
     def get_input_widgets(self):
-        input_widgets = self.findChildren((QLineEdit, QComboBox, QDateTimeEdit,QPlainTextEdit,QSpinBox,QDoubleSpinBox))
+        input_widgets = self.findChildren((QLineEdit, QComboBox, QDateTimeEdit,QDateEdit,QPlainTextEdit,QSpinBox,QDoubleSpinBox))
         return [widget for widget in input_widgets if widget.objectName()]
     # --------------------------
     def set_fks(self,datas):
@@ -53,7 +53,8 @@ class BaseDialog(QDialog):
             QSpinBox: lambda widget: widget.setValue(0),
             QDoubleSpinBox: lambda widget: widget.setValue(0),
             QPlainTextEdit: lambda widget: widget.clear(),
-            QDateTimeEdit: lambda widget: widget.setDateTime(QDateTime(2000, 1, 1, 0, 0))
+            QDateTimeEdit: lambda widget: widget.setDateTime(QDateTime(2000, 1, 1, 0, 0)),
+            QDateEdit: lambda widget: widget.setDateTime(QDateTime(2000, 1, 1, 0, 0)),
         }
         [handler(widget) for widget in self.input_widgets if (handler := clear_handlers.get(type(widget)))]
     # --------------------------
@@ -65,7 +66,8 @@ class BaseDialog(QDialog):
             QSpinBox: lambda widget: widget.value(),
             QDoubleSpinBox: lambda widget: widget.value(),
             QPlainTextEdit: lambda widget: widget.toPlainText(),
-            QDateTimeEdit: lambda widget: widget.dateTime().toString(DATETIME_FORMAT)
+            QDateTimeEdit: lambda widget: widget.dateTime().toString(DATETIME_FORMAT),
+            QDateEdit: lambda widget: widget.dateTime().toString(DATETIME_FORMAT),
         }
         excepts = ['qt_spinbox_lineedit']
         res = {self.get_key_from_object_name(widget.objectName()): handler(widget) 
@@ -80,10 +82,11 @@ class BaseDialog(QDialog):
         set_handlers = {
             QLineEdit: lambda widget, value: widget.setText(str(value)),
             QComboBox: lambda widget, value: widget.setCurrentText(str(value)),
-            QSpinBox: lambda widget, value: widget.setValue(value),
-            QDoubleSpinBox: lambda widget, value: widget.setValue(value),
+            QSpinBox: lambda widget, value: widget.setValue(int(value)),
+            QDoubleSpinBox: lambda widget, value: widget.setValue(float(value)),
             QPlainTextEdit: lambda widget, value: widget.setPlainText(str(value)),
-            QDateTimeEdit: lambda widget, value: widget.setDateTime(QDateTime.fromString(value,DATETIME_FORMAT))
+            QDateTimeEdit: lambda widget, value: widget.setDateTime(QDateTime.fromString(value,DATETIME_FORMAT)),
+            QDateEdit: lambda widget, value: widget.setDateTime(QDateTime.fromString(value,DATETIME_FORMAT)),
         }
         data_dict = dict(zip(self.cols,datas))
         [handler(widget,value) 
