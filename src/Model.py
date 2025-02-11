@@ -4,10 +4,9 @@ if __debug__:
 # -------------------------------------------------------------------------------------------
 from src.module.SqlliteInterface import SqlliteInterface
 from src.module.QueryBuilder import QueryBuilder
+# --------------------------
 DB_PATH='./config/NOVA.db'
-# DB_PATH='./mydatabase.db'
-
-
+# ===========================================================================================
 # Model
 class Model():
     def __init__(self):
@@ -109,7 +108,6 @@ class Model():
             ref_values = self.sql.execute_query(query)
             result[col_name] = [x[0] for x in ref_values] if ref_values else []
         return result if result else None
-
 
     def get_pre_infos(self,pre_request):
         '''다이얼로그 사전정보: 전체 cols,테이블에 존재하는 id목록, 외래키 제약'''
