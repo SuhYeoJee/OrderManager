@@ -119,23 +119,23 @@ class SPMaker():
         segment_work = bond_workload // (total_weight - dia_weight)
         bondmix_workload = segment_work * (total_weight - dia_weight)
 
-        dia1_wight = ceil(dia_weight * segment_work * dia1_rate/10)
-        dia2_wight = ceil(dia_weight * segment_work * dia2_rate/10)
-        dia3_wight = ceil(dia_weight * segment_work * dia3_rate/10)
+        dia1_weight = ceil(dia_weight * segment_work * dia1_rate/10)
+        dia2_weight = ceil(dia_weight * segment_work * dia2_rate/10)
+        dia3_weight = ceil(dia_weight * segment_work * dia3_rate/10)
 
         return {'bond_workload':bond_workload,'segment_work':segment_work,'bondmix_workload':bondmix_workload,
-                'dia1_wight':dia1_wight,'dia2_wight':dia2_wight,'dia3_wight':dia3_wight}
+                'dia1_weight':dia1_weight,'dia2_weight':dia2_weight,'dia3_weight':dia3_weight}
 
     def get_verification(self,sp):
-        bondmix_workload,dia1_wight,dia2_wight,dia3_wight,total_weight,segment_work =\
+        bondmix_workload,dia1_weight,dia2_weight,dia3_weight,total_weight,segment_work =\
             self.__get_floated_args(sp['autos']['bondmix_workload'],
-                                    sp['autos']['dia1_wight'],
-                                    sp['autos']['dia2_wight'],
-                                    sp['autos']['dia3_wight'],
+                                    sp['autos']['dia1_weight'],
+                                    sp['autos']['dia2_weight'],
+                                    sp['autos']['dia3_weight'],
                                     sp['autos']['total_weight'],
                                     sp['autos']['segment_work'])
 
-        veri_weight = bondmix_workload + dia1_wight + dia2_wight + dia3_wight
+        veri_weight = bondmix_workload + dia1_weight + dia2_weight + dia3_weight
         veri_count = total_weight * segment_work
         return {'veri_weight':veri_weight,'veri_count':veri_count}
         

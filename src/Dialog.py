@@ -81,7 +81,8 @@ class BaseDialog(QDialog):
         '''모든 입력 위젯에 값 설정하기'''
         set_handlers = {
             QLineEdit: lambda widget, value: widget.setText(str(value)),
-            QComboBox: lambda widget, value: widget.setCurrentText(str(value)),
+            QComboBox: lambda widget, value: (widget.addItem(str(value)) if widget.findText(str(value)) == -1 else None, widget.setCurrentText(str(value)))[1],
+            # QComboBox: lambda widget, value: widget.setCurrentText(str(value)),
             QSpinBox: lambda widget, value: widget.setValue(int(value)),
             QDoubleSpinBox: lambda widget, value: widget.setValue(float(value)),
             QPlainTextEdit: lambda widget, value: widget.setPlainText(str(value)),
