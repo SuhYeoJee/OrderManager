@@ -16,7 +16,7 @@ class SpDialog(QDialog):
         super().__init__()
 
         uic.loadUi("./ui/spDialog.ui", self)
-        self.inner_widget = uic.loadUi("./ui/spWidget.ui")
+        self.inner_widget = uic.loadUi("./ui/ipWidget.ui")
 
         # 배경색 
         palette = self.inner_widget.palette()
