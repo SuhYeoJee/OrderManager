@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>1023</width>
-    <height>1470</height>
+    <height>1516</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -40,7 +40,7 @@
      <x>10</x>
      <y>20</y>
      <width>1001</width>
-     <height>1431</height>
+     <height>1481</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_5" columnstretch="1,1,1,1,1,1,1,1,1">
@@ -48,10 +48,24 @@
      <number>0</number>
     </property>
     <item row="22" column="1" colspan="4">
-     <widget class="QComboBox" name="comboBox_7"/>
+     <widget class="QComboBox" name="comboBox_7">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
     <item row="16" column="1" colspan="4">
-     <widget class="QComboBox" name="loads_segment_dia1ComboBox_2"/>
+     <widget class="QComboBox" name="loads_segment_dia1ComboBox_2">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
     <item row="26" column="0">
      <widget class="QLabel" name="label_343">
@@ -67,10 +81,19 @@
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="6" column="2">
      <widget class="QSpinBox" name="spinBox_2">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -78,6 +101,12 @@
     </item>
     <item row="8" column="2">
      <widget class="QSpinBox" name="spinBox_4">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -85,6 +114,12 @@
     </item>
     <item row="23" column="5">
      <widget class="QSpinBox" name="spinBox_12">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -92,6 +127,12 @@
     </item>
     <item row="16" column="5">
      <widget class="QSpinBox" name="spinBox_10">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -111,6 +152,9 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="27" column="0">
@@ -127,10 +171,19 @@
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="19" column="5">
      <widget class="QSpinBox" name="spinBox_9">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -149,6 +202,9 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+      <property name="margin">
+       <number>4</number>
       </property>
      </widget>
     </item>
@@ -179,10 +235,19 @@
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="7" column="2">
      <widget class="QSpinBox" name="spinBox_3">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -201,6 +266,9 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+      <property name="margin">
+       <number>4</number>
       </property>
      </widget>
     </item>
@@ -224,6 +292,9 @@
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="2" column="1" colspan="3">
@@ -246,10 +317,19 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="20" column="5">
      <widget class="QSpinBox" name="spinBox_14">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -269,6 +349,9 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="21" column="6">
@@ -285,10 +368,20 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="18" column="1" colspan="4">
-     <widget class="QComboBox" name="comboBox_6"/>
+     <widget class="QComboBox" name="comboBox_6">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
     <item row="8" column="3">
      <widget class="QLabel" name="label_241">
@@ -303,6 +396,9 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="margin">
+       <number>4</number>
       </property>
      </widget>
     </item>
@@ -320,6 +416,9 @@
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="16" column="0" rowspan="4">
@@ -335,6 +434,9 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+      <property name="margin">
+       <number>4</number>
       </property>
      </widget>
     </item>
@@ -352,6 +454,9 @@
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="12" column="6" rowspan="2">
@@ -368,13 +473,23 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="2" column="6" colspan="3">
      <widget class="QLineEdit" name="autos_creation_dateLineEdit"/>
     </item>
     <item row="17" column="1" colspan="4">
-     <widget class="QComboBox" name="loads_segment_dia3ComboBox"/>
+     <widget class="QComboBox" name="loads_segment_dia3ComboBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
     <item row="12" column="5" rowspan="2">
      <widget class="QSpinBox" name="spinBox_5">
@@ -421,6 +536,9 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="5" column="4" rowspan="5" colspan="5">
@@ -447,10 +565,20 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="8" column="1">
-     <widget class="QComboBox" name="comboBox_4"/>
+     <widget class="QComboBox" name="comboBox_4">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
     <item row="14" column="5" rowspan="2">
      <widget class="QSpinBox" name="spinBox_6">
@@ -466,7 +594,14 @@
      </widget>
     </item>
     <item row="7" column="1">
-     <widget class="QComboBox" name="comboBox_3"/>
+     <widget class="QComboBox" name="comboBox_3">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
     <item row="24" column="0">
      <spacer name="verticalSpacer_2">
@@ -495,10 +630,20 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="19" column="1" colspan="4">
-     <widget class="QComboBox" name="loads_segment_bondComboBox_2"/>
+     <widget class="QComboBox" name="loads_segment_bondComboBox_2">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
     <item row="20" column="6">
      <widget class="QLabel" name="label_284">
@@ -513,6 +658,9 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="margin">
+       <number>4</number>
       </property>
      </widget>
     </item>
@@ -529,6 +677,9 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+      <property name="margin">
+       <number>4</number>
       </property>
      </widget>
     </item>
@@ -559,10 +710,20 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="23" column="1" colspan="4">
-     <widget class="QComboBox" name="comboBox_8"/>
+     <widget class="QComboBox" name="comboBox_8">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
     <item row="12" column="3" colspan="2">
      <widget class="QComboBox" name="loads_segment_bondComboBox">
@@ -575,10 +736,23 @@
      </widget>
     </item>
     <item row="15" column="3" colspan="2">
-     <widget class="QComboBox" name="loads_segment_dia2ComboBox"/>
+     <widget class="QComboBox" name="loads_segment_dia2ComboBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
     <item row="17" column="5">
      <widget class="QSpinBox" name="spinBox_7">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -597,6 +771,9 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+      <property name="margin">
+       <number>4</number>
       </property>
      </widget>
     </item>
@@ -624,6 +801,9 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="7" column="3">
@@ -640,10 +820,20 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="13" column="3" colspan="2">
-     <widget class="QComboBox" name="comboBox_5"/>
+     <widget class="QComboBox" name="comboBox_5">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
     <item row="5" column="1" colspan="2">
      <widget class="QLineEdit" name="inputs_segmentLineEdit"/>
@@ -665,7 +855,14 @@
      <widget class="QPlainTextEdit" name="plainTextEdit_4"/>
     </item>
     <item row="21" column="1" colspan="4">
-     <widget class="QComboBox" name="comboBox_9"/>
+     <widget class="QComboBox" name="comboBox_9">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
     <item row="26" column="1" colspan="8">
      <widget class="QPlainTextEdit" name="plainTextEdit_3"/>
@@ -684,6 +881,9 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="19" column="6">
@@ -700,17 +900,33 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="9" column="2">
      <widget class="QSpinBox" name="spinBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
     <item row="9" column="1">
-     <widget class="QComboBox" name="comboBox"/>
+     <widget class="QComboBox" name="comboBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
     <item row="17" column="6">
      <widget class="QLabel" name="label_331">
@@ -726,20 +942,43 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="14" column="3" colspan="2">
-     <widget class="QComboBox" name="loads_segment_dia1ComboBox"/>
+     <widget class="QComboBox" name="loads_segment_dia1ComboBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
     <item row="21" column="5">
      <widget class="QSpinBox" name="spinBox_13">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
     <item row="6" column="1">
-     <widget class="QComboBox" name="comboBox_2"/>
+     <widget class="QComboBox" name="comboBox_2">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
     <item row="18" column="6">
      <widget class="QLabel" name="label_341">
@@ -754,6 +993,9 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="margin">
+       <number>4</number>
       </property>
      </widget>
     </item>
@@ -771,13 +1013,29 @@
       <property name="alignment">
        <set>Qt::AlignCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="20" column="1" colspan="4">
-     <widget class="QComboBox" name="comboBox_10"/>
+     <widget class="QComboBox" name="comboBox_10">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
     </item>
     <item row="22" column="5">
      <widget class="QSpinBox" name="spinBox_11">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -796,6 +1054,9 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+      <property name="margin">
+       <number>4</number>
       </property>
      </widget>
     </item>
@@ -816,6 +1077,9 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="14" column="6" rowspan="2">
@@ -832,6 +1096,9 @@
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
+      <property name="margin">
+       <number>4</number>
+      </property>
      </widget>
     </item>
     <item row="5" column="0">
@@ -847,6 +1114,9 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+      <property name="margin">
+       <number>4</number>
       </property>
      </widget>
     </item>
@@ -868,6 +1138,12 @@
     </item>
     <item row="18" column="5">
      <widget class="QSpinBox" name="spinBox_8">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -886,6 +1162,9 @@
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+      <property name="margin">
+       <number>4</number>
       </property>
      </widget>
     </item>
