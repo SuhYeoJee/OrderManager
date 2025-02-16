@@ -49,7 +49,7 @@ class BaseDialog(QDialog):
         '''모든 입력위젯 비우기'''
         clear_handlers = {
             QLineEdit: lambda widget: widget.clear(),
-            QComboBox: lambda widget: widget.setCurrentIndex(0),
+            QComboBox: lambda widget: widget.clear(),
             QSpinBox: lambda widget: widget.setValue(0),
             QDoubleSpinBox: lambda widget: widget.setValue(0),
             QPlainTextEdit: lambda widget: widget.clear(),
