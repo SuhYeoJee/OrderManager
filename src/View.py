@@ -2,7 +2,7 @@ if __debug__:
     import sys
     sys.path.append(r"X:\Github\OrderManager")
 # -------------------------------------------------------------------------------------------
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox,QTableWidgetItem
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox,QTableWidgetItem,QPushButton
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.uic import loadUi
 # --------------------------
@@ -16,12 +16,11 @@ class View(QMainWindow):
         loadUi("./ui/MainWindow.ui", self)
         # --------------------------
         self.dialog_infos = {table: globals().get(f"{table.capitalize()}Dialog") for table in tables}
-        self.dialogs = {action: {key: cls(action, key) for key, cls in self.dialog_infos.items()} for action in ['insert', 'delete', 'update']}
+        self.dialogs = {action: {key: cls(action, key) for key, cls in self.dialog_infos.items()} for action in ['view', 'insert', 'delete', 'update']}
     # -------------------------------------------------------------------------------------------
     
     def get_dialog(self,dialog_type,table_name):
         dialog = self.dialogs[dialog_type][table_name]
-        self.pre_request.emit((dialog_type,table_name))
         dialog.clear()
         dialog.show()
         return dialog
@@ -69,8 +68,18 @@ class View(QMainWindow):
 
         for row_idx, row in enumerate(res):
             for col_idx, value in enumerate(row):
-                self.tableWidget.setItem(row_idx, col_idx, QTableWidgetItem(str(value)))
+                if col_idx == 0:
+                    btn = QPushButton(str(value))
+                    view_request = (response[1],columns,row)
+                    btn.clicked.connect(lambda _, v=view_request: self.set_view_dialog(v))
+                    self.tableWidget.setCellWidget(row_idx, col_idx, btn)
+                else:
+                    self.tableWidget.setItem(row_idx, col_idx,QTableWidgetItem(str(value)))
 
+    def set_view_dialog(self,view_request):
+        dialog = self.get_dialog('view',view_request[0])
+        dialog.cols = view_request[1]
+        dialog.set_datas(view_request[2])
 
 # ===========================================================================================
 import sys

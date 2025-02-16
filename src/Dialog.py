@@ -105,6 +105,8 @@ class BaseDialog(QDialog):
         id = int(self.idComboBox.currentText())
         self.data_request.emit(self._add_request_header(id))
     # --------------------------
+    def on_view_submit(self):
+        self.close()
     def on_insert_submit(self):
         inputs = self.get_inputs()
         inputs.pop('id')
