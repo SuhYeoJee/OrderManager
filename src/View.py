@@ -22,6 +22,7 @@ class View(QMainWindow):
     def get_dialog(self,dialog_type,table_name):
         dialog = self.dialogs[dialog_type][table_name]
         dialog.clear()
+        self.pre_request.emit((dialog_type,table_name))
         dialog.show()
         return dialog
     
