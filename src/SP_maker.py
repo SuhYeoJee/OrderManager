@@ -13,18 +13,18 @@ class SPMaker():
     def __init__(self,model:Model):
         self.model = model
 
-    def get_sp_path(self):
-        inputs = {}
+    def get_sp_path(self,inputs):
         sp = self.make_new_sp(inputs)
-        self.write_json_file(sp,sp['inputs']['path'])
-        return sp['inputs']['path']
+        sp_path = f"./sp/{sp['autos']['name']}.json"
+        self.write_json_file(sp,sp_path)
+        return sp_path
     
     def get_data_by_name(self,table_name,name):
         request = ('select',table_name,('id','오름차순'),('name','=',name))
         response = self.model.select_data(request)
         return dict(zip(response[2][0],response[2][1]))
     
-    def get_sp_name(self,recent_sp_name):
+    def get_new_sp_name(self,recent_sp_name):
         [last_sp] = self.model.sql.execute_query('SELECT * FROM sp ORDER BY id DESC LIMIT 1;')
         year,no,_,_ = last_sp[1].split('-')
         r_year,r_no,_,_ = recent_sp_name.split('-')
@@ -35,7 +35,7 @@ class SPMaker():
         else:
             sp_name = f"{str(datetime.now().year)}-SP{1:04}-{rec}"
         return sp_name
-
+    # -------------------------------------------------------------------------------------------
     def make_new_sp(self,inputs:dict):
         sp = {}
         sp['inputs'] = inputs
@@ -45,7 +45,7 @@ class SPMaker():
         sp['loads']['bond'] = self.get_data_by_name('bond',sp['loads']['segment']['bond'])
         # --------------------------
         sp['autos'] = {}
-        sp['autos']['name'] = self.get_sp_name(sp['loads']['segment']['recent_sp'])
+        sp['autos']['name'] = self.get_new_sp_name(sp['loads']['segment']['recent_sp'])
         sp['autos']['creation_date'] = datetime.now().strftime("%Y년 %m월 %d일")
         sp['autos']['concent'] = float(sp['loads']['segment']['concent'])/4.4*100
         sp['autos']['segment_weight'] = self.get_segment_weight(sp)
@@ -56,7 +56,7 @@ class SPMaker():
         # --------------------------
         pprint(sp)
         return sp
-    
+    # -------------------------------------------------------------------------------------------
     def __get_floated_args(self,*args):
         return [float(x) if x is not None else 0 for x in args]
     
@@ -139,17 +139,18 @@ class SPMaker():
         veri_count = total_weight * segment_work
         return {'veri_weight':veri_weight,'veri_count':veri_count}
         
+    # -------------------------------------------------------------------------------------------
     def write_json_file(self,data,json_path)->None:
         with open(json_path, "w", encoding="utf-8") as json_file:
             json.dump(data, json_file, ensure_ascii=False, indent=4)
-
+    # --------------------------
     def __read_json_file(json_path):
         with open(json_path, 'r',encoding="utf-8") as json_file:
             data = json.load(json_file)
         return data
 
+# ===========================================================================================
 if __name__ == "__main__":
     m = Model()
     spm = SPMaker(m)
-    sp = spm.make_new_sp({"segment":"MID FAN Y40",'workload':10})
-    spm.write_json_file(sp,'./config/sptest.json')
+    sp = spm.get_sp_path({"segment":"MID FAN Y40",'workload':10})

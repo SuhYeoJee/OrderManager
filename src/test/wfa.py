@@ -38,7 +38,7 @@ class SpDialog(QDialog):
         return data
 
     def set_sp_vals(self):
-        sp = self.__read_json_file('./config/sptest.json')
+        sp = self.__read_json_file('./sp/2025-SP0002-25-0001.json')
         self.set_datas(sp)
 
     def set_datas(self, sp) -> None:
@@ -70,7 +70,12 @@ class SpDialog(QDialog):
                     ...
                 val = sp[data_type][table_name][col_name]
             else:
-                val = sp[data_type][data_name]
+                try:
+                    val = sp[data_type][data_name]
+                except:
+                    print(data_type,data_name)
+                    val = None
+            val = val if val else 0
             set_handlers.get(type(widget))(widget,val)
 
     
