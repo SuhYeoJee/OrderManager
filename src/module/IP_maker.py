@@ -5,19 +5,17 @@ if __debug__:
 from datetime import datetime
 import json
 from pprint import pprint
-from math import ceil
-# --------------------------
-from src.Model import Model
 # ===========================================================================================
 class IPMaker():
-    def __init__(self,model:Model):
+    def __init__(self,model):
         self.model = model
+        self.inputs = ['item_group']
 
-    def get_ip_path(self):
-        inputs = {}
-        ip = self.make_new_ip(inputs)
-        self.write_json_file(ip,ip['inputs']['path'])
-        return ip['inputs']['path']
+    def get_new_ip(self,inputs)->str:
+        ip = self._make_new_ip(inputs)
+        ip_path = f"./ip/{ip['autos']['name']}.json"
+        self.write_json_file(ip,ip_path)
+        return ip['autos']['name']
 
     def get_ip_name(self):
         [last_ip] = self.model.sql.execute_query('SELECT * FROM ip ORDER BY id DESC LIMIT 1;')
@@ -34,7 +32,7 @@ class IPMaker():
         response = self.model.select_data(request)
         return {val[3]:dict(zip(response[2][0],val)) for val in response[2][1:]}
 
-    def make_new_ip(self,inputs:dict):
+    def _make_new_ip(self,inputs:dict):
         ip = {}
         ip['inputs'] = inputs
         # --------------------------
@@ -47,16 +45,12 @@ class IPMaker():
         # --------------------------
         pprint(ip)
         return ip
-    
-    def __get_floated_args(self,*args):
-        return [float(x) if x is not None else 0 for x in args]
-    
 
     def write_json_file(self,data,json_path)->None:
         with open(json_path, "w", encoding="utf-8") as json_file:
             json.dump(data, json_file, ensure_ascii=False, indent=4)
 
-    def __read_json_file(json_path):
+    def _read_json_file(json_path):
         with open(json_path, 'r',encoding="utf-8") as json_file:
             data = json.load(json_file)
         return data
@@ -64,5 +58,5 @@ class IPMaker():
 if __name__ == "__main__":
     m = Model()
     ipm = IPMaker(m)
-    ip = ipm.make_new_ip({"item_group": '3\"6OR60'})
+    ip = ipm._make_new_ip({"item_group": '3\"6OR60'})
     ipm.write_json_file(ip,'./config/iptest.json')

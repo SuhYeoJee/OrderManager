@@ -32,13 +32,13 @@ class SpDialog(QDialog):
         self.input_widgets = self.get_input_widgets()
         self.set_sp_vals()
 
-    def __read_json_file(self,json_path):
+    def _read_json_file(self,json_path):
         with open(json_path, 'r',encoding="utf-8") as json_file:
             data = json.load(json_file)
         return data
 
     def set_sp_vals(self):
-        sp = self.__read_json_file('./sp/2025-SP0002-25-0001.json')
+        sp = self._read_json_file('./sp/2025-SP0002-25-0001.json')
         self.set_datas(sp)
 
     def set_datas(self, sp) -> None:

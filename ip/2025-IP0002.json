@@ -1,0 +1,88 @@
+{
+    "inputs": {
+        "item_group": "3\"6OR60"
+    },
+    "loads": {
+        "item": {
+            "CW": {
+                "id": 1,
+                "name": "3\"6Y20CW",
+                "item_group": "3\"6OR60",
+                "item_type": "CW",
+                "seg1": "MID FAN Y40",
+                "seg2": null,
+                "seg1_amount": 6.0,
+                "seg2_amount": null,
+                "shank": "7\"CUP-5/8-11T",
+                "shank_amount": 1.0,
+                "sub1": "PCD5X5",
+                "sub2": null,
+                "sub1_amount": 2.0,
+                "sub2_amount": null,
+                "mark": "O60",
+                "welding": null,
+                "dressing": null,
+                "color": "SILVER",
+                "recent_ip": null,
+                "image": null,
+                "description": null,
+                "reg_date": "2025-02-16 09:28:01",
+                "update_date": "2025-02-16 09:28:01"
+            },
+            "CCW": {
+                "id": 2,
+                "name": "3\"6Y20CCW",
+                "item_group": "3\"6OR60",
+                "item_type": "CCW",
+                "seg1": "MID FAN Y40",
+                "seg2": null,
+                "seg1_amount": 3.0,
+                "seg2_amount": null,
+                "shank": "7\"CUP-5/8-11T",
+                "shank_amount": 1.0,
+                "sub1": "PCD5X5",
+                "sub2": null,
+                "sub1_amount": 1.0,
+                "sub2_amount": null,
+                "mark": "O60",
+                "welding": null,
+                "dressing": null,
+                "color": "SILVER",
+                "recent_ip": null,
+                "image": null,
+                "description": null,
+                "reg_date": "2025-02-16 09:28:01",
+                "update_date": "2025-02-16 09:28:01"
+            },
+            "null": {
+                "id": 3,
+                "name": "3\"6Y20CW23",
+                "item_group": "3\"6OR60",
+                "item_type": null,
+                "seg1": "MID FAN Y40",
+                "seg2": "",
+                "seg1_amount": 6.0,
+                "seg2_amount": 0.0,
+                "shank": "7\"CUP-5/8-11T",
+                "shank_amount": 1.0,
+                "sub1": "PCD5X5",
+                "sub2": "",
+                "sub1_amount": 2.0,
+                "sub2_amount": 0.0,
+                "mark": "O60",
+                "welding": "welding",
+                "dressing": "dressing",
+                "color": "SILVER",
+                "recent_ip": "recent_ip",
+                "image": "image",
+                "description": "",
+                "reg_date": "2025-02-17 09:02:02",
+                "update_date": "2025-02-17 09:02:02"
+            }
+        }
+    },
+    "autos": {
+        "name": "2025-IP0002",
+        "creation_date": "2025년 02월 17일"
+    }
+}

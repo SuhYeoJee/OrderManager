@@ -4,6 +4,7 @@ if __debug__:
 # -------------------------------------------------------------------------------------------
 from src.module.SqlliteInterface import SqlliteInterface
 from src.module.QueryBuilder import QueryBuilder
+from src.module.IP_maker import IPMaker
 # --------------------------
 DB_PATH='./config/NOVA.db'
 # ===========================================================================================
@@ -12,13 +13,37 @@ class Model():
     def __init__(self):
         self.sql = SqlliteInterface(DB_PATH)
         self.qb = QueryBuilder()
+        self.ipm = IPMaker(self)
         self.table_names = self.sql.get_table_names()
 
     def insert_data(self,insert_request):
-        query,bindings = self.qb.get_insert_query(insert_request[1],insert_request[2])
-        res = self.sql.execute_query(query,bindings)
+        table_name,items = insert_request[1],insert_request[2]
+        if table_name == "orders":
+            res = self._handle_order_insert(items)
+        else:
+            query,bindings = self.qb.get_insert_query(table_name,items)
+            res = self.sql.execute_query(query,bindings)
         return self._add_response_header(insert_request,res)
     
+    def _handle_order_insert(self,items):
+        # ip생성
+        ip_inputs = {k: items[k] for k in self.ipm.inputs if k in items}
+        ip_name = self.ipm.get_new_ip(ip_inputs)
+        items.update({'ip':ip_name})
+
+        # 새로 생긴 ip DB에 저장
+        
+
+        query,bindings = self.qb.get_insert_query('orders',items)
+        res = self.sql.execute_query(query,bindings)
+        return res
+
+
+
+
+
+
+
     def delete_data(self,delete_request):
         query,bindings = self.qb.get_delete_query(delete_request[1],where_option={'comparison':[('id','=',delete_request[2]['id'])]})
         res = self.sql.execute_query(query,bindings)

@@ -13,8 +13,8 @@ class SPMaker():
     def __init__(self,model:Model):
         self.model = model
 
-    def get_sp_path(self,inputs):
-        sp = self.make_new_sp(inputs)
+    def get_new_sp(self,inputs):
+        sp = self._make_new_sp(inputs)
         sp_path = f"./sp/{sp['autos']['name']}.json"
         self.write_json_file(sp,sp_path)
         return sp_path
@@ -36,7 +36,7 @@ class SPMaker():
             sp_name = f"{str(datetime.now().year)}-SP{1:04}-{rec}"
         return sp_name
     # -------------------------------------------------------------------------------------------
-    def make_new_sp(self,inputs:dict):
+    def _make_new_sp(self,inputs:dict):
         sp = {}
         sp['inputs'] = inputs
         # --------------------------
@@ -57,12 +57,12 @@ class SPMaker():
         pprint(sp)
         return sp
     # -------------------------------------------------------------------------------------------
-    def __get_floated_args(self,*args):
+    def _get_floated_args(self,*args):
         return [float(x) if x is not None else 0 for x in args]
     
     def get_segment_weight(self,sp):
         volume,abs_density,rel_density,loss = \
-            self.__get_floated_args(sp['loads']['segment']['v'],
+            self._get_floated_args(sp['loads']['segment']['v'],
                                     sp['loads']['bond']['density'],
                                     0.95
                                     ,1.01)
@@ -70,7 +70,7 @@ class SPMaker():
     
     def get_segment_config(self,sp):
         segment_weight,segment_volume,segment_concent = \
-            self.__get_floated_args(sp['autos']['segment_weight'],
+            self._get_floated_args(sp['autos']['segment_weight'],
                                         sp['loads']['segment']['v'],
                                         sp['loads']['segment']['concent'])
 
@@ -92,7 +92,7 @@ class SPMaker():
 
     def get_segment_density(self,sp):
         abs_density,bond_volume_rate,dia_volume_rate,total_weight,segment_volume,segment_concent = \
-            self.__get_floated_args(sp['loads']['bond']['density'],
+            self._get_floated_args(sp['loads']['bond']['density'],
                                     sp['autos']['bond_volume_rate'],
                                     sp['autos']['dia_volume_rate'],
                                     sp['autos']['total_weight'],
@@ -107,7 +107,7 @@ class SPMaker():
 
     def get_workload(self,sp):
         total_weight,workload,dia_weight,dia1_rate,dia2_rate,dia3_rate = \
-            self.__get_floated_args(sp['autos']['total_weight'],
+            self._get_floated_args(sp['autos']['total_weight'],
                                     sp['inputs']['workload'],
                                     sp['autos']['dia_weight'],
                                     sp['loads']['segment']['dia1_rate'],
@@ -128,7 +128,7 @@ class SPMaker():
 
     def get_verification(self,sp):
         bondmix_workload,dia1_weight,dia2_weight,dia3_weight,total_weight,segment_work =\
-            self.__get_floated_args(sp['autos']['bondmix_workload'],
+            self._get_floated_args(sp['autos']['bondmix_workload'],
                                     sp['autos']['dia1_weight'],
                                     sp['autos']['dia2_weight'],
                                     sp['autos']['dia3_weight'],
@@ -144,7 +144,7 @@ class SPMaker():
         with open(json_path, "w", encoding="utf-8") as json_file:
             json.dump(data, json_file, ensure_ascii=False, indent=4)
     # --------------------------
-    def __read_json_file(json_path):
+    def _read_json_file(json_path):
         with open(json_path, 'r',encoding="utf-8") as json_file:
             data = json.load(json_file)
         return data
