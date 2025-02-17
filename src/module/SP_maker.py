@@ -6,18 +6,17 @@ from datetime import datetime
 import json
 from pprint import pprint
 from math import ceil
-# --------------------------
-from src.Model import Model
 # ===========================================================================================
 class SPMaker():
-    def __init__(self,model:Model):
+    def __init__(self,model):
         self.model = model
+        self.inputs = ["segment","segment_net"]
+        self.ouputs = ["bond","segment_work","sp"]
 
     def get_new_sp(self,inputs):
         sp = self._make_new_sp(inputs)
-        sp_path = f"./sp/{sp['autos']['name']}.json"
-        self.write_json_file(sp,sp_path)
-        return sp_path
+        self.write_json_file(sp,f"./sp/{sp['autos']['name']}.json")
+        return sp
     
     def get_data_by_name(self,table_name,name):
         request = ('select',table_name,('id','오름차순'),('name','=',name))

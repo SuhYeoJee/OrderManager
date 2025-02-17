@@ -9,13 +9,12 @@ from pprint import pprint
 class IPMaker():
     def __init__(self,model):
         self.model = model
-        self.inputs = ['item_group']
+        self.inputs = ["item","item_group","amount","engrave","due_date"]
 
     def get_new_ip(self,inputs)->str:
         ip = self._make_new_ip(inputs)
-        ip_path = f"./ip/{ip['autos']['name']}.json"
-        self.write_json_file(ip,ip_path)
-        return ip['autos']['name']
+        self.write_json_file(ip,f"./ip/{ip['autos']['name']}.json")
+        return ip
 
     def get_ip_name(self):
         [last_ip] = self.model.sql.execute_query('SELECT * FROM ip ORDER BY id DESC LIMIT 1;')

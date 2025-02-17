@@ -5,6 +5,7 @@ if __debug__:
 from src.module.SqlliteInterface import SqlliteInterface
 from src.module.QueryBuilder import QueryBuilder
 from src.module.IP_maker import IPMaker
+from src.module.SP_maker import SPMaker
 # --------------------------
 DB_PATH='./config/NOVA.db'
 # ===========================================================================================
@@ -14,6 +15,7 @@ class Model():
         self.sql = SqlliteInterface(DB_PATH)
         self.qb = QueryBuilder()
         self.ipm = IPMaker(self)
+        self.spm = SPMaker(self)
         self.table_names = self.sql.get_table_names()
 
     def insert_data(self,insert_request):
@@ -28,12 +30,24 @@ class Model():
     def _handle_order_insert(self,items):
         # ip생성
         ip_inputs = {k: items[k] for k in self.ipm.inputs if k in items}
-        ip_name = self.ipm.get_new_ip(ip_inputs)
-        items.update({'ip':ip_name})
+        ip = self.ipm.get_new_ip(ip_inputs)
+        items.update({'ip':ip['autos']['name']}) #order 갱신 
 
+        # sp생성
+        sps=[]
+        for i in [1,2]:
+            sp_inputs = {f"segment":ip["autos"][f"seg{i}"],"segment_net":ip["autos"][f"seg{i}_net"]}
+            sps.append(self.spm.get_new_sp(sp_inputs))
+            items.update({f'sp{i}':sps[i-1]['autos']['name']}) #order 갱신 
+
+        self.ouputs = ["bond","segment_work","sp"]
         # 새로 생긴 ip DB에 저장
-        
+        ip_items = {'name','item_group','sp','path'}
+        sp_items = {'name','segment','ip','path'}
+        query,bindings = self.qb.get_insert_query('ip',ip_items)
+        res = self.sql.execute_query(query,bindings)
 
+        # order DB에 저장
         query,bindings = self.qb.get_insert_query('orders',items)
         res = self.sql.execute_query(query,bindings)
         return res
