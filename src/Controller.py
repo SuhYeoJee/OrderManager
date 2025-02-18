@@ -19,8 +19,10 @@ class Controller():
         self.view.tableDeleteBtn.clicked.connect(lambda: self.on_table_btn('delete'))
         self.view.tableUpdateBtn.clicked.connect(lambda: self.on_table_btn('update'))
         self.view.tableSelectBtn.clicked.connect(self.on_table_select_btn)
+        self.view.tabWidget.currentChanged.connect(self.on_tab_changed)
         # --------------------------
         self.init_signals()
+        self.on_tab_changed(0)
 
     def init_signals(self):
         self.view.pre_request.connect(self.on_pre_request)
@@ -51,6 +53,15 @@ class Controller():
         callback_func = self.view.update_table_data
         data_request = ('controller',self.view.get_table_name())
         self.launch_worker(worker_func,callback_func,data_request)
+
+    def on_tab_changed(self,index):
+        '''0탭 전환시 orders 표시'''
+        if index == 0:
+            worker_func = "get_all_table_items"
+            callback_func = self.view.update_table_data
+            data_request = ('ordersTable','orders')
+            self.launch_worker(worker_func,callback_func,data_request)
+
 
     def reload_table(self,*args): #after insert,update,delete
         self.on_table_name()

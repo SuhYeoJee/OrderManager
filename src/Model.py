@@ -33,19 +33,19 @@ class Model():
         ip = self.ipm.get_new_ip(ip_inputs)
         items.update({'ip':ip['autos']['name']}) #order 갱신 
 
-        # sp생성
-        sps=[]
-        for i in [1,2]:
-            sp_inputs = {f"segment":ip["autos"][f"seg{i}"],"segment_net":ip["autos"][f"seg{i}_net"]}
-            sps.append(self.spm.get_new_sp(sp_inputs))
-            items.update({f'sp{i}':sps[i-1]['autos']['name']}) #order 갱신 
+        # # sp생성
+        # sps=[]
+        # for i in [1,2]:
+        #     sp_inputs = {f"segment":ip["autos"][f"seg{i}"],"segment_net":ip["autos"][f"seg{i}_net"]}
+        #     sps.append(self.spm.get_new_sp(sp_inputs))
+        #     items.update({f'sp{i}':sps[i-1]['autos']['name']}) #order 갱신 
 
-        self.ouputs = ["bond","segment_work","sp"]
-        # 새로 생긴 ip DB에 저장
-        ip_items = {'name','item_group','sp','path'}
-        sp_items = {'name','segment','ip','path'}
-        query,bindings = self.qb.get_insert_query('ip',ip_items)
-        res = self.sql.execute_query(query,bindings)
+        # self.ouputs = ["bond","segment_work","sp"]
+        # # 새로 생긴 ip DB에 저장
+        # ip_items = {'name','item_group','sp','path'}
+        # sp_items = {'name','segment','ip','path'}
+        # query,bindings = self.qb.get_insert_query('ip',ip_items)
+        # res = self.sql.execute_query(query,bindings)
 
         # order DB에 저장
         query,bindings = self.qb.get_insert_query('orders',items)
@@ -117,9 +117,13 @@ class Model():
         return res
     
     def get_all_table_items(self,table_request):
-        col_names = self.get_table_col_names(table_request[1])
-        query = f"SELECT * FROM {table_request[1]}"
-        res = [col_names] + self.sql.execute_query(query)
+        if table_request[0] == "ordersTable":
+            col_names = ["id","order_date","customer","name","code","item","amount","ip","sp","segment","bond","segment_net","segment_work","due_date","description"]
+            query,bindings = self.qb.get_select_query('orders',col_names,{},('code','오름차순'))
+        else:
+            col_names = self.get_table_col_names(table_request[1])
+            query,bindings = f"SELECT * FROM {table_request[1]}",[]
+        res = [col_names] + self.sql.execute_query(query,bindings)
         return self._add_response_header(table_request,res)
 
     def get_table_col_names(self,table_name):

@@ -9,14 +9,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>990</width>
+    <width>1643</width>
     <height>850</height>
    </rect>
   </property>
   <property name="font">
    <font>
     <family>굴림</family>
-    <pointsize>16</pointsize>
+    <pointsize>12</pointsize>
    </font>
   </property>
   <property name="windowTitle">
@@ -28,211 +28,236 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>991</width>
+      <width>1661</width>
       <height>701</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
       <string>Tab 1</string>
      </attribute>
+     <widget class="QTableWidget" name="ordersTableWidget">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>130</y>
+        <width>1591</width>
+        <height>521</height>
+       </rect>
+      </property>
+      <attribute name="verticalHeaderVisible">
+       <bool>false</bool>
+      </attribute>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>Tab 2</string>
      </attribute>
-     <widget class="QComboBox" name="tableNameComboBox">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>30</y>
-        <width>181</width>
-        <height>41</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="tableNameComboBtn">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>30</y>
-        <width>151</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>tableComboBtn</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="tableDeleteBtn">
-      <property name="geometry">
-       <rect>
-        <x>830</x>
-        <y>30</y>
-        <width>131</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>tableDeleteBtn</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="tableUpdateBtn">
-      <property name="geometry">
-       <rect>
-        <x>690</x>
-        <y>30</y>
-        <width>131</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>tableUpdateBtn</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="tableInsertBtn">
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>30</y>
-        <width>131</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>tableInsertBtn</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="tableSelectBtn">
-      <property name="geometry">
-       <rect>
-        <x>830</x>
-        <y>80</y>
-        <width>131</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>tableSelectBtn</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="tableSelectLineEdit">
-      <property name="geometry">
-       <rect>
-        <x>650</x>
-        <y>80</y>
-        <width>171</width>
-        <height>41</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QTableWidget" name="tableWidget">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>130</y>
-        <width>931</width>
+        <width>1591</width>
         <height>521</height>
        </rect>
       </property>
      </widget>
-     <widget class="QComboBox" name="tableSortColComboBox">
+     <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>80</y>
-        <width>181</width>
-        <height>41</height>
+        <y>30</y>
+        <width>1591</width>
+        <height>91</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QComboBox" name="tableSortOpComboBox">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>80</y>
-        <width>151</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>오름차순</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>내림차순</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QComboBox" name="tableSelectOpComboBox">
-      <property name="geometry">
-       <rect>
-        <x>560</x>
-        <y>80</y>
-        <width>81</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>&gt;</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>&lt;</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>&gt;=</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>&lt;=</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>=</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>IN</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>LIKE</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>부재</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>존재</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QComboBox" name="tableSelectColComboBox">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>80</y>
-        <width>181</width>
-        <height>41</height>
-       </rect>
-      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="5">
+        <widget class="QPushButton" name="tableUpdateBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>tableUpdateBtn</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="tableNameComboBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>tableComboBtn</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QComboBox" name="tableNameComboBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QComboBox" name="tableSelectColComboBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QComboBox" name="tableSortColComboBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QPushButton" name="tableInsertBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>tableInsertBtn</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="6">
+        <widget class="QPushButton" name="tableSelectBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>tableSelectBtn</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QComboBox" name="tableSortOpComboBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <item>
+          <property name="text">
+           <string>오름차순</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>내림차순</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="4" colspan="2">
+        <widget class="QLineEdit" name="tableSelectLineEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="6">
+        <widget class="QPushButton" name="tableDeleteBtn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>tableDeleteBtn</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QComboBox" name="tableSelectOpComboBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <item>
+          <property name="text">
+           <string>&gt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>&lt;</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>&gt;=</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>&lt;=</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>=</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>IN</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>LIKE</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>부재</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>존재</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </widget>
@@ -242,7 +267,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>990</width>
+     <width>1643</width>
      <height>26</height>
     </rect>
    </property>
