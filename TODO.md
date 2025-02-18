@@ -52,6 +52,22 @@ loads/item/CCW
 auto에 정규화 해서 저장하고 그거 부르기
 이게 낫겠다 
 
+#### sp불러오면 별도 창을 열기
+를 구현하는 방법
+sp 다이얼로그에 버튼을 하나 만들어서 매핑
+매핑을 어디에?
+spDialog 클래스에 새 클래스를 생성 
+클릭하면 시그널을 모델에 보내야곘지 . 
+sp 다이얼로그는 서브 다이얼로그를 가짐
+위젯뷰어. 
+
+버튼을 클릭하면 시그널로 path를 보냄
+모델은 json읽어서 반환
+
+응답이 오면 dialog 생성해서 표시. 
+그럼 별도 클래스로 안갖고 ...있어도 ㅚ는거같다. 
+함수로만 구현하죠 이거 
+힘드니께. 어차피 view 전용이라. ㄱㅊ 
 
 
 #### 수주/재고 관리
@@ -132,3 +148,12 @@ auto에 정규화 해서 저장하고 그거 부르기
 - ui 폴더에 {table_name}Dialog.ui 확인
 - db에 table_name 테이블 확인
 - Dialog.py에 DB_PATH 확인
+
+### 새 시그널 추가하는 법
+1. 다이얼로그/뷰에 새로 정의 `json_request = pyqtSignal(tuple)`
+2. 시그널 emit 작성 `self.json_request.emit(self.data)`
+3. ctrl.init_signals에 초기화 
+ - crtl에 on_{ }_request 작성(model연결)
+ - model에 동작 작성 
+
+이거 spdialog에 sub dialog 쑤셔넣을라그랬는데 안된다. 

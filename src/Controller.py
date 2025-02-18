@@ -31,6 +31,8 @@ class Controller():
                 dialog = self.view.dialogs[action][table_name]
                 getattr(dialog, f'{action}_request').connect(lambda x, action=action: self.on_table_request(action, x))
                 dialog.data_request.connect(self.on_data_request)
+                if table_name == 'sp':
+                    dialog.json_request.connect(self.on_json_request)
             
     # [view에서 model 호출] -------------------------------------------------------------------------------------------
     def on_pre_request(self,pre_request):
@@ -42,6 +44,11 @@ class Controller():
         worker_func = f"{request_type}_data"
         callback_func = self.reload_table
         self.launch_worker(worker_func,callback_func,request)
+
+    def on_json_request(self,json_reqeust):
+        worker_func = f"get_json_data"
+        callback_func = self.view.dialogs[json_reqeust[0]][json_reqeust[1]].on_json_response
+        self.launch_worker(worker_func,callback_func,json_reqeust)
 
     def on_data_request(self,data_request):
         worker_func = "get_data_by_id"

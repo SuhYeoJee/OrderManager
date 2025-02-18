@@ -25,7 +25,7 @@
      <x>20</x>
      <y>270</y>
      <width>911</width>
-     <height>321</height>
+     <height>161</height>
     </rect>
    </property>
    <property name="verticalScrollBarPolicy">
@@ -40,7 +40,7 @@
       <x>0</x>
       <y>0</y>
       <width>888</width>
-      <height>319</height>
+      <height>159</height>
      </rect>
     </property>
    </widget>
@@ -218,6 +218,19 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>440</y>
+     <width>911</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
   </widget>
  </widget>
  <resources/>

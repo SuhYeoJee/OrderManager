@@ -53,9 +53,8 @@ class Model():
         return res
 
 
-
-
-
+    def get_json_data(self,json_request):
+        ...
 
 
     def delete_data(self,delete_request):

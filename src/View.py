@@ -25,7 +25,7 @@ class View(QMainWindow):
     def get_dialog(self,dialog_type,table_name):
         dialog = self.dialogs[dialog_type][table_name]
         dialog.clear()
-        if dialog_type != 'view':
+        if dialog_type != 'view': # 추가 db 조회 없음
             self.pre_request.emit((dialog_type,table_name))
         dialog.show()
         return dialog
@@ -130,7 +130,6 @@ class View(QMainWindow):
                     current_text = item_text
             if end_row > start_row: #표 끝까지
                 tableWidget.setSpan(start_row, col, end_row - start_row + 1, 1)
-
 
     def set_view_dialog(self,view_request):
         dialog = self.get_dialog('view',view_request[0])
