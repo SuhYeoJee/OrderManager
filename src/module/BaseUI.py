@@ -28,20 +28,20 @@ class BaseUI(QDialog):
     # --------------------------
     def set_ids(self,ids):
         self.idComboBox.clear()
-        self.idComboBox.addItems(map(str,ids))
+        self.idComboBox.addItems(map(str,['']+ids))
     # --------------------------
-    def clear(self,keep_ids:bool=False)->None:
+    def clear(self,keep_combos:bool=False)->None:
         '''모든 입력위젯 비우기'''
         clear_handlers = {
             QLineEdit: lambda widget: widget.clear(),
-            QComboBox: lambda widget: widget.clear(),
+            QComboBox: lambda widget: widget.setCurrentText("") if keep_combos else widget.clear(),
             QSpinBox: lambda widget: widget.setValue(0),
             QDoubleSpinBox: lambda widget: widget.setValue(0),
             QPlainTextEdit: lambda widget: widget.clear(),
             QDateTimeEdit: lambda widget: widget.setDateTime(QDateTime(0000, 0, 0, 0, 0)),
             QDateEdit: lambda widget: widget.setDateTime(QDateTime(0000, 0, 0, 0, 0)),
         }
-        input_widgets = [w for w in self.input_widgets if w.objectName() != "idComboBox"] if keep_ids else self.input_widgets
+        input_widgets = [w for w in self.input_widgets if w.objectName() != "idComboBox"] if keep_combos else self.input_widgets
         [handler(w) for w in input_widgets if (handler := clear_handlers.get(type(w)))]
     # --------------------------
     def get_inputs(self)->dict:
