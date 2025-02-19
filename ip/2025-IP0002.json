@@ -1,6 +1,6 @@
 {
     "inputs": {
-        "item": "3\"6Y20CW",
+        "item": "3\"6Y20CCW",
         "item_group": "3\"6OR60",
         "amount": 3,
         "engrave": "TEXT",
@@ -62,6 +62,6 @@
     },
     "autos": {
         "name": "2025-IP0002",
-        "creation_date": "2025년 02월 18일"
+        "creation_date": "2025년 02월 19일"
     }
 }
