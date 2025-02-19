@@ -106,6 +106,7 @@ class BaseUI(QDialog):
         try:
             [datas] = data_response[2]
         except ValueError:
+            print('*')
             ... # 해당 id 없음
         else:
             self.set_datas(datas)
