@@ -2,6 +2,7 @@
 from src.imports.pyqt5_imports import *
 # --------------------------
 from src.module.Dialog import *
+from src.module.Widget import *
 # ===========================================================================================
 
 class View(QMainWindow):
@@ -16,13 +17,8 @@ class View(QMainWindow):
         self.dialog_infos = {table: globals().get(f"{table.capitalize()}Dialog") for table in tables}
         self.dialogs = {action: {key: cls(action, key) for key, cls in self.dialog_infos.items()} for action in ['view', 'insert', 'delete', 'update']}
         self.dialogs['widget']={}
-        self.dialogs['widget']['orders'] = self.get_widget('widget','orders')
-    
+        self.dialogs['widget']['orders'] = OrdersWidget()
     # -------------------------------------------------------------------------------------------
-
-    def get_widget(self,dialog_type,table_name):
-        ...
-
     def get_dialog(self,dialog_type,table_name):
         dialog = self.dialogs[dialog_type][table_name]
         dialog.clear()
