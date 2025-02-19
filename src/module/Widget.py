@@ -1,18 +1,9 @@
-if __debug__:
-    import sys
-    sys.path.append(r"X:\Github\OrderManager")
-# -------------------------------------------------------------------------------------------
-from PyQt5.QtWidgets import QDialog, QComboBox, QVBoxLayout,QScrollArea,QLineEdit, QPlainTextEdit,QDateTimeEdit,QDateEdit,QSpinBox, QDoubleSpinBox
-from PyQt5.QtCore import pyqtSignal,QDateTime
-from PyQt5.QtGui import QPalette, QColor
-from PyQt5.uic import loadUi
-from PyQt5 import uic
-import re
+
+from src.imports.pyqt5_imports import *
 # --------------------------
 from src.module.SqlliteInterface import SqlliteInterface
 # --------------------------
-DB_PATH='./config/NOVA.db'
-DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
+from src.imports.config import DATETIME_FORMAT,DB_PATH
 TABLES = SqlliteInterface(DB_PATH).get_table_names()
 # ===========================================================================================
 class OrdersWidget(QDialog):
@@ -33,3 +24,6 @@ class OrdersWidget(QDialog):
         self.loadBtn.clicked.connect(self.on_load)
         self.submitBtn.clicked.connect(self.on_submit)
 
+
+# 공통조상을 만들자..
+# 조상의 조상..

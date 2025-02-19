@@ -1,13 +1,10 @@
-if __debug__:
-    import sys
-    sys.path.append(r"X:\Github\OrderManager")
-# -------------------------------------------------------------------------------------------
+
 from src.module.SqlliteInterface import SqlliteInterface
 from src.module.QueryBuilder import QueryBuilder
 from src.module.IP_maker import IPMaker
 from src.module.SP_maker import SPMaker
 # --------------------------
-DB_PATH='./config/NOVA.db'
+from src.imports.config import DB_PATH
 # ===========================================================================================
 # Model
 class Model():

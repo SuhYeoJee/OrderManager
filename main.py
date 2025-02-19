@@ -1,7 +1,4 @@
-if __debug__:
-    import sys
-    sys.path.append(r"X:\Github\OrderManager")
-# -------------------------------------------------------------------------------------------
+
 import sys
 from PyQt5.QtWidgets import QApplication
 from src.Model import Model

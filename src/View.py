@@ -1,12 +1,7 @@
-if __debug__:
-    import sys
-    sys.path.append(r"X:\Github\OrderManager")
-# -------------------------------------------------------------------------------------------
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox,QTableWidgetItem,QPushButton,QHeaderView
-from PyQt5.QtCore import pyqtSignal
-from PyQt5.uic import loadUi
+
+from src.imports.pyqt5_imports import *
 # --------------------------
-from src.Dialog import *
+from src.module.Dialog import *
 # ===========================================================================================
 
 class View(QMainWindow):
@@ -21,13 +16,13 @@ class View(QMainWindow):
         self.dialog_infos = {table: globals().get(f"{table.capitalize()}Dialog") for table in tables}
         self.dialogs = {action: {key: cls(action, key) for key, cls in self.dialog_infos.items()} for action in ['view', 'insert', 'delete', 'update']}
         self.dialogs['widget']={}
-        self.dialogs['widget']['orders'] = self.get_widget()
+        self.dialogs['widget']['orders'] = self.get_widget('widget','orders')
     
     # -------------------------------------------------------------------------------------------
 
     def get_widget(self,dialog_type,table_name):
         ...
-        
+
     def get_dialog(self,dialog_type,table_name):
         dialog = self.dialogs[dialog_type][table_name]
         dialog.clear()
@@ -144,7 +139,6 @@ class View(QMainWindow):
 
 # ===========================================================================================
 import sys
-from PyQt5.QtWidgets import QApplication
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     view = View()

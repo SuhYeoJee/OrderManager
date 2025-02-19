@@ -1,7 +1,4 @@
-if __debug__:
-    import sys
-    sys.path.append(r"X:\Github\OrderManager")
-# -------------------------------------------------------------------------------------------
+
 from src.Worker import Worker
 # ===========================================================================================
 
@@ -47,8 +44,8 @@ class Controller():
 
     def on_json_request(self,json_reqeust):
         worker_func = f"get_json_data"
-        callback_func = self.view.dialogs[json_reqeust[0]][json_reqeust[1]].on_json_response
-        self.launch_worker(worker_func,callback_func,json_reqeust)
+        # callback_func = self.view.dialogs[json_reqeust[0]][json_reqeust[1]].on_json_response
+        # self.launch_worker(worker_func,callback_func,json_reqeust)
 
     def on_data_request(self,data_request):
         worker_func = "get_data_by_id"

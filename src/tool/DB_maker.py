@@ -1,7 +1,4 @@
-if __debug__:
-    import sys
-    sys.path.append(r"X:\Github\OrderManager")
-# -------------------------------------------------------------------------------------------
+
 
 import sqlite3
 import json
