@@ -1,4 +1,7 @@
-
+if __debug__:
+    import sys
+    sys.path.append(r"X:\Github\OrderManager")
+# ===========================================================================================
 from datetime import datetime
 import json
 from pprint import pprint
@@ -41,6 +44,36 @@ class IPMaker():
         # --------------------------
         pprint(ip)
         return ip
+    
+
+    def 그러니까_아마_입력이_이런모양(self):
+        inputs={
+            'item1':{
+                    "name":"2025-00041",
+                    "code": "001",
+                    "customer":"강낭콩",
+                    "item":"3\"6OR60CW",
+                    "item_group":"3\"6OR60",
+                    "amount":10,
+                    "engrave":"engr",
+                    "order_date":"2025-02-19",
+                    "due_date":"2025-02-28"
+                },
+            'item2':{
+                    "name":"2025-00041",
+                    "code": "002",
+                    "customer":"강낭콩",
+                    "item":"3\"6OR60CCW",
+                    "item_group":"3\"6OR60",
+                    "amount":10,
+                    "engrave":"engr",
+                    "order_date":"2025-02-19",
+                    "due_date":"2025-02-28"
+            }
+        }
+        return inputs
+    
+
 
     def write_json_file(self,data,json_path)->None:
         with open(json_path, "w", encoding="utf-8") as json_file:
@@ -50,9 +83,3 @@ class IPMaker():
         with open(json_path, 'r',encoding="utf-8") as json_file:
             data = json.load(json_file)
         return data
-
-if __name__ == "__main__":
-    m = Model()
-    ipm = IPMaker(m)
-    ip = ipm._make_new_ip({"item_group": '3\"6OR60'})
-    ipm.write_json_file(ip,'./config/iptest.json')

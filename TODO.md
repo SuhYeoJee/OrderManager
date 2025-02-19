@@ -40,15 +40,48 @@ DB 셀렉트 & TABLE 뷰를 만들자.
 2. 넘어온 내용 표시하는건 wfa.py 테스트코드
 
 ##### ip
-문서 생성
-다이얼로그 구현하는데 문제가 있음
-기존 위젯명으로 자동 불러오기인데 
-loads/item/CW
-loads/item/CCW
-처럼 동적으로 생성되어서 이거 어쩌지 
 
-auto에 정규화 해서 저장하고 그거 부르기
-이게 낫겠다 
+나는 아직 orders 입력 후에 ip가 생성되는 로직을 모른다. 
+
+orders는 값이 한번에 들어온다고 생각해. 
+입력은 한번에 와라락이고 
+저장은 code대로 하나씩. 
+그러면 함수 호출이 오면
+정보가 한번에 다들어옴 
+
+들어오는 정보 형식이 뭐냐면. 
+여러개의 orders
+
+inputs가 이렇게 생겼으면
+하나씩 순회하면서 item을 일단 다 읽어 
+ip['loads']['item']['item1'] #item1, 등으로 정규
+ip['loads']['item']['item2']
+ip['loads']['item']['item3']
+ip['loads']['item']['item4']
+
+읽은 것중 값을 뽑아서 auto에 저장
+  - ip['auto']['seg1']
+  - ip['auto']['seg2']
+  - ip['auto']['shank1']
+  - ip['auto']['shank2']
+  - ip['auto']['shank3']
+  - ip['auto']['shank4']
+  - ip['auto']['sub1']
+  - ip['auto']['sub2']
+  - ip['auto']['sub3']
+  - ip['auto']['sub4']
+  - ip['auto']['welding'] #어쩌고. 이거 그냥 str 이어붙이기 
+
+여기서 문제가 seg1,seg2가 아이템별로 나오는걸..
+어쩌고. 합산해야해서임. 
+어차피 정규화 했으니까 그냥 누산 시키자 
+
+기존 값이랑 비교해서 다르면 "seg{i+1}"로 추가
+이러면 다이얼로그 위젯명 문제도 해결됨. 
+
+이러면 될듯. 
+
+
 
 #### sp불러오면 별도 창을 열기
 를 구현하는 방법
