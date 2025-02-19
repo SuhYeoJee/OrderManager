@@ -58,7 +58,6 @@ class View(QMainWindow):
             return
         columns = [f"{i}" for i in res.pop(0)]
 
-
         if response[0] == 'ordersTable': #tab1
             tableWidget = self.ordersTableWidget
             merge_flag = True
@@ -90,8 +89,10 @@ class View(QMainWindow):
                     view_request = (response[1],columns,row)
                     btn.clicked.connect(lambda _, v=view_request: self.set_view_dialog(v))
                     tableWidget.setCellWidget(row_idx, col_idx, btn)
-                else:
+                elif value:
                     tableWidget.setItem(row_idx, col_idx,QTableWidgetItem(str(value)))
+                else:
+                    tableWidget.setItem(row_idx, col_idx,QTableWidgetItem(str('')))
 
         if merge_flag:
             self.merge_cells(tableWidget)
@@ -99,7 +100,10 @@ class View(QMainWindow):
     def merge_cells(self,tableWidget):
         """name 값이 일치하는 것 중 동일한 셀 병합"""
         start_row = 0
-        current_value = tableWidget.item(0, 3).text()  # 기준 name
+        try:
+            current_value = tableWidget.item(0, 3).text()  # 기준 name
+        except AttributeError:
+            return 
 
         for row in range(1, tableWidget.rowCount()):
             item_value = tableWidget.item(row, 3).text()  # 현재 name

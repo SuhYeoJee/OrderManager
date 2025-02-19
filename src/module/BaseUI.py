@@ -30,7 +30,7 @@ class BaseUI(QDialog):
         self.idComboBox.clear()
         self.idComboBox.addItems(map(str,ids))
     # --------------------------
-    def clear(self)->None:
+    def clear(self,keep_ids:bool=False)->None:
         '''모든 입력위젯 비우기'''
         clear_handlers = {
             QLineEdit: lambda widget: widget.clear(),
@@ -41,7 +41,8 @@ class BaseUI(QDialog):
             QDateTimeEdit: lambda widget: widget.setDateTime(QDateTime(0000, 0, 0, 0, 0)),
             QDateEdit: lambda widget: widget.setDateTime(QDateTime(0000, 0, 0, 0, 0)),
         }
-        [handler(widget) for widget in self.input_widgets if (handler := clear_handlers.get(type(widget)))]
+        input_widgets = [w for w in self.input_widgets if w.objectName() != "idComboBox"] if keep_ids else self.input_widgets
+        [handler(w) for w in input_widgets if (handler := clear_handlers.get(type(w)))]
     # --------------------------
     def get_inputs(self)->dict:
         '''모든 입력위젯의 값 {"col_name":val}로 반환 '''
@@ -67,7 +68,6 @@ class BaseUI(QDialog):
         set_handlers = {
             QLineEdit: lambda widget, value: widget.setText(str(value)),
             QComboBox: lambda widget, value: (widget.addItem(str(value)) if widget.findText(str(value)) == -1 else None, widget.setCurrentText(str(value)))[1],
-            # QComboBox: lambda widget, value: widget.setCurrentText(str(value)),
             QSpinBox: lambda widget, value: widget.setValue(int(value)),
             QDoubleSpinBox: lambda widget, value: widget.setValue(float(value)),
             QPlainTextEdit: lambda widget, value: widget.setPlainText(str(value)),
@@ -109,5 +109,6 @@ class BaseUI(QDialog):
             print('*')
             ... # 해당 id 없음
         else:
+            self.clear(True)
             self.set_datas(datas)
 
