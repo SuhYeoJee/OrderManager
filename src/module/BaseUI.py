@@ -87,8 +87,11 @@ class BaseUI(QDialog):
     def on_empty_func(self,*args,**kwargs):...
     # [send request] -------------------------------------------------------------------------------------------
     def on_load(self):
-        id = int(self.idComboBox.currentText())
-        self.data_request.emit(self._add_request_header(id))
+        if (id_text := self.idComboBox.currentText()):
+            id = int(id_text)
+            self.data_request.emit(self._add_request_header(id))
+        else:
+            return 
     # --------------------------
     def _add_request_header(self,data):
         return self.request_header+(data,)
