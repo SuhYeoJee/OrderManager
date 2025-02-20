@@ -20,7 +20,7 @@ class View(QMainWindow):
         self.dialogs['widget']={}
         self.dialogs['widget']['orders'] = OrdersWidget()
         self.dialogs['widget']['sp'] = SpWidget()
-        self.dialogs['view']['sp'].pushButton.clicked.connect(lambda: self.get_sp_widget(self.dialogs['view']['sp']))
+        [self.dialogs[action]['sp'].pushButton.clicked.connect(lambda: self.get_sp_widget(self.dialogs[action]['sp'])) for action in ['view', 'insert', 'delete', 'update']]
     # -------------------------------------------------------------------------------------------
     def get_dialog(self,dialog_type,table_name):
         dialog = self.dialogs[dialog_type][table_name]
@@ -49,7 +49,8 @@ class View(QMainWindow):
     def get_sp_widget(self,sp_dialog):
         sp_widget = self.get_dialog('widget','sp')
         sp_path = sp_dialog.get_inputs()['path']
-        self.json_request.emit(('widget','sp', sp_path))
+        if sp_path:
+            self.json_request.emit(('widget','sp', sp_path))
 
     # [view에 값 표시] ===========================================================================================
     def set_table_names(self, table_names):
