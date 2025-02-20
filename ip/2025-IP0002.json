@@ -80,6 +80,10 @@
     "autos": {
         "name": "2025-IP0002",
         "creation_date": "2025년 02월 20일",
+        "engrave": "TEST_ENGRAVE\nTEST_ENGRAVE\n\n",
+        "welding": "TEST_WELDING\nTEST_WELDING\n\n",
+        "dressing": "TEST_DRESSING\nTEST_DRESSING\n\n",
+        "paint": "TEST_COLOR\nTEST_COLOR\n\n",
         "shank1": "5\"CUP-B22.23H",
         "shank1_amount": 10.0,
         "seg1": "SQ0004",

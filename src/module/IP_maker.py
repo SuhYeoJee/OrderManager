@@ -57,6 +57,7 @@ class IPMaker():
     def _get_autos_from_loads(self, ip):
         autos = {}
         segs, subs, shanks = {}, {}, {}
+        engraves, welding, dressing, paint = '','','',''
 
         def process_item(item, category, idx_range, tracker):
             """autos에 등록, 수량 누산 (shank, seg, sub)"""
@@ -71,14 +72,23 @@ class IPMaker():
                         autos[f"{category}{tracker[name]}"] = name
                         autos[f"{category}{tracker[name]}_amount"] = amount * item_amount
 
+        engraves, weldings, dressings, paints = [],[],[],[]
         for item_idx in range(1, 5):
             item = ip["loads"].get(f"item{item_idx}", {})
             item_amount = int(ip["inputs"].get(f"item{item_idx}", {}).get("amount", 0))
-
             process_item(item, "shank", [""], shanks)  # shank: 단일
             process_item(item, "seg", range(1, 3), segs)  # segment: 최대 2개
             process_item(item, "sub", range(1, 3), subs)  # submaterial: 최대 2개
-
+            
+            engraves.append(item.get('engrave', ''))
+            weldings.append(item.get('welding', ''))
+            dressings.append(item.get('dressing', ''))
+            paints.append(item.get('paint', ''))
+        else:
+            ip['autos']['engrave'] = '\n'.join(engraves)
+            ip['autos']['welding'] = '\n'.join(weldings)
+            ip['autos']['dressing'] = '\n'.join(dressings)
+            ip['autos']['paint'] = '\n'.join(paints)
         return autos
 
 
