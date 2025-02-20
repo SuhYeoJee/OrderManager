@@ -7,6 +7,7 @@ from src.module.Widget import *
 
 class View(QMainWindow):
     pre_request = pyqtSignal(tuple)
+    json_request = pyqtSignal(tuple)
     def __init__(self,tables):
         super().__init__()
         loadUi("./ui/MainWindow.ui", self)
@@ -19,6 +20,7 @@ class View(QMainWindow):
         self.dialogs['widget']={}
         self.dialogs['widget']['orders'] = OrdersWidget()
         self.dialogs['widget']['sp'] = SpWidget()
+        self.dialogs['view']['sp'].pushButton.clicked.connect(lambda: self.get_sp_widget(self.dialogs['view']['sp']))
     # -------------------------------------------------------------------------------------------
     def get_dialog(self,dialog_type,table_name):
         dialog = self.dialogs[dialog_type][table_name]
@@ -43,6 +45,11 @@ class View(QMainWindow):
         select_type = self.tableSelectOpComboBox.currentText().strip()
         select_str = self.tableSelectLineEdit.text()
         return ('select',table_name,(sort_col,sort_type),(select_col,select_type,select_str))
+
+    def get_sp_widget(self,sp_dialog):
+        sp_widget = self.get_dialog('widget','sp')
+        sp_path = sp_dialog.get_inputs()['path']
+        self.json_request.emit(('widget','sp', sp_path))
 
     # [view에 값 표시] ===========================================================================================
     def set_table_names(self, table_names):

@@ -39,20 +39,16 @@ DB 셀렉트 & TABLE 뷰를 만들자.
 1. 값 load 할 때 path넘기면서 파일 내용도 넘겨야할듯
 2. 넘어온 내용 표시하는건 wfa.py 테스트코드
 
+#### sp 보기
+sp 다이얼로그에 버튼을 하나 만들어서 sp위젯 열기 매핑
+매핑을 어디에? 뷰초기화. 
+inst,upd,del에도 넣을지는 고민.
+
+
 ##### ip
 -생성완-
 위젯에 표시 필
 
-#### sp불러오면 별도 창을 열기
-를 구현하는 방법
-sp 다이얼로그에 버튼을 하나 만들어서 매핑
-매핑을 어디에?
-
-버튼을 클릭하면 시그널로 path를 보냄
-모델은 json읽어서 반환
-
-이거 왜 폼만 뜰까요. 
-분명 pre리퀘가 동작은 함 
 
 
 #### 수주/재고 관리
@@ -132,3 +128,17 @@ sp 다이얼로그에 버튼을 하나 만들어서 매핑
 - ui 폴더에 {table_name}Dialog.ui 확인
 - db에 table_name 테이블 확인
 - Dialog.py에 DB_PATH 확인
+
+### 시그널 추가하는 방법
+1. 시그널 정의(view/dirlog/widget)
+ `json_request = pyqtSignal(tuple)`
+2. 발신 정의(view/dirlog/widget)
+ `self.json_request.emit(('widget','sp', sp_path))`
+3. 콜백함수 정의(view/dirlog/widget)
+ `on_json_response(self,json_response)`
+4. 모델함수 정의(model)
+ `json_data(self,json_request)`
+5. 시그널 매핑(ctrl) 
+`self.view.json_request.connect(self.on_json_request)`
+6. 매핑함수 작성(ctrl)
+`on_json_request(self,json_reqeust)`

@@ -4,6 +4,7 @@ from src.module.QueryBuilder import QueryBuilder
 from src.module.IP_maker import IPMaker
 from src.module.SP_maker import SPMaker
 # --------------------------
+import json
 from src.imports.config import DB_PATH
 # ===========================================================================================
 # Model
@@ -15,7 +16,7 @@ class Model():
         self.spm = SPMaker(self)
         self.table_names = self.sql.get_table_names()
 
-    def insert_data(self,insert_request):
+    def get_insert_data(self,insert_request):
         table_name,items = insert_request[1],insert_request[2]
         if table_name == "orders":
             res = self._handle_order_insert(items)
@@ -24,6 +25,7 @@ class Model():
             res = self.sql.execute_query(query,bindings)
         return self._add_response_header(insert_request,res)
     
+    # temp
     def _handle_order_insert(self,items):
         # ip생성
         ip_inputs = {k: items[k] for k in self.ipm.inputs if k in items}
@@ -51,21 +53,27 @@ class Model():
 
 
     def get_json_data(self,json_request):
-        ...
+        table_name,json_path = json_request[1],json_request[2]
+        res = self._read_json_file(json_path)
+        return self._add_response_header(json_request,res)
 
-
-    def delete_data(self,delete_request):
+    def _read_json_file(SELF,json_path):
+        with open(json_path, 'r',encoding="utf-8") as json_file:
+            data = json.load(json_file)
+        return data
+    
+    def get_delete_data(self,delete_request):
         query,bindings = self.qb.get_delete_query(delete_request[1],where_option={'comparison':[('id','=',delete_request[2]['id'])]})
         res = self.sql.execute_query(query,bindings)
         return self._add_response_header(delete_request,res)
     
-    def update_data(self,update_request):
+    def get_update_data(self,update_request):
         id_val = update_request[2].pop('id')
         query,bindings = self.qb.get_update_query(update_request[1],update_request[2],where_option={'comparison':[('id','=',id_val)]})
         res = self.sql.execute_query(query,bindings)
         return self._add_response_header(update_request,res)
     
-    def select_data(self,select_request):
+    def get_select_data(self,select_request):
         # ('select',table_name,(sort_col,sort_type),(select_col,select_type,select_str))
         col_names = self.get_table_col_names(select_request[1])
         select_col,select_type,select_str = select_request[3]

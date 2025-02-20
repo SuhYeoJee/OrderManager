@@ -6,14 +6,13 @@ import config
 from src.module.BaseUI import BaseUI
 from src.module.SqlliteInterface import SqlliteInterface
 # --------------------------
-from src.imports.config import DATETIME_FORMAT, DB_PATH
+from src.imports.config import DB_PATH
 TABLES = SqlliteInterface(DB_PATH).get_table_names()
 # ===========================================================================================
 class BaseDialog(BaseUI):
     insert_request = pyqtSignal(tuple)
     delete_request = pyqtSignal(tuple)
     update_request = pyqtSignal(tuple)
-    json_request = pyqtSignal(tuple)
     def __init__(self,dialog_type,table_name,parent=None):
         super().__init__(dialog_type,table_name,parent)
         loadUi(f"./ui/{table_name}Dialog.ui", self) 
