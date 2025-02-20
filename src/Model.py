@@ -98,7 +98,7 @@ class Model():
             query,bindings = self.qb.get_select_query(select_request[1],where_option=where_option,sort_option=select_request[2])
             res = [col_names] + self.sql.execute_query(query,bindings)
         except Exception as e: # 올바르지 않은 검색 쿼리
-            res = [('오류',)] + [('올바르지 않은 검색 쿼리.',),(e.__str__(),),(e.__doc__,)]
+            res = [('error',)] + [('올바르지 않은 검색 쿼리.',),(e.__str__(),),(e.__doc__,)]
 
         return self._add_response_header(select_request,res)
 

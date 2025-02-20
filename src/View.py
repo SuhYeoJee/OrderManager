@@ -28,9 +28,9 @@ class View(QMainWindow):
         dialog.show()
         return dialog
     
-    def show_error(self, message):
+    def show_error(self, message:str):
         """에러 메시지 표시"""
-        QMessageBox.critical(self, "Error", message)
+        QMessageBox.critical(self, "Error", str(message))
 
     def get_table_name(self):
         return self.tableNameComboBox.currentText().strip()

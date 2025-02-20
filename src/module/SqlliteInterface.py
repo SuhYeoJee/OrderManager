@@ -25,12 +25,14 @@ class SqlliteInterface():
 
     @ensure_connect
     def execute_query(self,query,bindings:list=[]):
-        self.cursor.execute(query,bindings)
-        rows = self.cursor.fetchall()
+        try:
+            self.cursor.execute(query,bindings)
+            rows = self.cursor.fetchall()
+        except Exception as e:
+            rows = [('DB error',e.__str__())]
         print('# ------------------------------------------')
         print(query,bindings)
         print(rows)
-        print('# ------------------------------------------')
         return rows
     
 # ===========================================================================================

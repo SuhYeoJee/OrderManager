@@ -68,7 +68,17 @@ class Controller():
 
 
     def reload_table(self,*args): #after insert,update,delete
-        self.on_table_name()
+        try:
+            if 'error' in args[0][2][0][0]:
+                # 오류 표시
+                msg = f"{args[0][1]} 테이블에 {args[0][0]} 동작 중 오류 발생\n\n{args[0][2][0][0]}\n{args[0][2][0][1]}"
+                self.view.show_error(msg)
+            else:
+                # 표 새로고침
+                self.on_table_name()
+        except (IndexError, KeyError):
+            self.on_table_name()
+
 
     def on_table_select_btn(self):
         worker_func = "select_data"
