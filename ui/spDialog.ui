@@ -133,7 +133,7 @@
      <x>20</x>
      <y>110</y>
      <width>911</width>
-     <height>141</height>
+     <height>144</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
@@ -230,7 +230,7 @@
      </widget>
     </item>
     <item row="6" column="8">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_10">
+     <widget class="QDoubleSpinBox" name="autos_total_weightDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -269,7 +269,7 @@
      </widget>
     </item>
     <item row="5" column="7">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_7">
+     <widget class="QDoubleSpinBox" name="autos_bond_volume_rateDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -329,7 +329,7 @@
      </widget>
     </item>
     <item row="9" column="3">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_17">
+     <widget class="QDoubleSpinBox" name="autos_final_densityDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -352,14 +352,14 @@
      </widget>
     </item>
     <item row="5" column="2" colspan="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_3">
+     <widget class="QDoubleSpinBox" name="autos_segment_weightDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
     <item row="4" column="6">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_4">
+     <widget class="QDoubleSpinBox" name="autos_dia_volumeDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -446,14 +446,14 @@
      </widget>
     </item>
     <item row="4" column="8">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_8">
+     <widget class="QDoubleSpinBox" name="autos_dia_weightDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
     <item row="6" column="6">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_12">
+     <widget class="QDoubleSpinBox" name="autos_total_volumeDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -492,42 +492,42 @@
      </widget>
     </item>
     <item row="0" column="2" colspan="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_39">
+     <widget class="QDoubleSpinBox" name="inputs_workloadDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
     <item row="10" column="3">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_15">
+     <widget class="QDoubleSpinBox" name="autos_final_rel_densityDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
     <item row="10" column="7" colspan="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_38">
+     <widget class="QDoubleSpinBox" name="autos_veri_countDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
     <item row="9" column="1">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_18">
+     <widget class="QDoubleSpinBox" name="autos_theo_density1DoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
     <item row="4" column="1">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_13">
+     <widget class="QDoubleSpinBox" name="autos_lossDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
     <item row="4" column="7">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_6">
+     <widget class="QDoubleSpinBox" name="autos_dia_volume_rateDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -566,7 +566,7 @@
      </widget>
     </item>
     <item row="4" column="3">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_14">
+     <widget class="QDoubleSpinBox" name="loads_segment_rel_densityDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -602,35 +602,35 @@
      </widget>
     </item>
     <item row="6" column="7">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_11">
+     <widget class="QDoubleSpinBox" name="autos_total_volume_rateDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
     <item row="3" column="3">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox">
+     <widget class="QDoubleSpinBox" name="loads_bond_densityDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
     <item row="5" column="6">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_5">
+     <widget class="QDoubleSpinBox" name="autos_bond_volumeDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
     <item row="10" column="1">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_16">
+     <widget class="QDoubleSpinBox" name="autos_theo_density2DoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
     <item row="9" column="7" colspan="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_37">
+     <widget class="QDoubleSpinBox" name="autos_veri_weightDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -669,7 +669,7 @@
      </widget>
     </item>
     <item row="5" column="8">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_9">
+     <widget class="QDoubleSpinBox" name="autos_bond_weightDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
@@ -692,7 +692,7 @@
      </widget>
     </item>
     <item row="3" column="1">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+     <widget class="QDoubleSpinBox" name="loads_segment_vDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>

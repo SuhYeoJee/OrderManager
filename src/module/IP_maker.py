@@ -11,12 +11,12 @@ class IPMaker():
         self.model = model
         self.inputs = ["item","item_group","amount","engrave","due_date"]
 
-    def get_new_ip(self,inputs)->str:
+    def get_new_ip(self,inputs):
         ip = self._make_new_ip(inputs)
-        self.write_json_file(ip,f"./ip/{ip['autos']['name']}.json")
+        self.write_json_file(ip,f"./doc/ip/{ip['autos']['name']}.json")
         return ip
 
-    def get_ip_name(self):
+    def get_new_ip_name(self):
         [last_ip] = self.model.sql.execute_query('SELECT * FROM ip ORDER BY id DESC LIMIT 1;')
         year,no = last_ip[1].split('-')
 
@@ -28,14 +28,9 @@ class IPMaker():
     
     def get_data_by_name(self,table_name,name):
         request = ('select',table_name,('id','오름차순'),('name','=',name))
-        response = self.model.select_data(request)
+        response = self.model.get_select_data(request)
         return dict(zip(response[2][0],response[2][1]))
-    
-    def get_items_by_group_name(self,group_name):
-        request = ('select','item',('id','오름차순'),('item_group','=',group_name))
-        response = self.model.select_data(request)
-        return {val[3]:dict(zip(response[2][0],val)) for val in response[2][1:]}
-
+ 
     def _make_new_ip(self,inputs:dict):
         ip = {}
         ip['inputs'] = inputs
@@ -47,7 +42,7 @@ class IPMaker():
                 ip['loads'][item_key] = self.get_data_by_name('item', ip['inputs'][item_key]['item'])
         # --------------------------
         ip['autos'] = {}
-        ip['autos']['name'] = self.get_ip_name()
+        ip['autos']['name'] = self.get_new_ip_name()
         ip['autos']['creation_date'] = datetime.now().strftime("%Y년 %m월 %d일")
         ip['autos'].update(self._get_autos_from_loads(ip))
         # --------------------------
@@ -91,6 +86,14 @@ class IPMaker():
             ip['autos']['paint'] = '\n'.join(paints)
         return autos
 
+    def write_json_file(self,data,json_path)->None:
+        with open(json_path, "w", encoding="utf-8") as json_file:
+            json.dump(data, json_file, ensure_ascii=False, indent=4)
+
+    def _read_json_file(json_path):
+        with open(json_path, 'r',encoding="utf-8") as json_file:
+            data = json.load(json_file)
+        return data
 
     def get_test_inputs(self):
         inputs={
@@ -127,13 +130,3 @@ class IPMaker():
         inputs = self.get_test_inputs()
         self.get_new_ip(inputs)
 
-
-
-    def write_json_file(self,data,json_path)->None:
-        with open(json_path, "w", encoding="utf-8") as json_file:
-            json.dump(data, json_file, ensure_ascii=False, indent=4)
-
-    def _read_json_file(json_path):
-        with open(json_path, 'r',encoding="utf-8") as json_file:
-            data = json.load(json_file)
-        return data

@@ -79,7 +79,7 @@ class Controller():
 
 
     def on_table_select_btn(self):
-        worker_func = "select_data"
+        worker_func = "get_select_data"
         callback_func = self.view.update_table_data
         self.launch_worker(worker_func,callback_func,self.view.get_select_data())
 

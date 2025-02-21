@@ -12,19 +12,22 @@ class SPMaker():
 
     def get_new_sp(self,inputs):
         sp = self._make_new_sp(inputs)
-        self.write_json_file(sp,f"./sp/{sp['autos']['name']}.json")
+        self.write_json_file(sp,f"./doc/sp/{sp['autos']['name']}.json")
         return sp
     
-    def get_data_by_name(self,table_name,name):
-        request = ('select',table_name,('id','오름차순'),('name','=',name))
-        response = self.model.select_data(request)
+    def get_data_by_name(self,table_name,col,val):
+        request = ('select',table_name,('id','오름차순'),(col,'=',val))
+        response = self.model.get_select_data(request)
         return dict(zip(response[2][0],response[2][1]))
     
     def get_new_sp_name(self,recent_sp_name):
         [last_sp] = self.model.sql.execute_query('SELECT * FROM sp ORDER BY id DESC LIMIT 1;')
         year,no,_,_ = last_sp[1].split('-')
-        r_year,r_no,_,_ = recent_sp_name.split('-')
-        rec = f"{r_year[2:]}-{r_no[2:]}"
+        try:
+            r_year,r_no,_,_ = recent_sp_name.split('-')
+            rec = f"{r_year[2:]}-{r_no[2:]}"
+        except:
+            rec = "None"
 
         if year == str(datetime.now().year):
             sp_name = f"{year}-SP{int(no[2:])+1:04}-{rec}"
@@ -37,13 +40,14 @@ class SPMaker():
         sp['inputs'] = inputs
         # --------------------------
         sp['loads'] = {}
-        sp['loads']['segment'] = self.get_data_by_name('segment',sp['inputs']['segment'])
-        sp['loads']['bond'] = self.get_data_by_name('bond',sp['loads']['segment']['bond'])
+        sp['loads']['segment'] = self.get_data_by_name('segment','code',sp['inputs']['code'])
+        sp['loads']['bond'] = self.get_data_by_name('bond','name',sp['loads']['segment']['bond'])
         # --------------------------
         sp['autos'] = {}
         sp['autos']['name'] = self.get_new_sp_name(sp['loads']['segment']['recent_sp'])
         sp['autos']['creation_date'] = datetime.now().strftime("%Y년 %m월 %d일")
         sp['autos']['concent'] = float(sp['loads']['segment']['concent'])/4.4*100
+        sp['autos']['loss'] = 1.01
         sp['autos']['segment_weight'] = self.get_segment_weight(sp)
         sp['autos'].update(self.get_segment_config(sp))
         sp['autos'].update(self.get_segment_density(sp))
@@ -60,8 +64,8 @@ class SPMaker():
         volume,abs_density,rel_density,loss = \
             self._get_floated_args(sp['loads']['segment']['v'],
                                     sp['loads']['bond']['density'],
-                                    0.95
-                                    ,1.01)
+                                    sp['loads']['segment']['rel_density'],
+                                    sp['autos']['loss'])
         return volume * abs_density * rel_density * loss
     
     def get_segment_config(self,sp):
@@ -69,6 +73,7 @@ class SPMaker():
             self._get_floated_args(sp['autos']['segment_weight'],
                                         sp['loads']['segment']['v'],
                                         sp['loads']['segment']['concent'])
+        segment_volume = segment_volume if segment_volume else 1 #avoid zero division
 
         dia_weight = segment_volume * segment_concent * 0.2
         dia_volume = dia_weight /3.51
@@ -94,6 +99,8 @@ class SPMaker():
                                     sp['autos']['total_weight'],
                                     sp['loads']['segment']['v'],
                                     sp['loads']['segment']['concent'])
+        segment_volume = segment_volume if segment_volume else 1 #avoid zero division
+
         theo_density1 = abs_density * bond_volume_rate + dia_volume_rate * 3.51
         theo_density2 = abs_density * bond_volume_rate + segment_concent * 0.2
         final_density = total_weight / segment_volume
@@ -112,7 +119,10 @@ class SPMaker():
         temp_bondmix_workload = workload * (total_weight - dia_weight)
         bond_workload = ((temp_bondmix_workload + 4999) // 5000) * 5000
 
-        segment_work = bond_workload // (total_weight - dia_weight)
+        try:
+            segment_work = bond_workload // (total_weight - dia_weight)
+        except ZeroDivisionError:
+            segment_work = 0
         bondmix_workload = segment_work * (total_weight - dia_weight)
 
         dia1_weight = ceil(dia_weight * segment_work * dia1_rate/10)
@@ -145,8 +155,16 @@ class SPMaker():
             data = json.load(json_file)
         return data
 
-# ===========================================================================================
-if __name__ == "__main__":
-    m = Model()
-    spm = SPMaker(m)
-    sp = spm.get_sp_path({"segment":"MID FAN Y40",'workload':10})
+    def get_test_inputs(self):
+        # ip['autos']['seg1']
+        # ip['autos']['seg1_amount']
+        inputs={
+            "code": "SQ0000",
+            "workload":120.0,
+        }
+        return inputs
+    
+    def run_test(self):
+        inputs = self.get_test_inputs()
+        self.get_new_sp(inputs)
+
