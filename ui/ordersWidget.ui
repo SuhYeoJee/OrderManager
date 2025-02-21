@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1647</width>
+    <width>950</width>
     <height>800</height>
    </rect>
   </property>
@@ -32,15 +32,12 @@
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_4">
-    <item row="0" column="2">
-     <widget class="QPushButton" name="loadBtn">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_12">
       <property name="text">
-       <string>load</string>
+       <string>id</string>
       </property>
      </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QComboBox" name="idComboBox"/>
     </item>
     <item row="0" column="4">
      <spacer name="horizontalSpacer">
@@ -55,17 +52,27 @@
       </property>
      </spacer>
     </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_12">
+    <item row="0" column="2">
+     <widget class="QPushButton" name="loadBtn">
       <property name="text">
-       <string>id</string>
+       <string>load</string>
       </property>
      </widget>
     </item>
-    <item row="0" column="5">
+    <item row="0" column="6">
      <widget class="QPushButton" name="submitBtn">
       <property name="text">
        <string>SUBMIT</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QComboBox" name="idComboBox"/>
+    </item>
+    <item row="0" column="5">
+     <widget class="QPushButton" name="addBtn">
+      <property name="text">
+       <string>+</string>
       </property>
      </widget>
     </item>
@@ -248,19 +255,6 @@
      </sizepolicy>
     </property>
    </widget>
-  </widget>
-  <widget class="QPushButton" name="addButton">
-   <property name="geometry">
-    <rect>
-     <x>960</x>
-     <y>50</y>
-     <width>93</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>PushButton</string>
-   </property>
   </widget>
  </widget>
  <resources/>

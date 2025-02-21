@@ -23,9 +23,13 @@ class OrdersWidget(BaseUI):
         # 클리어, 로드는 필요함
         # --------------------------
         self.input_widgets = self.get_input_widgets()
+        self.scrollLayout = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.scroll_inner_widgets = []
         # --------------------------
         self.loadBtn.clicked.connect(self.on_load)
         self.submitBtn.clicked.connect(self.on_insert_submit)
+        self.addBtn.clicked.connect(self.add_grid)
+        self.add_grid()
     # --------------------------
     def on_insert_submit(self):
         inputs = self.get_inputs()
@@ -35,7 +39,29 @@ class OrdersWidget(BaseUI):
         self.data = self._add_request_header(inputs)
         self.insert_request.emit(self.data)
         self.close()
+    # --------------------------
+    def add_grid(self):
+        """ordersInnerWidget을 복제하여 스크롤 영역에 추가 """
+        ordersInnerWidget = QWidget()
+        loadUi("./ui/ordersInnerWidget.ui", ordersInnerWidget)
+        self.scrollLayout.addWidget(ordersInnerWidget)
+        self.scroll_inner_widgets.append(ordersInnerWidget)
+        self.scrollAreaWidgetContents.setMinimumHeight(self.scrollAreaWidgetContents.height() + 350)
 
+        # ordersInnerWidget.itemLoadBtn 에 로드기능 매핑
+        # 라벨 텍스트 변경 
+
+
+
+        #temp
+        print(self.get_inner_widgets_data())
+    # --------------------------
+    def get_inner_widgets_data(self):
+        '''{idx:{col:val}}'''
+        return {idx: self.get_inputs(inner_widget) for idx, inner_widget in enumerate(self.scroll_inner_widgets)}
+    def on_pre_response(self,pre_response): #pre_response 사용안함
+        '''다이얼로그 사전정보: 전체 cols,테이블에 존재하는 id목록, 외래키 제약'''
+        return 
 
 class SpWidget(BaseUI):
     insert_request = pyqtSignal(tuple)

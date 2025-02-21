@@ -13,7 +13,7 @@ class View(QMainWindow):
         loadUi("./ui/MainWindow.ui", self)
         self.ordersTableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
-        self.pushButton.clicked.connect(lambda: self.get_dialog('widget','sp'))
+        self.pushButton.clicked.connect(lambda: self.get_dialog('widget','orders'))
         # --------------------------
         self.dialog_infos = {table: globals().get(f"{table.capitalize()}Dialog") for table in tables}
         self.dialogs = {action: {key: cls(action, key) for key, cls in self.dialog_infos.items()} for action in ['view', 'insert', 'delete', 'update']}

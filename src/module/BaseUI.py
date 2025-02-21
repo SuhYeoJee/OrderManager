@@ -44,7 +44,7 @@ class BaseUI(QDialog):
         input_widgets = [w for w in self.input_widgets if w.objectName() != "idComboBox"] if keep_combos else self.input_widgets
         [handler(w) for w in input_widgets if (handler := clear_handlers.get(type(w)))]
     # --------------------------
-    def get_inputs(self)->dict:
+    def get_inputs(self,widget=None)->dict:
         '''모든 입력위젯의 값 {"col_name":val}로 반환 '''
         value_handlers = {
             QLineEdit: lambda widget: widget.text(),
@@ -56,9 +56,9 @@ class BaseUI(QDialog):
             QDateEdit: lambda widget: widget.dateTime().toString(DATETIME_FORMAT),
         }
         excepts = ['qt_spinbox_lineedit']
-        res = {self.get_key_from_object_name(widget.objectName()): handler(widget) 
-                for widget in self.input_widgets 
-                if (handler := value_handlers.get(type(widget))) and widget.objectName() not in excepts}
+        res = {self.get_key_from_object_name(w.objectName()): handler(w) 
+                for w in self.get_input_widgets(widget) 
+                if (handler := value_handlers.get(type(w))) and w.objectName() not in excepts}
         
         print(res)
         return res

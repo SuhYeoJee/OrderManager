@@ -24,7 +24,7 @@
    </property>
    <layout class="QGridLayout" name="gridLayout" columnstretch="1,1,1">
     <item row="8" column="0">
-     <widget class="QLineEdit" name="codeLineEdit_4">
+     <widget class="QLineEdit" name="code4LineEdit">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -37,7 +37,7 @@
      </widget>
     </item>
     <item row="8" column="2">
-     <widget class="QSpinBox" name="amountSpinBox_4">
+     <widget class="QSpinBox" name="amount4SpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -47,7 +47,7 @@
      </widget>
     </item>
     <item row="6" column="2">
-     <widget class="QSpinBox" name="amountSpinBox_2">
+     <widget class="QSpinBox" name="amount2SpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -95,7 +95,7 @@
      </widget>
     </item>
     <item row="6" column="1">
-     <widget class="QComboBox" name="itemComboBox_2">
+     <widget class="QComboBox" name="item2ComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -105,7 +105,7 @@
      </widget>
     </item>
     <item row="7" column="0">
-     <widget class="QLineEdit" name="codeLineEdit_3">
+     <widget class="QLineEdit" name="code3LineEdit">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -118,7 +118,7 @@
      </widget>
     </item>
     <item row="6" column="0">
-     <widget class="QLineEdit" name="codeLineEdit_2">
+     <widget class="QLineEdit" name="code2LineEdit">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -151,7 +151,7 @@
      </widget>
     </item>
     <item row="5" column="1">
-     <widget class="QComboBox" name="itemComboBox">
+     <widget class="QComboBox" name="item1ComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -161,7 +161,7 @@
      </widget>
     </item>
     <item row="8" column="1">
-     <widget class="QComboBox" name="itemComboBox_4">
+     <widget class="QComboBox" name="item4ComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -171,7 +171,7 @@
      </widget>
     </item>
     <item row="7" column="2">
-     <widget class="QSpinBox" name="amountSpinBox_3">
+     <widget class="QSpinBox" name="amount3SpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -194,7 +194,7 @@
      </spacer>
     </item>
     <item row="5" column="0">
-     <widget class="QLineEdit" name="codeLineEdit">
+     <widget class="QLineEdit" name="code1LineEdit">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -207,7 +207,7 @@
      </widget>
     </item>
     <item row="7" column="1">
-     <widget class="QComboBox" name="itemComboBox_3">
+     <widget class="QComboBox" name="item3ComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -217,7 +217,7 @@
      </widget>
     </item>
     <item row="5" column="2">
-     <widget class="QSpinBox" name="amountSpinBox">
+     <widget class="QSpinBox" name="amount1SpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -227,9 +227,9 @@
      </widget>
     </item>
     <item row="2" column="2">
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="item_loadBtn">
       <property name="text">
-       <string>LOAD</string>
+       <string>item LOAD</string>
       </property>
      </widget>
     </item>

@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QMessageBox, QTableWidgetItem, QPushButton, QHeaderView,
+    QApplication, QMainWindow, QWidget, QMessageBox, QTableWidgetItem, QPushButton, QHeaderView,
     QDialog, QComboBox, QVBoxLayout, QScrollArea, QLineEdit, QPlainTextEdit, QGridLayout,
     QDateTimeEdit, QDateEdit, QSpinBox, QDoubleSpinBox
 )
