@@ -26,14 +26,12 @@
 ### 진행중 
 
 ##### sp
-- 위젯 수정
-  - sp_dialog get_inputs에서 계산창 제외하기
-    - 위젯명 접두어
 
 sp 파우더 정규
 
 - [ ] 이미지 뷰
 
+baseui.set_datas_from_json_response 최적화필
 
 
 ##### 수주 동적 다이얼로그

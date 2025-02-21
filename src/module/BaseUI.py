@@ -1,7 +1,7 @@
 
 import re
 from src.imports.pyqt5_imports import *
-from src.imports.config import DATETIME_FORMAT
+from src.imports.config import SET_HANDLERS, GET_HANDLERS, CLEAR_HANDLERS
 # ===========================================================================================
 
 class BaseUI(QDialog):
@@ -32,64 +32,33 @@ class BaseUI(QDialog):
     # --------------------------
     def clear(self,keep_combos:bool=False)->None:
         '''모든 입력위젯 비우기'''
-        clear_handlers = {
-            QLineEdit: lambda widget: widget.clear(),
-            QComboBox: lambda widget: widget.setCurrentText("") if keep_combos else widget.clear(),
-            QSpinBox: lambda widget: widget.setValue(0),
-            QDoubleSpinBox: lambda widget: widget.setValue(0),
-            QPlainTextEdit: lambda widget: widget.clear(),
-            QDateTimeEdit: lambda widget: widget.setDateTime(QDateTime(0000, 0, 0, 0, 0)),
-            QDateEdit: lambda widget: widget.setDateTime(QDateTime(0000, 0, 0, 0, 0)),
-        }
         input_widgets = [w for w in self.input_widgets if w.objectName() != "idComboBox"] if keep_combos else self.input_widgets
-        [handler(w) for w in input_widgets if (handler := clear_handlers.get(type(w)))]
+        [handler(w) for w in input_widgets if (handler := CLEAR_HANDLERS.get(type(w)))]
+        [w.clear() for w in input_widgets if (type(w)==QComboBox) and not keep_combos]
+
     # --------------------------
     def get_inputs(self,widget=None)->dict:
         '''모든 입력위젯의 값 {"col_name":val}로 반환 '''
-        value_handlers = {
-            QLineEdit: lambda widget: widget.text(),
-            QComboBox: lambda widget: widget.currentText(),
-            QSpinBox: lambda widget: widget.value(),
-            QDoubleSpinBox: lambda widget: widget.value(),
-            QPlainTextEdit: lambda widget: widget.toPlainText(),
-            QDateTimeEdit: lambda widget: widget.dateTime().toString(DATETIME_FORMAT),
-            QDateEdit: lambda widget: widget.dateTime().toString(DATETIME_FORMAT),
-        }
-        excepts = ['qt_spinbox_lineedit']
+        excepts = ['qt_spinbox_lineedit','sp_infoGridLayoutWidget']
+
         res = {self.get_key_from_object_name(w.objectName()): handler(w) 
                 for w in self.get_input_widgets(widget) 
-                if (handler := value_handlers.get(type(w))) and w.objectName() not in excepts}
-        
+                if (handler := GET_HANDLERS.get(type(w))) and w.objectName() not in excepts
+                and (w.parent() and w.parent().objectName() not in excepts)}
+        print('# ------------------------------------------')
         print(res)
         return res
     # --------------------------
     def set_datas(self, datas:tuple) -> None:
-        '''모든 입력 위젯에 값 설정하기'''
-        set_handlers = {
-            QLineEdit: lambda widget, value: widget.setText(str(value)),
-            QComboBox: lambda widget, value: (widget.addItem(str(value)) if widget.findText(str(value)) == -1 else None, widget.setCurrentText(str(value)))[1],
-            QSpinBox: lambda widget, value: widget.setValue(int(value)),
-            QDoubleSpinBox: lambda widget, value: widget.setValue(float(value)),
-            QPlainTextEdit: lambda widget, value: widget.setPlainText(str(value)),
-            QDateTimeEdit: lambda widget, value: widget.setDateTime(QDateTime.fromString(value,DATETIME_FORMAT)),
-            QDateEdit: lambda widget, value: widget.setDateTime(QDateTime.fromString(value,DATETIME_FORMAT)),
-        }
+        '''모든 입력 위젯에 값 설정하기 datas: row tuple'''
         data_dict = dict(zip(self.cols,datas))
         [handler(widget,value) 
             for widget in self.input_widgets 
-            if (handler := set_handlers.get(type(widget))) and (value := data_dict.get(self.get_key_from_object_name(widget.objectName()))) is not None]
+            if (handler := SET_HANDLERS.get(type(widget))) and (value := data_dict.get(self.get_key_from_object_name(widget.objectName()))) is not None]
     # --------------------------
     def set_datas_from_json_response(self,json_response):
-        set_handlers = {
-            QLineEdit: lambda widget, value: widget.setText(str(value)),
-            QComboBox: lambda widget, value: (widget.addItem(str(value)) if widget.findText(str(value)) == -1 else None, widget.setCurrentText(str(value)))[1],
-            QSpinBox: lambda widget, value: widget.setValue(int(value)),
-            QDoubleSpinBox: lambda widget, value: widget.setValue(float(value)),
-            QPlainTextEdit: lambda widget, value: widget.setPlainText(str(value)),
-            QDateTimeEdit: lambda widget, value: widget.setDateTime(QDateTime.fromString(value,DATETIME_FORMAT)),
-            QDateEdit: lambda widget, value: widget.setDateTime(QDateTime.fromString(value,DATETIME_FORMAT)),
-        }
         json_doc = json_response[2]
+        excepts = ['qt_spinbox_lineedit','sp_infoGridLayoutWidget']
 
         for widget in self.input_widgets:
             key = self.get_key_from_object_name(widget.objectName())
@@ -115,11 +84,7 @@ class BaseUI(QDialog):
                 continue
 
             val = val if val else 0
-            set_handlers.get(type(widget))(widget,val)
-
-
-
-
+            SET_HANDLERS.get(type(widget))(widget,val)
 
 
     # --------------------------
@@ -153,7 +118,6 @@ class BaseUI(QDialog):
         try:
             [datas] = data_response[2]
         except ValueError:
-            print('*')
             ... # 해당 id 없음
         else:
             self.clear(True)

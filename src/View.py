@@ -52,16 +52,16 @@ class View(QMainWindow):
     def disable_sp_dialog_infos(self):
         for action in ['view', 'insert', 'delete', 'update']:
             sp_dialog = self.dialogs[action]['sp']
-            for i in range(sp_dialog.gridLayout.count()):
-                item = sp_dialog.gridLayout.itemAt(i)
+            for i in range(sp_dialog.sp_infoGridLayout.count()):
+                item = sp_dialog.sp_infoGridLayout.itemAt(i)
                 if item and item.widget():
                     item.widget().setEnabled(False)
 
     def enable_sp_dialog_infos(self):
         for action in ['view', 'insert', 'delete', 'update']:
             sp_dialog = self.dialogs[action]['sp']
-            for i in range(sp_dialog.gridLayout.count()):
-                item = sp_dialog.gridLayout.itemAt(i)
+            for i in range(sp_dialog.sp_infoGridLayout.count()):
+                item = sp_dialog.sp_infoGridLayout.itemAt(i)
                 if item and item.widget():
                     item.widget().setEnabled(True)
 
