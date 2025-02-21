@@ -10,6 +10,12 @@
     <height>334</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>굴림</family>
+    <pointsize>16</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -137,19 +143,6 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="0">
-     <widget class="QLineEdit" name="item_groupLineEdit">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
     <item row="5" column="1">
      <widget class="QComboBox" name="item1ComboBox">
       <property name="sizePolicy">
@@ -239,6 +232,9 @@
        <string>GROUP 1</string>
       </property>
      </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QComboBox" name="item_groupComboBox"/>
     </item>
    </layout>
   </widget>

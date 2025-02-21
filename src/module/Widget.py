@@ -25,42 +25,52 @@ class OrdersWidget(BaseUI):
         self.input_widgets = self.get_input_widgets()
         self.scrollLayout = QVBoxLayout(self.scrollAreaWidgetContents)
         self.scroll_inner_widgets = []
+        self.item_groups = []
+        self.pre_response = None
         # --------------------------
         self.loadBtn.clicked.connect(self.on_load)
         self.submitBtn.clicked.connect(self.on_insert_submit)
         self.addBtn.clicked.connect(self.add_grid)
-        self.add_grid()
     # --------------------------
     def on_insert_submit(self):
-        inputs = self.get_inputs()
-        inputs.pop('id')
-        inputs.pop('reg_date')
-        inputs.pop('update_date')
-        self.data = self._add_request_header(inputs)
-        self.insert_request.emit(self.data)
+        inputs = self.get_inner_widgets_data()
+        print(inputs)
+        # inputs.pop('id')
+        # inputs.pop('reg_date')
+        # inputs.pop('update_date')
+        # self.data = self._add_request_header(inputs)
+        # self.insert_request.emit(self.data)
         self.close()
     # --------------------------
     def add_grid(self):
         """ordersInnerWidget을 복제하여 스크롤 영역에 추가 """
         ordersInnerWidget = QWidget()
         loadUi("./ui/ordersInnerWidget.ui", ordersInnerWidget)
+
+        self.scrollAreaWidgetContents.setMinimumHeight(self.scrollAreaWidgetContents.height() + 350) #위젯 높이 늘리기
+        ordersInnerWidget.label.setText(f"Group {len(self.scroll_inner_widgets)+1}") #라벨변경
         self.scrollLayout.addWidget(ordersInnerWidget)
         self.scroll_inner_widgets.append(ordersInnerWidget)
-        self.scrollAreaWidgetContents.setMinimumHeight(self.scrollAreaWidgetContents.height() + 350)
 
-        # ordersInnerWidget.itemLoadBtn 에 로드기능 매핑
-        # 라벨 텍스트 변경 
+        ordersInnerWidget.item_loadBtn.clicked.connect(lambda: self.set_itemComboBoxs(ordersInnerWidget))
 
-
-
-        #temp
-        print(self.get_inner_widgets_data())
+        # item_groupLoad아이템 세팅 테스트 
+        # 아이템 그룹 선택값에 따라 필터링
+        ordersInnerWidget.item1ComboBox.addItems(['']+self.pre_response[2][2]['item'])
     # --------------------------
+    def set_itemComboBoxs(self,ordersInnerWidget):
+        print(ordersInnerWidget.label.text())
+    
+    
+    
+    
     def get_inner_widgets_data(self):
         '''{idx:{col:val}}'''
         return {idx: self.get_inputs(inner_widget) for idx, inner_widget in enumerate(self.scroll_inner_widgets)}
     def on_pre_response(self,pre_response): #pre_response 사용안함
         '''다이얼로그 사전정보: 전체 cols,테이블에 존재하는 id목록, 외래키 제약'''
+        self.pre_response = pre_response
+        self.add_grid()
         return 
 
 class SpWidget(BaseUI):
