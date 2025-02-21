@@ -48,7 +48,7 @@
      <number>0</number>
     </property>
     <item row="22" column="1" colspan="4">
-     <widget class="QComboBox" name="comboBox_7">
+     <widget class="QComboBox" name="autos_sub3ComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -58,7 +58,7 @@
      </widget>
     </item>
     <item row="16" column="1" colspan="4">
-     <widget class="QComboBox" name="loads_segment_dia1ComboBox_2">
+     <widget class="QComboBox" name="autos_shank1ComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -87,7 +87,7 @@
      </widget>
     </item>
     <item row="6" column="2">
-     <widget class="QSpinBox" name="spinBox_2">
+     <widget class="QSpinBox" name="inputs_item1_amountSpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -100,7 +100,7 @@
      </widget>
     </item>
     <item row="8" column="2">
-     <widget class="QSpinBox" name="spinBox_4">
+     <widget class="QSpinBox" name="inputs_item3_amountSpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -113,7 +113,7 @@
      </widget>
     </item>
     <item row="23" column="5">
-     <widget class="QSpinBox" name="spinBox_12">
+     <widget class="QSpinBox" name="autos_sub4_amountSpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -126,7 +126,7 @@
      </widget>
     </item>
     <item row="16" column="5">
-     <widget class="QSpinBox" name="spinBox_10">
+     <widget class="QSpinBox" name="autos_shank1_amountSpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -177,7 +177,7 @@
      </widget>
     </item>
     <item row="19" column="5">
-     <widget class="QSpinBox" name="spinBox_9">
+     <widget class="QSpinBox" name="autos_shank4_amountSpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -209,7 +209,7 @@
      </widget>
     </item>
     <item row="16" column="7" rowspan="4">
-     <widget class="QLineEdit" name="lineEdit_3">
+     <widget class="QLineEdit" name="autos_engravePlainTextEdit">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -219,7 +219,7 @@
      </widget>
     </item>
     <item row="3" column="1" colspan="3">
-     <widget class="QLineEdit" name="lineEdit"/>
+     <widget class="QLineEdit" name="loads_item1_recent_ipLineEdit"/>
     </item>
     <item row="11" column="5" colspan="2">
      <widget class="QLabel" name="label_349">
@@ -241,7 +241,7 @@
      </widget>
     </item>
     <item row="7" column="2">
-     <widget class="QSpinBox" name="spinBox_3">
+     <widget class="QSpinBox" name="inputs_item2_amountSpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -323,7 +323,7 @@
      </widget>
     </item>
     <item row="20" column="5">
-     <widget class="QSpinBox" name="spinBox_14">
+     <widget class="QSpinBox" name="autos_sub1_amountSpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -374,7 +374,7 @@
      </widget>
     </item>
     <item row="18" column="1" colspan="4">
-     <widget class="QComboBox" name="comboBox_6">
+     <widget class="QComboBox" name="autos_shank3ComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -482,7 +482,7 @@
      <widget class="QLineEdit" name="autos_creation_dateLineEdit"/>
     </item>
     <item row="17" column="1" colspan="4">
-     <widget class="QComboBox" name="loads_segment_dia3ComboBox">
+     <widget class="QComboBox" name="autos_shank2ComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -492,7 +492,7 @@
      </widget>
     </item>
     <item row="12" column="5" rowspan="2">
-     <widget class="QSpinBox" name="spinBox_5">
+     <widget class="QSpinBox" name="autos_seg1_amountSpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -542,7 +542,7 @@
      </widget>
     </item>
     <item row="5" column="4" rowspan="5" colspan="5">
-     <widget class="QLineEdit" name="loads_segment_model_textLineEdit">
+     <widget class="QLineEdit" name="loads_item1_imageLineEdit">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -571,7 +571,7 @@
      </widget>
     </item>
     <item row="8" column="1">
-     <widget class="QComboBox" name="comboBox_4">
+     <widget class="QComboBox" name="inputs_item3_itemComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -581,7 +581,7 @@
      </widget>
     </item>
     <item row="14" column="5" rowspan="2">
-     <widget class="QSpinBox" name="spinBox_6">
+     <widget class="QSpinBox" name="autos_seg2_amountSpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -594,7 +594,7 @@
      </widget>
     </item>
     <item row="7" column="1">
-     <widget class="QComboBox" name="comboBox_3">
+     <widget class="QComboBox" name="inputs_item2_itemComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -636,7 +636,7 @@
      </widget>
     </item>
     <item row="19" column="1" colspan="4">
-     <widget class="QComboBox" name="loads_segment_bondComboBox_2">
+     <widget class="QComboBox" name="autos_shank4ComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -716,7 +716,7 @@
      </widget>
     </item>
     <item row="23" column="1" colspan="4">
-     <widget class="QComboBox" name="comboBox_8">
+     <widget class="QComboBox" name="autos_sub4ComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -726,7 +726,7 @@
      </widget>
     </item>
     <item row="12" column="3" colspan="2">
-     <widget class="QComboBox" name="loads_segment_bondComboBox">
+     <widget class="QComboBox" name="autos_seg1_nameComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -736,7 +736,7 @@
      </widget>
     </item>
     <item row="15" column="3" colspan="2">
-     <widget class="QComboBox" name="loads_segment_dia2ComboBox">
+     <widget class="QComboBox" name="autos_seg2ComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -746,7 +746,7 @@
      </widget>
     </item>
     <item row="17" column="5">
-     <widget class="QSpinBox" name="spinBox_7">
+     <widget class="QSpinBox" name="autos_shank2_amountSpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -826,7 +826,7 @@
      </widget>
     </item>
     <item row="13" column="3" colspan="2">
-     <widget class="QComboBox" name="comboBox_5">
+     <widget class="QComboBox" name="autos_seg1ComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -836,7 +836,7 @@
      </widget>
     </item>
     <item row="5" column="1" colspan="2">
-     <widget class="QLineEdit" name="inputs_segmentLineEdit"/>
+     <widget class="QLineEdit" name="inputs_item1_item_groupLineEdit"/>
     </item>
     <item row="4" column="0">
      <spacer name="verticalSpacer_6">
@@ -852,10 +852,10 @@
      </spacer>
     </item>
     <item row="25" column="1" colspan="8">
-     <widget class="QPlainTextEdit" name="plainTextEdit_4"/>
+     <widget class="QPlainTextEdit" name="autos_weldingPlainTextEdit"/>
     </item>
     <item row="21" column="1" colspan="4">
-     <widget class="QComboBox" name="comboBox_9">
+     <widget class="QComboBox" name="autos_sub2ComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -865,7 +865,7 @@
      </widget>
     </item>
     <item row="26" column="1" colspan="8">
-     <widget class="QPlainTextEdit" name="plainTextEdit_3"/>
+     <widget class="QPlainTextEdit" name="autos_dressingPlainTextEdit"/>
     </item>
     <item row="23" column="6">
      <widget class="QLabel" name="label_316">
@@ -906,7 +906,7 @@
      </widget>
     </item>
     <item row="9" column="2">
-     <widget class="QSpinBox" name="spinBox">
+     <widget class="QSpinBox" name="inputs_item4_amountSpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -919,7 +919,7 @@
      </widget>
     </item>
     <item row="9" column="1">
-     <widget class="QComboBox" name="comboBox">
+     <widget class="QComboBox" name="inputs_item4_itemComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -948,7 +948,7 @@
      </widget>
     </item>
     <item row="14" column="3" colspan="2">
-     <widget class="QComboBox" name="loads_segment_dia1ComboBox">
+     <widget class="QComboBox" name="autos_seg2_nameComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -958,7 +958,7 @@
      </widget>
     </item>
     <item row="21" column="5">
-     <widget class="QSpinBox" name="spinBox_13">
+     <widget class="QSpinBox" name="autos_sub2_amountSpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -971,7 +971,7 @@
      </widget>
     </item>
     <item row="6" column="1">
-     <widget class="QComboBox" name="comboBox_2">
+     <widget class="QComboBox" name="inputs_item1_itemComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -1019,7 +1019,7 @@
      </widget>
     </item>
     <item row="20" column="1" colspan="4">
-     <widget class="QComboBox" name="comboBox_10">
+     <widget class="QComboBox" name="autos_sub1ComboBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -1029,7 +1029,7 @@
      </widget>
     </item>
     <item row="22" column="5">
-     <widget class="QSpinBox" name="spinBox_11">
+     <widget class="QSpinBox" name="autos_sub3_amountSpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -1061,7 +1061,7 @@
      </widget>
     </item>
     <item row="3" column="6" colspan="3">
-     <widget class="QLineEdit" name="inputs_due_date_lineEdit"/>
+     <widget class="QLineEdit" name="inputs_item1_due_date_lineEdit"/>
     </item>
     <item row="22" column="6">
      <widget class="QLabel" name="label_345">
@@ -1134,10 +1134,10 @@
      </spacer>
     </item>
     <item row="27" column="1" colspan="8">
-     <widget class="QPlainTextEdit" name="plainTextEdit_2"/>
+     <widget class="QPlainTextEdit" name="autos_paintPlainTextEdit"/>
     </item>
     <item row="18" column="5">
-     <widget class="QSpinBox" name="spinBox_8">
+     <widget class="QSpinBox" name="autos_shank3_amountSpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>

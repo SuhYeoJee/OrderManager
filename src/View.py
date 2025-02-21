@@ -20,7 +20,8 @@ class View(QMainWindow):
         self.dialogs['widget']={}
         self.dialogs['widget']['orders'] = OrdersWidget()
         self.dialogs['widget']['sp'] = SpWidget()
-        [self.dialogs[action]['sp'].pushButton.clicked.connect(lambda: self.get_sp_widget(self.dialogs[action]['sp'])) for action in ['view', 'insert', 'delete', 'update']]
+        [self.dialogs[action]['sp'].pushButton.clicked.connect(lambda _, action=action: self.get_sp_widget(action)) for action in ['view', 'insert', 'delete', 'update']]
+
     # -------------------------------------------------------------------------------------------
     def get_dialog(self,dialog_type,table_name):
         dialog = self.dialogs[dialog_type][table_name]
@@ -46,8 +47,9 @@ class View(QMainWindow):
         select_str = self.tableSelectLineEdit.text()
         return ('select',table_name,(sort_col,sort_type),(select_col,select_type,select_str))
 
-    def get_sp_widget(self,sp_dialog):
+    def get_sp_widget(self,action):
         sp_widget = self.get_dialog('widget','sp')
+        sp_dialog = self.dialogs[action]['sp']
         sp_path = sp_dialog.get_inputs()['path']
         if sp_path:
             self.json_request.emit(('widget','sp', sp_path))
