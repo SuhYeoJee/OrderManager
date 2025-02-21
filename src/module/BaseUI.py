@@ -79,6 +79,50 @@ class BaseUI(QDialog):
             for widget in self.input_widgets 
             if (handler := set_handlers.get(type(widget))) and (value := data_dict.get(self.get_key_from_object_name(widget.objectName()))) is not None]
     # --------------------------
+    def set_datas_from_json_response(self,json_response):
+        set_handlers = {
+            QLineEdit: lambda widget, value: widget.setText(str(value)),
+            QComboBox: lambda widget, value: (widget.addItem(str(value)) if widget.findText(str(value)) == -1 else None, widget.setCurrentText(str(value)))[1],
+            QSpinBox: lambda widget, value: widget.setValue(int(value)),
+            QDoubleSpinBox: lambda widget, value: widget.setValue(float(value)),
+            QPlainTextEdit: lambda widget, value: widget.setPlainText(str(value)),
+            QDateTimeEdit: lambda widget, value: widget.setDateTime(QDateTime.fromString(value,DATETIME_FORMAT)),
+            QDateEdit: lambda widget, value: widget.setDateTime(QDateTime.fromString(value,DATETIME_FORMAT)),
+        }
+        json_doc = json_response[2]
+
+        for widget in self.input_widgets:
+            key = self.get_key_from_object_name(widget.objectName())
+            try:
+                data_type,data_name = key.split('_',1)
+            except:
+                continue
+            if data_name == 'spinbox_lineedit':
+                continue
+            if data_type == 'loads':
+                table_name,col_name = data_name.split('_',1)
+                try:
+                    val = json_doc[data_type][table_name][col_name]
+                except:
+                    continue
+            elif data_type in ['inputs','autos']:
+                try:
+                    val = json_doc[data_type][data_name]
+                except:
+                    print(data_type,data_name)
+                    val = None
+            else:
+                continue
+
+            val = val if val else 0
+            set_handlers.get(type(widget))(widget,val)
+
+
+
+
+
+
+    # --------------------------
     def get_key_from_object_name(self,object_name):
         # col_name = 첫 번째 대문자 이전
         match = re.match(r'^[^A-Z]*', object_name)
