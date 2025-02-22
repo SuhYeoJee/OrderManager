@@ -36,10 +36,11 @@ baseui.set_datas_from_json_response 최적화필
 
 ##### 수주 동적 다이얼로그
 
-편해졌죠?
-데이터를 모델이 던져 
-모델에서 이걸 잘 처리할 함수
+어라?
+오늘안에 될지도?
 
+이거 orders 도 seg1, seg2로 분리해야함 
+orders code 유일값 아님
 
 
 ## 나중에

@@ -146,21 +146,24 @@ class View(QMainWindow):
             elif row == tableWidget.rowCount() - 1 and row - start_row > 0: 
                 self._merge_row_range(tableWidget,start_row, row)
 
-    def _merge_row_range(self,tableWidget, start_row, end_row):
+    def _merge_row_range(self, tableWidget, start_row, end_row):
         """주어진 범위에 대해 모든 열의 값이 동일하면 병합"""
-        for col in range(1,tableWidget.columnCount()): #col(1) id 제외
-            start_row = 0
-            current_text = tableWidget.item(0, col).text() if tableWidget.item(0, col) else ''
+        for col in range(1, tableWidget.columnCount()):  # col(1)부터 (id 제외)
+            current_text = tableWidget.item(start_row, col).text() if tableWidget.item(start_row, col) else ''
+            merge_start = start_row  # 병합 시작 지점
 
-            for row in range(start_row, end_row+1):
+            for row in range(start_row + 1, end_row + 1):  # start_row+1부터 비교
                 item_text = tableWidget.item(row, col).text() if tableWidget.item(row, col) else ''
                 if item_text != current_text:
-                    if row - start_row > 1:
-                        tableWidget.setSpan(start_row, col, row - start_row, 1)
-                    start_row = row
+                    if row - merge_start > 1:  
+                        tableWidget.setSpan(merge_start, col, row - merge_start, 1)
+                    merge_start = row
                     current_text = item_text
-            if end_row > start_row: #표 끝까지
-                tableWidget.setSpan(start_row, col, end_row - start_row + 1, 1)
+
+            # 마지막 범위 병합
+            if end_row >= merge_start:  
+                tableWidget.setSpan(merge_start, col, end_row - merge_start + 1, 1)
+
 
     def set_view_dialog(self,view_request):
         dialog = self.get_dialog('view',view_request[0])

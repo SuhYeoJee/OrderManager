@@ -28,7 +28,12 @@ class IPMaker():
     def get_data_by_name(self,table_name,name):
         request = ('select',table_name,('id','오름차순'),('name','=',name))
         response = self.model.get_select_data(request)
-        return dict(zip(response[2][0],response[2][1]))
+        try:
+            res = dict(zip(response[2][0],response[2][1]))
+        except IndexError:
+            # 해당 데이터 없음
+            res = dict(zip(response[2][0],['']*len(response[2][0])))
+        return res
  
     def _make_new_ip(self,inputs:dict):
         ip = {}
@@ -78,11 +83,10 @@ class IPMaker():
             weldings.append(item.get('welding', ''))
             dressings.append(item.get('dressing', ''))
             paints.append(item.get('paint', ''))
-        else:
-            ip['autos']['engrave'] = '\n'.join(engraves)
-            ip['autos']['welding'] = '\n'.join(weldings)
-            ip['autos']['dressing'] = '\n'.join(dressings)
-            ip['autos']['paint'] = '\n'.join(paints)
+
+        for key, values in zip(["engrave", "welding", "dressing", "paint"], [engraves, weldings, dressings, paints]):
+            ip["autos"][key] = "\n".join(x or "" for x in values)
+
         return autos
 
     def write_json_file(self,data,json_path)->None:

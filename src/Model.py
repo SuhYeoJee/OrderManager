@@ -7,6 +7,8 @@ from src.module.IP_maker import IPMaker
 from src.module.SP_maker import SPMaker
 # --------------------------
 import json
+from datetime import datetime
+from pprint import pprint
 from src.imports.config import DB_PATH
 # ===========================================================================================
 # Model
@@ -24,44 +26,9 @@ class Model():
         return self._add_response_header(insert_request,res)
     
     def get_orders_insert_request(self,insert_request):
-        insert_request = ('widget','orders',{})
         datas = insert_request[2]
-
-        datas = {
-            0: {'amount1': 3,
-                'amount2': 0,
-                'amount3': 0,
-                'amount4': 0,
-                'code1': '',
-                'code2': '',
-                'code3': '',
-                'code4': '',
-                'engrave': 'sdf',
-                'item1': '5"CUPT OVAL60',
-                'item2': '',
-                'item3': '',
-                'item4': '',
-                'item_group': '5"CUPT'},
-            1: {'amount1': 1,
-                'amount2': 2,
-                'amount3': 0,
-                'amount4': 0,
-                'code1': '',
-                'code2': '',
-                'code3': '',
-                'code4': '',
-                'engrave': '',
-                'item1': 'TEST ITEM',
-                'item2': 'TEST ITEM2',
-                'item3': '',
-                'item4': '',
-                'item_group': 'TEST'},
-            'customer': '강낭콩',
-            'description': '',
-            'due_date': '2025-02-28',
-            'order_date': '2025-02-14'
-        }
         infos = {k:v for k,v in datas.items() if not isinstance(k,int)}
+        infos['name']= self._get_new_order_name()
 
         i = 0
         while i in datas:
@@ -82,19 +49,62 @@ class Model():
         ip_inputs['infos'].update(infos)
         return ip_inputs
 
+
+    def _get_new_order_name(self):
+        [last_order] = self.sql.execute_query('SELECT * FROM orders ORDER BY id DESC LIMIT 1;')
+        year,no = last_order[1].split('-')
+        if year == str(datetime.now().year):
+            order_name = f"{year}-{int(no)+1:05}"
+        else:
+            order_name = f"{str(datetime.now().year)}-IP{1:05}"
+        return order_name
+    
+    def _get_new_order_code(self):
+        [last_order] = self.sql.execute_query('SELECT * FROM orders ORDER BY id DESC LIMIT 1;')
+        return int(last_order[2])+1 if last_order[1].split('-')[0] == str(datetime.now().year) else 1
+
     def _handle_order_insert(self,items,infos):
+        # ip 생성
         ip_inputs = self._get_ip_inputs_from_orders_inputs(items,infos)
         ip = self.ipm.get_new_ip(ip_inputs)
-        
-        orders_data = {}
-        orders_data.update({'ip':ip['autos']['name']}) #order 갱신 
 
-        # # sp생성
-        # sps=[]
-        # for i in [1,2]:
-        #     sp_inputs = {f"segment":ip["autos"][f"seg{i}"],"segment_net":ip["autos"][f"seg{i}_net"]}
-        #     sps.append(self.spm.get_new_sp(sp_inputs))
-        #     items.update({f'sp{i}':sps[i-1]['autos']['name']}) #order 갱신 
+        # sp생성
+        sps = [self.spm.get_new_sp({"code": ip["autos"].get(f"seg{i}"), "workload": ip["autos"].get(f"seg{i}_amount")}) 
+            for i in [1, 2] if f"seg{i}" in ip["autos"]]
+        
+
+        # orders 테이블 정보 생성
+        orders_datas = [] # 각 일련번호마다 
+        for i in range(1, 5):
+            if items[f'amount{i}']!=0:
+                order = {
+                    "name": infos.get("name", ""),
+                    "code": self._get_new_order_code(),
+                    "customer": infos.get("customer", ""),
+                    "item": items.get(f"item{i}"),
+                    "item_group": items.get(f"item{i}", "").split(" ")[0] if items.get(f"item{i}") else None,
+                    "amount": items.get(f"amount{i}"),
+                    "engrave": items.get("engrave"),
+                    "order_date": infos.get("order_date"),
+                    "due_date": infos.get("due_date"),
+                    "description": infos.get("description"),
+                    "ip": ip.get("autos", {}).get("name"),
+                }
+
+                for j in range(2):
+                    sp = sps[j] if j < len(sps) else {}  # sps 리스트 인덱스 초과 방지
+                    order.update({
+                        f"seg{j+1}": sp.get("inputs", {}).get("code"),
+                        f"bond{j+1}": sp.get("loads", {}).get("bond", {}).get("name"),
+                        f"seg{j+1}_net": sp.get("inputs", {}).get("workload"),
+                        f"seg{j+1}_work": sp.get("autos", {}).get("segment_work"),
+                        f"sp{j+1}": sp.get("autos", {}).get("name"),
+                    })
+                # order DB에 저장
+                query,bindings = self.qb.get_insert_query('orders',order)
+                res = self.sql.execute_query(query,bindings)
+
+        pprint(orders_datas)
 
         # self.ouputs = ["bond","segment_work","sp"]
         # # 새로 생긴 ip DB에 저장
@@ -102,11 +112,9 @@ class Model():
         # sp_items = {'name','segment','ip','path'}
         # query,bindings = self.qb.get_insert_query('ip',ip_items)
         # res = self.sql.execute_query(query,bindings)
+        
 
-        # order DB에 저장
-        query,bindings = self.qb.get_insert_query('orders',orders_data)
-        res = self.sql.execute_query(query,bindings)
-        return res
+        # return res
 
 
     def get_json_data(self,json_request):
@@ -226,4 +234,41 @@ class Model():
     
 if __name__ == "__main__":
     m = Model()
-    m.get_orders_insert_request(1)
+    orders_request = (
+        'widget','orders',
+        {
+            0: {'amount1': 3,
+                'amount2': 0,
+                'amount3': 0,
+                'amount4': 0,
+                'code1': '',
+                'code2': '',
+                'code3': '',
+                'code4': '',
+                'engrave': 'sdf',
+                'item1': '5"CUPT OVAL60',
+                'item2': '',
+                'item3': '',
+                'item4': '',
+                'item_group': '5"CUPT'},
+            1: {'amount1': 1,
+                'amount2': 2,
+                'amount3': 0,
+                'amount4': 0,
+                'code1': '',
+                'code2': '',
+                'code3': '',
+                'code4': '',
+                'engrave': '',
+                'item1': 'TEST ITEM',
+                'item2': 'TEST ITEM2',
+                'item3': '',
+                'item4': '',
+                'item_group': 'TEST'},
+            'customer': '강낭콩',
+            'description': '',
+            'due_date': '2025-02-28',
+            'order_date': '2025-02-14'
+        }
+    )
+    m.get_orders_insert_request(orders_request)

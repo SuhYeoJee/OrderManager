@@ -156,8 +156,6 @@ class SPMaker():
         return data
 
     def get_test_inputs(self):
-        # ip['autos']['seg1']
-        # ip['autos']['seg1_amount']
         inputs={
             "code": "SQ0000",
             "workload":120.0,
