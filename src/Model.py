@@ -34,6 +34,7 @@ class Model():
         while i in datas:
             self._handle_order_insert(datas[i],infos)
             i += 1
+        return self._add_response_header(insert_request,True) 
 
 
     def _get_ip_inputs_from_orders_inputs(self,items,infos):
@@ -51,17 +52,24 @@ class Model():
 
 
     def _get_new_order_name(self):
-        [last_order] = self.sql.execute_query('SELECT * FROM orders ORDER BY id DESC LIMIT 1;')
-        year,no = last_order[1].split('-')
+        try:
+            [last_order] = self.sql.execute_query('SELECT * FROM orders ORDER BY id DESC LIMIT 1;')
+            year,no = last_order[1].split('-')
+        except ValueError:
+            year,no = "2000","00000"
         if year == str(datetime.now().year):
             order_name = f"{year}-{int(no)+1:05}"
         else:
-            order_name = f"{str(datetime.now().year)}-IP{1:05}"
+            order_name = f"{str(datetime.now().year)}-{1:05}"
         return order_name
     
     def _get_new_order_code(self):
-        [last_order] = self.sql.execute_query('SELECT * FROM orders ORDER BY id DESC LIMIT 1;')
-        return int(last_order[2])+1 if last_order[1].split('-')[0] == str(datetime.now().year) else 1
+        try:
+            [last_order] = self.sql.execute_query('SELECT * FROM orders ORDER BY id DESC LIMIT 1;')
+            code = int(last_order[2])+1 if last_order[1].split('-')[0] == str(datetime.now().year) else 1
+        except ValueError:
+            code = 1
+        return code
 
     def _handle_order_insert(self,items,infos):
         # ip 생성
@@ -72,7 +80,8 @@ class Model():
         sps = [self.spm.get_new_sp({"code": ip["autos"].get(f"seg{i}"), "workload": ip["autos"].get(f"seg{i}_amount")}) 
             for i in [1, 2] if f"seg{i}" in ip["autos"]]
         
-        # orders 테이블 insert
+        item_names = []
+        # orders insert
         for i in range(1, 5):
             if items[f'amount{i}']!=0:
                 order = {
@@ -101,8 +110,8 @@ class Model():
                 # order DB에 저장
                 query,bindings = self.qb.get_insert_query('orders',order)
                 res = self.sql.execute_query(query,bindings)
+                item_names.append(order['item'])
         
-
         # ip insert 
         ip_data = {
             'name': ip.get('autos', {}).get('name'),
@@ -114,6 +123,7 @@ class Model():
         query,bindings = self.qb.get_insert_query('ip',ip_data)
         res = self.sql.execute_query(query,bindings)
 
+        # sp insert 
         for sp in sps:
             sp_data = {
                 'name': sp.get('autos', {}).get('name'),
@@ -122,6 +132,17 @@ class Model():
                 'path': f"./doc/sp/{sp.get('autos', {}).get('name', 'unknown')}.json"
             }
             query, bindings = self.qb.get_insert_query('sp', sp_data)
+            res = self.sql.execute_query(query, bindings)
+
+        # segment update
+        query, bindings = self.qb.get_update_query('segment',{'recent_sp':sp.get('autos', {}).get('name')},
+                                 {'comparison':[('code','=',sp.get('inputs', {}).get('code'))]})
+        res = self.sql.execute_query(query, bindings)
+
+        # item update
+        for i in item_names:
+            query, bindings = self.qb.get_update_query('item',{'recent_ip':ip.get('autos', {}).get('name')},
+                                    {'comparison':[('name','=',i)]})
             res = self.sql.execute_query(query, bindings)
 
 

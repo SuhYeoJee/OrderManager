@@ -30,8 +30,16 @@ class Controller():
                 getattr(dialog, f'{action}_request').connect(lambda x, action=action: self.on_table_request(action, x))
                 dialog.data_request.connect(self.on_data_request)
         self.view.dialogs['widget']['orders'].data_request.connect(self.on_data_request)
+        self.view.dialogs['widget']['orders'].insert_request.connect(self.on_orders_insert_request)
+
+
 
     # [view에서 model 호출] -------------------------------------------------------------------------------------------
+    def on_orders_insert_request(self,insert_request):
+        worker_func = "get_orders_insert_request"
+        callback_func = self.view.dialogs[insert_request[0]][insert_request[1]].on_insert_response
+        self.launch_worker(worker_func,callback_func,insert_request)
+
     def on_pre_request(self,pre_request):
         worker_func = "get_pre_infos"
         callback_func = self.view.dialogs[pre_request[0]][pre_request[1]].on_pre_response

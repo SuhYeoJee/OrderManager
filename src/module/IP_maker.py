@@ -16,8 +16,11 @@ class IPMaker():
         return ip
 
     def get_new_ip_name(self):
-        [last_ip] = self.model.sql.execute_query('SELECT * FROM ip ORDER BY id DESC LIMIT 1;')
-        year,no = last_ip[1].split('-')
+        try:
+            [last_ip] = self.model.sql.execute_query('SELECT * FROM ip ORDER BY id DESC LIMIT 1;')
+            year,no = last_ip[1].split('-')
+        except ValueError:
+            year,no = "2000","IP0000"
 
         if year == str(datetime.now().year):
             ip_name = f"{year}-IP{int(no[2:])+1:04}"

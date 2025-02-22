@@ -37,10 +37,8 @@ class OrdersWidget(BaseUI):
         pops = ['name','reg_date','update_date','item_group','engrave']
         pops.extend([i for s in [[f'amount{x}', f'code{x}', f'item{x}'] for x in range(1, 5)] for i in s])
         [inputs.pop(x) for x in pops]
-        from pprint import pprint
-        pprint(inputs)
-        # self.data = self._add_request_header(inputs)
-        # self.insert_request.emit(self.data)
+        self.data = self._add_request_header(inputs)
+        self.insert_request.emit(self.data)
         self.close()
     # --------------------------
     def add_grid(self):
@@ -79,6 +77,11 @@ class OrdersWidget(BaseUI):
         self.cols = pre_response[2][0]
         self.set_fks(pre_response[2][2])
         self.add_grid()
+
+    def on_insert_response(self,insert_response):
+        # 수주탭 갱신 함 해줘야하긴 함
+        print('widget.on_insert_response')
+
 
 class SpWidget(BaseUI):
     insert_request = pyqtSignal(tuple)

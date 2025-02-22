@@ -33,5 +33,4 @@ def export_sqlite_metadata(db_path, output_file):
     
     conn.close()
 
-# 실행 예시
-export_sqlite_metadata("./db/NOVA.db", "./doc/db_schema.json")
+export_sqlite_metadata("./config/NOVA.db", "./doc/db_schema.json")

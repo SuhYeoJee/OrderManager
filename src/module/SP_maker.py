@@ -21,8 +21,12 @@ class SPMaker():
         return dict(zip(response[2][0],response[2][1]))
     
     def get_new_sp_name(self,recent_sp_name):
-        [last_sp] = self.model.sql.execute_query('SELECT * FROM sp ORDER BY id DESC LIMIT 1;')
-        year,no,_,_ = last_sp[1].split('-')
+        try:
+            [last_sp] = self.model.sql.execute_query('SELECT * FROM sp ORDER BY id DESC LIMIT 1;')
+            year,no,_,_ = last_sp[1].split('-')
+        except ValueError:
+            year,no = "2000","SP0000"
+
         try:
             r_year,r_no,_,_ = recent_sp_name.split('-')
             rec = f"{r_year[2:]}-{r_no[2:]}"

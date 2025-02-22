@@ -90,14 +90,6 @@ class View(QMainWindow):
         if response[0] == 'ordersTable': #tab1
             tableWidget = self.ordersTableWidget
             merge_flag = True
-            def cut_datetime(lst):
-                for i, sublist in enumerate(lst):
-                    sublist = list(sublist)
-                    sublist[1] = sublist[1].split(' ')[0] if sublist[1] else ''
-                    sublist[-2] = sublist[-2].split(' ')[0] if sublist[-2] else ''
-                    lst[i] = tuple(sublist)
-                return lst
-            res = cut_datetime(res)
         else:
             tableWidget = self.tableWidget
             merge_flag = False
