@@ -9,7 +9,7 @@ from src.module.SP_maker import SPMaker
 import json
 from datetime import datetime
 from pprint import pprint
-from src.imports.config import DB_PATH
+from src.imports.config import DB_PATH,ORDERS_TABLE_COLS
 # ===========================================================================================
 # Model
 class Model():
@@ -72,9 +72,7 @@ class Model():
         sps = [self.spm.get_new_sp({"code": ip["autos"].get(f"seg{i}"), "workload": ip["autos"].get(f"seg{i}_amount")}) 
             for i in [1, 2] if f"seg{i}" in ip["autos"]]
         
-
-        # orders 테이블 정보 생성
-        orders_datas = [] # 각 일련번호마다 
+        # orders 테이블 insert
         for i in range(1, 5):
             if items[f'amount{i}']!=0:
                 order = {
@@ -103,18 +101,28 @@ class Model():
                 # order DB에 저장
                 query,bindings = self.qb.get_insert_query('orders',order)
                 res = self.sql.execute_query(query,bindings)
-
-        pprint(orders_datas)
-
-        # self.ouputs = ["bond","segment_work","sp"]
-        # # 새로 생긴 ip DB에 저장
-        # ip_items = {'name','item_group','sp','path'}
-        # sp_items = {'name','segment','ip','path'}
-        # query,bindings = self.qb.get_insert_query('ip',ip_items)
-        # res = self.sql.execute_query(query,bindings)
         
 
-        # return res
+        # ip insert 
+        ip_data = {
+            'name': ip.get('autos', {}).get('name'),
+            'item_group': ip.get('inputs', {}).get('infos', {}).get('item_group'),
+            'sp1': sps[0].get('autos', {}).get('name') if len(sps) > 0 else None,
+            'sp2': sps[1].get('autos', {}).get('name') if len(sps) > 1 else None,
+            'path': f"./doc/ip/{ip.get('autos', {}).get('name', 'unknown')}.json"
+        }
+        query,bindings = self.qb.get_insert_query('ip',ip_data)
+        res = self.sql.execute_query(query,bindings)
+
+        for sp in sps:
+            sp_data = {
+                'name': sp.get('autos', {}).get('name'),
+                'segment': sp.get('inputs', {}).get('code'),
+                'ip': ip.get('autos', {}).get('name'),
+                'path': f"./doc/sp/{sp.get('autos', {}).get('name', 'unknown')}.json"
+            }
+            query, bindings = self.qb.get_insert_query('sp', sp_data)
+            res = self.sql.execute_query(query, bindings)
 
 
     def get_json_data(self,json_request):
@@ -187,7 +195,7 @@ class Model():
     
     def get_all_table_items(self,table_request):
         if table_request[0] == "ordersTable":
-            col_names = ["id","order_date","customer","name","code","item","amount","ip","sp","segment","bond","segment_net","segment_work","due_date","description"]
+            col_names = ORDERS_TABLE_COLS
             query,bindings = self.qb.get_select_query('orders',col_names,{},('code','오름차순'))
         else:
             col_names = self.get_table_col_names(table_request[1])

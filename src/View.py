@@ -161,7 +161,7 @@ class View(QMainWindow):
                     current_text = item_text
 
             # 마지막 범위 병합
-            if end_row >= merge_start:  
+            if end_row > merge_start:
                 tableWidget.setSpan(merge_start, col, end_row - merge_start + 1, 1)
 
 

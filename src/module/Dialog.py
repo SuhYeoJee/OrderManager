@@ -32,12 +32,12 @@ class BaseDialog(BaseUI):
         inputs.pop('update_date')
         self.data = self._add_request_header(inputs)
         self.insert_request.emit(self.data)
-        self.close()
+        # self.close()
     # --------------------------
     def on_delete_submit(self):
         self.data = self._add_request_header(self.get_inputs())
         self.delete_request.emit(self.data)
-        self.close()
+        # self.close()
     # --------------------------
     def on_update_submit(self):
         inputs = self.get_inputs()
@@ -45,7 +45,7 @@ class BaseDialog(BaseUI):
         inputs.pop('update_date')
         self.data = self._add_request_header(inputs)
         self.update_request.emit(self.data)
-        self.close()
+        # self.close()
     # --------------------------
    
 # ===========================================================================================
