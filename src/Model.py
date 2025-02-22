@@ -74,43 +74,68 @@ class Model():
     def _handle_order_insert(self,items,infos):
         # ip 생성
         ip_inputs = self._get_ip_inputs_from_orders_inputs(items,infos)
+        if sum([len(ip_inputs.get(f'item{x}',{})) for x in range(1,5)]) == 0:
+            return 
         ip = self.ipm.get_new_ip(ip_inputs)
 
-        # sp생성
-        sps = [self.spm.get_new_sp({"code": ip["autos"].get(f"seg{i}"), "workload": ip["autos"].get(f"seg{i}_amount")}) 
-            for i in [1, 2] if f"seg{i}" in ip["autos"]]
-        
-        item_names = []
+        sps = []
+        for i in [1, 2]: 
+            if f"seg{i}" not in ip["autos"]: break
+            sp = self.spm.get_new_sp({"code": ip["autos"].get(f"seg{i}"), "workload": ip["autos"].get(f"seg{i}_amount")}) 
+            sps.append(sp)
+
+            # insert sp
+            sp_data = {
+                'name': sp.get('autos', {}).get('name'),
+                'segment': sp.get('inputs', {}).get('code'),
+                'ip': ip.get('autos', {}).get('name'),
+                'path': f"./doc/sp/{sp.get('autos', {}).get('name', 'unknown')}.json"
+            }
+            query, bindings = self.qb.get_insert_query('sp', sp_data)
+            res = self.sql.execute_query(query, bindings)
+
+            # segment update
+            query, bindings = self.qb.get_update_query('segment',{'recent_sp':sp.get('autos', {}).get('name')},
+                                    {'comparison':[('code','=',sp.get('inputs', {}).get('code'))]})
+            res = self.sql.execute_query(query, bindings)
+
+
         # orders insert
         for i in range(1, 5):
-            if items[f'amount{i}']!=0:
-                order = {
-                    "name": infos.get("name", ""),
-                    "code": self._get_new_order_code(),
-                    "customer": infos.get("customer", ""),
-                    "item": items.get(f"item{i}"),
-                    "item_group": items.get(f"item{i}", "").split(" ")[0] if items.get(f"item{i}") else None,
-                    "amount": items.get(f"amount{i}"),
-                    "engrave": items.get("engrave"),
-                    "order_date": infos.get("order_date"),
-                    "due_date": infos.get("due_date"),
-                    "description": infos.get("description"),
-                    "ip": ip.get("autos", {}).get("name"),
-                }
+            if items[f'amount{i}']==0:
+                break
+            order = {
+                "name": infos.get("name", ""),
+                "code": self._get_new_order_code(),
+                "customer": infos.get("customer", ""),
+                "item": items.get(f"item{i}"),
+                "item_group": items.get(f"item{i}", "").split(" ")[0] if items.get(f"item{i}") else None,
+                "amount": items.get(f"amount{i}"),
+                "engrave": items.get("engrave"),
+                "order_date": infos.get("order_date"),
+                "due_date": infos.get("due_date"),
+                "description": infos.get("description"),
+                "ip": ip.get("autos", {}).get("name"),
+            }
 
-                for j in range(2):
-                    sp = sps[j] if j < len(sps) else {}  # sps 리스트 인덱스 초과 방지
-                    order.update({
-                        f"seg{j+1}": sp.get("inputs", {}).get("code"),
-                        f"bond{j+1}": sp.get("loads", {}).get("bond", {}).get("name"),
-                        f"seg{j+1}_net": sp.get("inputs", {}).get("workload"),
-                        f"seg{j+1}_work": sp.get("autos", {}).get("segment_work"),
-                        f"sp{j+1}": sp.get("autos", {}).get("name"),
-                    })
-                # order DB에 저장
-                query,bindings = self.qb.get_insert_query('orders',order)
-                res = self.sql.execute_query(query,bindings)
-                item_names.append(order['item'])
+            for j in range(2):
+                sp = sps[j] if j < len(sps) else {}  # sps 리스트 인덱스 초과 방지
+                order.update({
+                    f"seg{j+1}": sp.get("inputs", {}).get("code"),
+                    f"bond{j+1}": sp.get("loads", {}).get("bond", {}).get("name"),
+                    f"seg{j+1}_net": sp.get("inputs", {}).get("workload"),
+                    f"seg{j+1}_work": sp.get("autos", {}).get("segment_work"),
+                    f"sp{j+1}": sp.get("autos", {}).get("name"),
+                })
+            # order DB에 저장
+            query,bindings = self.qb.get_insert_query('orders',order)
+            res = self.sql.execute_query(query,bindings)
+
+            # item update
+            query, bindings = self.qb.get_update_query('item',{'recent_ip':ip.get('autos', {}).get('name')},
+                                    {'comparison':[('name','=',order['item'])]})
+            res = self.sql.execute_query(query, bindings)
+
         
         # ip insert 
         ip_data = {
@@ -122,28 +147,8 @@ class Model():
         }
         query,bindings = self.qb.get_insert_query('ip',ip_data)
         res = self.sql.execute_query(query,bindings)
+    # ===========================================================================================
 
-        # sp insert 
-        for sp in sps:
-            sp_data = {
-                'name': sp.get('autos', {}).get('name'),
-                'segment': sp.get('inputs', {}).get('code'),
-                'ip': ip.get('autos', {}).get('name'),
-                'path': f"./doc/sp/{sp.get('autos', {}).get('name', 'unknown')}.json"
-            }
-            query, bindings = self.qb.get_insert_query('sp', sp_data)
-            res = self.sql.execute_query(query, bindings)
-
-        # segment update
-        query, bindings = self.qb.get_update_query('segment',{'recent_sp':sp.get('autos', {}).get('name')},
-                                 {'comparison':[('code','=',sp.get('inputs', {}).get('code'))]})
-        res = self.sql.execute_query(query, bindings)
-
-        # item update
-        for i in item_names:
-            query, bindings = self.qb.get_update_query('item',{'recent_ip':ip.get('autos', {}).get('name')},
-                                    {'comparison':[('name','=',i)]})
-            res = self.sql.execute_query(query, bindings)
 
 
     def get_json_data(self,json_request):

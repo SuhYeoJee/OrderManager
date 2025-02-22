@@ -31,7 +31,7 @@ class SPMaker():
             r_year,r_no,_,_ = recent_sp_name.split('-')
             rec = f"{r_year[2:]}-{r_no[2:]}"
         except:
-            rec = "None"
+            rec = "00-SP0000"
 
         if year == str(datetime.now().year):
             sp_name = f"{year}-SP{int(no[2:])+1:04}-{rec}"

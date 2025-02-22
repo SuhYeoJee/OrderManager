@@ -28,7 +28,7 @@
 ##### sp
 
 sp 파우더 정규
-
+sp 다이얼로그 디비 불일치
 - [ ] 이미지 뷰
 
 baseui.set_datas_from_json_response 최적화필
@@ -37,11 +37,10 @@ baseui.set_datas_from_json_response 최적화필
 ##### 수주 동적 다이얼로그
 
 
-여러 이슈가 있긴 하지만 일단 돌아감. 
-SP이름문제: DB 업데이트 타이밍, 항목
+model._handle_order_insert 함수 최적화필
 
-
-
+orders 위젯초기화 
+net,work수가 수상해
 
 
 ## 나중에

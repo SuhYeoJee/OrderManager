@@ -39,7 +39,7 @@ class OrdersWidget(BaseUI):
         [inputs.pop(x) for x in pops]
         self.data = self._add_request_header(inputs)
         self.insert_request.emit(self.data)
-        self.close()
+        # self.close()
     # --------------------------
     def add_grid(self):
         """ordersInnerWidget을 복제하여 스크롤 영역에 추가 """
@@ -76,7 +76,6 @@ class OrdersWidget(BaseUI):
         self.pre_response = pre_response
         self.cols = pre_response[2][0]
         self.set_fks(pre_response[2][2])
-        self.add_grid()
 
     def on_insert_response(self,insert_response):
         # 수주탭 갱신 함 해줘야하긴 함
