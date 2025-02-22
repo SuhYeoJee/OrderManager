@@ -37,7 +37,7 @@ class Controller():
     # [view에서 model 호출] -------------------------------------------------------------------------------------------
     def on_orders_insert_request(self,insert_request):
         worker_func = "get_orders_insert_request"
-        callback_func = self.view.dialogs[insert_request[0]][insert_request[1]].on_insert_response
+        callback_func = lambda:self.on_tab_changed(0)
         self.launch_worker(worker_func,callback_func,insert_request)
 
     def on_pre_request(self,pre_request):
@@ -66,7 +66,7 @@ class Controller():
         data_request = ('controller',self.view.get_table_name())
         self.launch_worker(worker_func,callback_func,data_request)
 
-    def on_tab_changed(self,index):
+    def on_tab_changed(self,index,*args):
         '''0탭 전환시 orders 표시'''
         if index == 0:
             worker_func = "get_all_table_items"

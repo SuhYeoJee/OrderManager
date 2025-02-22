@@ -33,7 +33,10 @@ class OrdersWidget(BaseUI):
     # --------------------------
     def on_insert_submit(self):
         inputs = self.get_inputs()
-        inputs.update(self.get_inner_widgets_data())
+        inner_widget_inputs = self.get_inner_widgets_data()
+        if not inner_widget_inputs:
+            return # 입력 없음
+        inputs.update(inner_widget_inputs)
         pops = ['name','reg_date','update_date','item_group','engrave']
         pops.extend([i for s in [[f'amount{x}', f'code{x}', f'item{x}'] for x in range(1, 5)] for i in s])
         [inputs.pop(x) for x in pops]
@@ -64,8 +67,14 @@ class OrdersWidget(BaseUI):
         [getattr(ordersInnerWidget, f"item{i}ComboBox").clear() 
          or getattr(ordersInnerWidget, f"item{i}ComboBox").addItems([''] + items) for i in range(1, 5)]
 
-    
-    
+    def clear_grids(self):
+        """모든 그리드를 삭제"""
+        for widget in self.scroll_inner_widgets:
+            self.scrollLayout.removeWidget(widget)  
+            widget.deleteLater()  
+        self.scroll_inner_widgets.clear() 
+        self.scrollAreaWidgetContents.setFixedHeight(10)
+        
     def get_inner_widgets_data(self):
         '''{idx:{col:val}}'''
         return {idx: self.get_inputs(inner_widget) for idx, inner_widget in enumerate(self.scroll_inner_widgets)}
@@ -76,10 +85,6 @@ class OrdersWidget(BaseUI):
         self.pre_response = pre_response
         self.cols = pre_response[2][0]
         self.set_fks(pre_response[2][2])
-
-    def on_insert_response(self,insert_response):
-        # 수주탭 갱신 함 해줘야하긴 함
-        print('widget.on_insert_response')
 
 
 class SpWidget(BaseUI):

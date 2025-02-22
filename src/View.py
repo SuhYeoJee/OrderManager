@@ -30,6 +30,8 @@ class View(QMainWindow):
         dialog.clear()
         if dialog_type != 'view': # 추가 db 조회 없음
             self.pre_request.emit((dialog_type,table_name))
+        if dialog_type=="widget" and table_name == 'orders':
+            dialog.clear_grids()
         dialog.show()
         return dialog
     

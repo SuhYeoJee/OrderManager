@@ -38,8 +38,6 @@ baseui.set_datas_from_json_response 최적화필
 
 
 model._handle_order_insert 함수 최적화필
-
-orders 위젯초기화 
 net,work수가 수상해
 
 
