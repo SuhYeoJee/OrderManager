@@ -1,5 +1,6 @@
 from src.imports.pyqt5_imports import *
 DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
+DATE_FORMAT = "yyyy-MM-dd"
 DB_PATH='./config/NOVA.db'
 GET_HANDLERS = {
     QLineEdit: lambda widget: widget.text(),
@@ -8,7 +9,7 @@ GET_HANDLERS = {
     QDoubleSpinBox: lambda widget: widget.value(),
     QPlainTextEdit: lambda widget: widget.toPlainText(),
     QDateTimeEdit: lambda widget: widget.dateTime().toString(DATETIME_FORMAT),
-    QDateEdit: lambda widget: widget.dateTime().toString(DATETIME_FORMAT),
+    QDateEdit: lambda widget: widget.date().toString(DATE_FORMAT),
 }
 SET_HANDLERS = {
     QLineEdit: lambda widget, value: widget.setText(str(value)),
@@ -17,7 +18,7 @@ SET_HANDLERS = {
     QDoubleSpinBox: lambda widget, value: widget.setValue(float(value)),
     QPlainTextEdit: lambda widget, value: widget.setPlainText(str(value)),
     QDateTimeEdit: lambda widget, value: widget.setDateTime(QDateTime.fromString(value,DATETIME_FORMAT)),
-    QDateEdit: lambda widget, value: widget.setDateTime(QDateTime.fromString(value,DATETIME_FORMAT)),
+    QDateEdit: lambda widget, value: widget.setDate(QDate.fromString(value,DATE_FORMAT)),
 }
 CLEAR_HANDLERS = {
     QLineEdit: lambda widget: widget.clear(),
@@ -26,5 +27,5 @@ CLEAR_HANDLERS = {
     QDoubleSpinBox: lambda widget: widget.setValue(0),
     QPlainTextEdit: lambda widget: widget.clear(),
     QDateTimeEdit: lambda widget: widget.setDateTime(QDateTime(0000, 0, 0, 0, 0)),
-    QDateEdit: lambda widget: widget.setDateTime(QDateTime(0000, 0, 0, 0, 0)),
+    QDateEdit: lambda widget: widget.setDate(QDate(0000, 0, 0)),
 }

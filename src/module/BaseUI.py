@@ -22,9 +22,12 @@ class BaseUI(QDialog):
     def set_fks(self,datas):
         if datas:
             for col_name,items in datas.items():
-                combobox = getattr(self,f'{col_name}ComboBox')
-                combobox.clear()
-                combobox.addItems(map(str,['']+items))
+                try:
+                    combobox = getattr(self,f'{col_name}ComboBox')
+                    combobox.clear()
+                    combobox.addItems(map(str,['']+items))
+                except:
+                    ... #콤보박스 없음
     # --------------------------
     def set_ids(self,ids):
         self.idComboBox.clear()

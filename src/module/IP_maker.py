@@ -9,7 +9,6 @@ from pprint import pprint
 class IPMaker():
     def __init__(self,model):
         self.model = model
-        self.inputs = ["item","item_group","amount","engrave","due_date"]
 
     def get_new_ip(self,inputs):
         ip = self._make_new_ip(inputs)
@@ -96,30 +95,20 @@ class IPMaker():
         return data
 
     def get_test_inputs(self):
-        inputs={
-            'item1':
-            {
-                "name":"2025-00042",
-                "code": "003",
-                "customer":"강낭콩",
-                "item":"TEST_ITEM",
-                "item_group":"TEST_GROUP",
-                "amount":10,
-                "engrave":"engr",
-                "order_date":"2025-02-19",
-                "due_date":"2025-02-28"
+        inputs = {
+            'infos':{
+                "item_group":"group1",
+                "engrave":"engrave_a",
             },
-            'item2':
-            {
-                "name":"2025-00042",
-                "code": "004",
-                "customer":"강낭콩",
-                "item":"TEST_ITEM_2",
-                "item_group":"TEST_GROUP",
-                "amount":10,
-                "engrave":"engr",
-                "order_date":"2025-02-19",
-                "due_date":"2025-02-28"
+            'item1':{
+                "item":'TEST ITEM',
+                'amount':3,
+                "code":''
+            },
+            'item2':{
+                "item":'TEST ITEM2',
+                'amount':3,
+                "code":''
             },
             'item3':{},
             'item4':{}

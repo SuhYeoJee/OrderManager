@@ -1,4 +1,6 @@
-
+if __debug__:
+    import sys
+    sys.path.append(r"X:\Github\OrderManager")
 from src.module.SqlliteInterface import SqlliteInterface
 from src.module.QueryBuilder import QueryBuilder
 from src.module.IP_maker import IPMaker
@@ -17,20 +19,75 @@ class Model():
         self.table_names = self.sql.get_table_names()
 
     def get_insert_data(self,insert_request):
-        table_name,items = insert_request[1],insert_request[2]
-        if table_name == "orders":
-            res = self._handle_order_insert(items)
-        else:
-            query,bindings = self.qb.get_insert_query(table_name,items)
-            res = self.sql.execute_query(query,bindings)
+        query,bindings = self.qb.get_insert_query(insert_request[1],insert_request[2])
+        res = self.sql.execute_query(query,bindings)
         return self._add_response_header(insert_request,res)
     
-    # temp
-    def _handle_order_insert(self,items):
-        # ip생성
-        ip_inputs = {k: items[k] for k in self.ipm.inputs if k in items}
+    def get_orders_insert_request(self,insert_request):
+        insert_request = ('widget','orders',{})
+        datas = insert_request[2]
+
+        datas = {
+            0: {'amount1': 3,
+                'amount2': 0,
+                'amount3': 0,
+                'amount4': 0,
+                'code1': '',
+                'code2': '',
+                'code3': '',
+                'code4': '',
+                'engrave': 'sdf',
+                'item1': '5"CUPT OVAL60',
+                'item2': '',
+                'item3': '',
+                'item4': '',
+                'item_group': '5"CUPT'},
+            1: {'amount1': 1,
+                'amount2': 2,
+                'amount3': 0,
+                'amount4': 0,
+                'code1': '',
+                'code2': '',
+                'code3': '',
+                'code4': '',
+                'engrave': '',
+                'item1': 'TEST ITEM',
+                'item2': 'TEST ITEM2',
+                'item3': '',
+                'item4': '',
+                'item_group': 'TEST'},
+            'customer': '강낭콩',
+            'description': '',
+            'due_date': '2025-02-28',
+            'order_date': '2025-02-14'
+        }
+        infos = {k:v for k,v in datas.items() if not isinstance(k,int)}
+
+        i = 0
+        while i in datas:
+            self._handle_order_insert(datas[i],infos)
+            i += 1
+
+
+    def _get_ip_inputs_from_orders_inputs(self,items,infos):
+        ip_inputs =  {
+            'infos': {
+                "item_group": items.get('item_group', ''),
+                "engrave": items.get('engrave', ''),
+            },
+            **{f'item{i}': {} if (f'item{i}' not in items or items.get(f'amount{i}', 0) == 0) 
+                else {"item": items.get(f'item{i}', ''), "amount": items.get(f'amount{i}', 0), "code": items.get(f'code{i}', '')} 
+                for i in range(1, 5)}
+        }
+        ip_inputs['infos'].update(infos)
+        return ip_inputs
+
+    def _handle_order_insert(self,items,infos):
+        ip_inputs = self._get_ip_inputs_from_orders_inputs(items,infos)
         ip = self.ipm.get_new_ip(ip_inputs)
-        items.update({'ip':ip['autos']['name']}) #order 갱신 
+        
+        orders_data = {}
+        orders_data.update({'ip':ip['autos']['name']}) #order 갱신 
 
         # # sp생성
         # sps=[]
@@ -47,7 +104,7 @@ class Model():
         # res = self.sql.execute_query(query,bindings)
 
         # order DB에 저장
-        query,bindings = self.qb.get_insert_query('orders',items)
+        query,bindings = self.qb.get_insert_query('orders',orders_data)
         res = self.sql.execute_query(query,bindings)
         return res
 
@@ -166,3 +223,7 @@ class Model():
 
     def _add_response_header(self,request,data):
         return request[:2]+(data,)
+    
+if __name__ == "__main__":
+    m = Model()
+    m.get_orders_insert_request(1)

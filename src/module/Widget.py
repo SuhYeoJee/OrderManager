@@ -28,16 +28,17 @@ class OrdersWidget(BaseUI):
         self.item_groups = []
         self.pre_response = None
         # --------------------------
-        self.loadBtn.clicked.connect(self.on_load)
         self.submitBtn.clicked.connect(self.on_insert_submit)
         self.addBtn.clicked.connect(self.add_grid)
     # --------------------------
     def on_insert_submit(self):
-        inputs = self.get_inner_widgets_data()
-        print(inputs)
-        # inputs.pop('id')
-        # inputs.pop('reg_date')
-        # inputs.pop('update_date')
+        inputs = self.get_inputs()
+        inputs.update(self.get_inner_widgets_data())
+        pops = ['name','reg_date','update_date','item_group','engrave']
+        pops.extend([i for s in [[f'amount{x}', f'code{x}', f'item{x}'] for x in range(1, 5)] for i in s])
+        [inputs.pop(x) for x in pops]
+        from pprint import pprint
+        pprint(inputs)
         # self.data = self._add_request_header(inputs)
         # self.insert_request.emit(self.data)
         self.close()
@@ -52,26 +53,32 @@ class OrdersWidget(BaseUI):
         self.scrollLayout.addWidget(ordersInnerWidget)
         self.scroll_inner_widgets.append(ordersInnerWidget)
 
-        ordersInnerWidget.item_loadBtn.clicked.connect(lambda: self.set_itemComboBoxs(ordersInnerWidget))
-
-        # item_groupLoad아이템 세팅 테스트 
-        # 아이템 그룹 선택값에 따라 필터링
-        ordersInnerWidget.item1ComboBox.addItems(['']+self.pre_response[2][2]['item'])
+        items = self.pre_response[2][2]['item']
+        ordersInnerWidget.item_loadBtn.clicked.connect(lambda: self.set_itemComboBoxs(ordersInnerWidget,items))
+        item_groups = list(set([x.split(' ')[0] for x in items]))
+        ordersInnerWidget.item_groupComboBox.clear()
+        ordersInnerWidget.item_groupComboBox.addItems(['']+item_groups)
     # --------------------------
-    def set_itemComboBoxs(self,ordersInnerWidget):
-        print(ordersInnerWidget.label.text())
-    
-    
+    def set_itemComboBoxs(self,ordersInnerWidget,items):
+        item_group = ordersInnerWidget.item_groupComboBox.currentText()
+        items = [i for i in items if i.startswith(item_group)]
+
+        [getattr(ordersInnerWidget, f"item{i}ComboBox").clear() 
+         or getattr(ordersInnerWidget, f"item{i}ComboBox").addItems([''] + items) for i in range(1, 5)]
+
     
     
     def get_inner_widgets_data(self):
         '''{idx:{col:val}}'''
         return {idx: self.get_inputs(inner_widget) for idx, inner_widget in enumerate(self.scroll_inner_widgets)}
+    
     def on_pre_response(self,pre_response): #pre_response 사용안함
         '''다이얼로그 사전정보: 전체 cols,테이블에 존재하는 id목록, 외래키 제약'''
+        if self.request_header[1] != pre_response[1]: return 
         self.pre_response = pre_response
+        self.cols = pre_response[2][0]
+        self.set_fks(pre_response[2][2])
         self.add_grid()
-        return 
 
 class SpWidget(BaseUI):
     insert_request = pyqtSignal(tuple)
