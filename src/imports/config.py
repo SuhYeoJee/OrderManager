@@ -20,6 +20,12 @@ SET_HANDLERS = {
     QPlainTextEdit: lambda widget, value: widget.setPlainText(str(value)),
     QDateTimeEdit: lambda widget, value: widget.setDateTime(QDateTime.fromString(value,DATETIME_FORMAT)),
     QDateEdit: lambda widget, value: widget.setDate(QDate.fromString(value,DATE_FORMAT)),
+    QLabel: lambda widget, value: (
+        widget.setPixmap(
+            QPixmap(value).scaled(widget.width(), widget.height(), Qt.KeepAspectRatio, Qt.SmoothTransformation)
+        ) or widget.setAlignment(Qt.AlignCenter)
+        if not QPixmap(value).isNull() else widget.setText("이미지 로드 실패")
+    ) if isinstance(value, str) else None
 }
 CLEAR_HANDLERS = {
     QLineEdit: lambda widget: widget.clear(),
@@ -27,7 +33,8 @@ CLEAR_HANDLERS = {
     QSpinBox: lambda widget: widget.setValue(0),
     QDoubleSpinBox: lambda widget: widget.setValue(0),
     QPlainTextEdit: lambda widget: widget.clear(),
-    QDateTimeEdit: lambda widget: widget.setDateTime(QDateTime(0000, 0, 0, 0, 0)),
-    QDateEdit: lambda widget: widget.setDate(QDate(0000, 0, 0)),
+    QDateTimeEdit: lambda widget: widget.setDateTime(QDateTime(2000, 1, 1, 0, 0)),
+    QDateEdit: lambda widget: widget.setDate(QDate(2000, 1, 1)),
+    QLabel: lambda widget: widget.clear()
 }
 ORDERS_TABLE_COLS = ["id","order_date","customer","name","code","item","amount","ip","sp1","seg1","bond1","seg1_net","seg1_work","due_date","sp2","seg2","bond2","seg2_net","seg2_work","description"]

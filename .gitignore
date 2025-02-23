@@ -3,6 +3,7 @@ ref/
 result/
 doc/
 config/
+img/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

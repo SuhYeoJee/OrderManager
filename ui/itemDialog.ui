@@ -59,14 +59,14 @@
     <item row="2" column="3">
      <widget class="QDateTimeEdit" name="update_dateDateTimeEdit">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
     <item row="2" column="1">
      <widget class="QDateTimeEdit" name="reg_dateDateTimeEdit">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -180,7 +180,7 @@
     <item row="4" column="4">
      <widget class="QSpinBox" name="sub2_amountSpinBox">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -197,7 +197,7 @@
     <item row="4" column="1">
      <widget class="QSpinBox" name="seg2_amountSpinBox">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -211,7 +211,7 @@
     <item row="4" column="3">
      <widget class="QSpinBox" name="sub1_amountSpinBox">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -225,14 +225,14 @@
     <item row="4" column="0">
      <widget class="QSpinBox" name="seg1_amountSpinBox">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
     <item row="4" column="2">
      <widget class="QSpinBox" name="shank_amountSpinBox">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -272,16 +272,6 @@
     </item>
     <item row="8" column="1" colspan="4">
      <widget class="QLineEdit" name="paintLineEdit"/>
-    </item>
-    <item row="0" column="2" colspan="2">
-     <widget class="QLabel" name="label_18">
-      <property name="text">
-       <string>item_group</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="2" colspan="2">
-     <widget class="QLineEdit" name="item_groupLineEdit"/>
     </item>
     <item row="0" column="4">
      <widget class="QLabel" name="label_29">

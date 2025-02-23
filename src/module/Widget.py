@@ -95,6 +95,7 @@ class SpWidget(BaseUI):
         loadUi(f"./ui/spWidget.ui", self) 
         self.init_sp_dialog()
         self.input_widgets = self.get_input_widgets()
+        self.input_widgets.append(self.loads_segment_model_imgLabel)
         [disable_wheel_event(x) for x in self.input_widgets]
         self.submitBtn.clicked.connect(self.close)
     
@@ -122,6 +123,7 @@ class IpWidget(BaseUI):
         loadUi(f"./ui/ipWidget.ui", self) 
         self.init_ip_dialog()
         self.input_widgets = self.get_input_widgets()
+        self.input_widgets.append(self.loads_item1_imageLabel)
         [disable_wheel_event(x) for x in self.input_widgets]
         self.submitBtn.clicked.connect(self.close)
     

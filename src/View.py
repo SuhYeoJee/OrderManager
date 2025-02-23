@@ -36,6 +36,7 @@ class View(QMainWindow):
         if dialog_type=="widget" and table_name == 'orders':
             dialog.clear_grids()
         dialog.show()
+        dialog.raise_()
         return dialog
     
     def show_error(self, message:str):
@@ -123,6 +124,10 @@ class View(QMainWindow):
                     view_request = (response[1],columns,row)
                     btn.clicked.connect(lambda _, v=view_request: self.set_view_dialog(v))
                     tableWidget.setCellWidget(row_idx, col_idx, btn)
+                # elif 단독 조회가 가능한 col인 경우:
+                    # 버튼 생성
+                    # 클릭시 함수 연결 - select 리퀘스트 항목일치
+                    #                   다이얼로그 띄우기. 
                 elif value:
                     tableWidget.setItem(row_idx, col_idx,QTableWidgetItem(str(value)))
                 else:
