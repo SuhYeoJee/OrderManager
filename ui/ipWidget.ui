@@ -108,7 +108,7 @@
        </widget>
       </item>
       <item row="15" column="3" colspan="2">
-       <widget class="QLineEdit" name="autos_sp2LineEdit">
+       <widget class="QLineEdit" name="autos_sp_2LineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -172,7 +172,7 @@
        </widget>
       </item>
       <item row="12" column="3" colspan="2">
-       <widget class="QLineEdit" name="autos_seg1LineEdit">
+       <widget class="QLineEdit" name="autos_segment_1LineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -249,7 +249,7 @@
        </widget>
       </item>
       <item row="17" column="1" colspan="4">
-       <widget class="QLineEdit" name="autos_shank2LineEdit_2">
+       <widget class="QLineEdit" name="autos_shank2LineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -262,7 +262,7 @@
        </widget>
       </item>
       <item row="16" column="1" colspan="4">
-       <widget class="QLineEdit" name="autos_shank1LineEdit_2">
+       <widget class="QLineEdit" name="autos_shank1LineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -395,7 +395,7 @@
        </widget>
       </item>
       <item row="14" column="3" colspan="2">
-       <widget class="QLineEdit" name="autos_seg2LineEdit">
+       <widget class="QLineEdit" name="autos_segment_2LineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -457,12 +457,12 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
       <item row="3" column="1" colspan="3">
-       <widget class="QLineEdit" name="loads_item1_recent_ipLineEdit_2">
+       <widget class="QLineEdit" name="loads_item1_ip_recentLineEdit_2">
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -486,7 +486,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
@@ -676,12 +676,12 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
       <item row="22" column="1" colspan="4">
-       <widget class="QLineEdit" name="autos_sub3LineEdit_2">
+       <widget class="QLineEdit" name="autos_submaterial_3LineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -711,7 +711,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
@@ -773,7 +773,7 @@
        </widget>
       </item>
       <item row="18" column="1" colspan="4">
-       <widget class="QLineEdit" name="autos_shank3LineEdit_2">
+       <widget class="QLineEdit" name="autos_shank3LineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -800,7 +800,7 @@
        </widget>
       </item>
       <item row="13" column="3" colspan="2">
-       <widget class="QLineEdit" name="autos_sp1LineEdit">
+       <widget class="QLineEdit" name="autos_sp_1LineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -832,7 +832,7 @@
        </widget>
       </item>
       <item row="17" column="5">
-       <widget class="QSpinBox" name="autos_shank2_amountSpinBox_2">
+       <widget class="QSpinBox" name="autos_sha2_amountSpinBox">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -849,12 +849,12 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
       <item row="23" column="1" colspan="4">
-       <widget class="QLineEdit" name="autos_sub4LineEdit_2">
+       <widget class="QLineEdit" name="autos_submaterial_4LineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -884,7 +884,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
@@ -925,7 +925,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
@@ -949,7 +949,7 @@
        </widget>
       </item>
       <item row="20" column="1" colspan="4">
-       <widget class="QLineEdit" name="autos_sub1LineEdit_2">
+       <widget class="QLineEdit" name="autos_submaterial_1LineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -962,7 +962,7 @@
        </widget>
       </item>
       <item row="19" column="5">
-       <widget class="QSpinBox" name="autos_shank4_amountSpinBox_2">
+       <widget class="QSpinBox" name="autos_sha4_amountSpinBox">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -979,7 +979,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
@@ -1003,7 +1003,7 @@
        </widget>
       </item>
       <item row="18" column="5">
-       <widget class="QSpinBox" name="autos_shank3_amountSpinBox_2">
+       <widget class="QSpinBox" name="autos_sha3_amountSpinBox">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1020,12 +1020,12 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
       <item row="19" column="1" colspan="4">
-       <widget class="QLineEdit" name="autos_shank4LineEdit_2">
+       <widget class="QLineEdit" name="autos_shank4LineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1081,7 +1081,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
@@ -1196,7 +1196,7 @@
        </widget>
       </item>
       <item row="16" column="5">
-       <widget class="QSpinBox" name="autos_shank1_amountSpinBox_2">
+       <widget class="QSpinBox" name="autos_sha1_amountSpinBox">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1213,12 +1213,12 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
       <item row="5" column="1" colspan="2">
-       <widget class="QLineEdit" name="inputs_infos_item_groupLineEdit_2">
+       <widget class="QLineEdit" name="inputs_infos_groupLineEdit_2">
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -1244,7 +1244,7 @@
        </widget>
       </item>
       <item row="21" column="1" colspan="4">
-       <widget class="QLineEdit" name="autos_sub2LineEdit_2">
+       <widget class="QLineEdit" name="autos_submaterial_2LineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1274,7 +1274,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
@@ -1296,7 +1296,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
@@ -1408,7 +1408,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>

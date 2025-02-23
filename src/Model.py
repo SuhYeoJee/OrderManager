@@ -40,7 +40,7 @@ class Model():
     def _get_ip_inputs_from_orders_inputs(self,items,infos):
         ip_inputs =  {
             'infos': {
-                "item_group": items.get('item_group', ''),
+                "group": items.get('group', ''),
                 "engrave": items.get('engrave', ''),
             },
             **{f'item{i}': {} if (f'item{i}' not in items or items.get(f'amount{i}', 0) == 0) 
@@ -78,7 +78,7 @@ class Model():
         ip = self.ipm.get_new_ip(ip_inputs)# ip 생성
         sps = self._create_and_insert_sps(ip)# sp 생성 및 삽입
         for idx,sp in enumerate(sps):
-            ip['autos'][f'sp{idx+1}'] = sp.get('autos', {}).get('name')
+            ip['autos'][f'sp_{idx+1}'] = sp.get('autos', {}).get('name')
         else:
             self.ipm.write_json_file(ip,f"./doc/ip/{ip['autos']['name']}.json")
         self._insert_orders(items, infos, ip, sps)
@@ -116,7 +116,7 @@ class Model():
                 "code": self._get_new_order_code(),
                 "customer": infos.get("customer", ""),
                 "item": items.get(f"item{i}"),
-                "item_group": items.get(f"item{i}", "").split(" ")[0] if items.get(f"item{i}") else None,
+                "group": items.get(f"item{i}", "").split(" ")[0] if items.get(f"item{i}") else None,
                 "amount": items.get(f"amount{i}"),
                 "engrave": items.get("engrave"),
                 "order_date": infos.get("order_date"),
@@ -128,10 +128,10 @@ class Model():
             for j, sp in enumerate(sps[:2]):
                 order.update({
                     f"segment_{j+1}": sp.get("inputs", {}).get("name"),
-                    f"bond{j+1}": sp.get("loads", {}).get("bond", {}).get("name"),
+                    f"bond_{j+1}": sp.get("loads", {}).get("bond", {}).get("name"),
                     f"seg{j+1}_net": sp.get("inputs", {}).get("workload"),
                     f"seg{j+1}_work": sp.get("autos", {}).get("segment_work"),
-                    f"sp{j+1}": sp.get("autos", {}).get("name"),
+                    f"sp_{j+1}": sp.get("autos", {}).get("name"),
                 })
             
             self._execute_insert('orders', order)
@@ -141,9 +141,9 @@ class Model():
     def _insert_ip(self, ip, sps):
         ip_data = {
             'name': ip.get('autos', {}).get('name'),
-            'item_group': ip.get('inputs', {}).get('infos', {}).get('item_group'),
-            'sp1': sps[0].get('autos', {}).get('name') if len(sps) > 0 else None,
-            'sp2': sps[1].get('autos', {}).get('name') if len(sps) > 1 else None,
+            'group': ip.get('inputs', {}).get('infos', {}).get('group'),
+            'sp_1': sps[0].get('autos', {}).get('name') if len(sps) > 0 else None,
+            'sp_2': sps[1].get('autos', {}).get('name') if len(sps) > 1 else None,
             'path': f"./doc/ip/{ip.get('autos', {}).get('name', 'unknown')}.json"
         }
         self._execute_insert('ip', ip_data)

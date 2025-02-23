@@ -51,7 +51,7 @@
        </sizepolicy>
       </property>
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
       <property name="maximum">
        <number>999999</number>
@@ -67,7 +67,7 @@
        </sizepolicy>
       </property>
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
       <property name="maximum">
        <number>999999</number>
@@ -84,7 +84,7 @@
     <item row="1" column="1">
      <widget class="QLabel" name="label_22">
       <property name="text">
-       <string>engrave</string>
+       <string>각인</string>
       </property>
      </widget>
     </item>
@@ -184,7 +184,7 @@
        </sizepolicy>
       </property>
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
       <property name="maximum">
        <number>999999</number>
@@ -236,7 +236,7 @@
        </sizepolicy>
       </property>
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
       <property name="maximum">
        <number>999999</number>
@@ -258,7 +258,7 @@
      </widget>
     </item>
     <item row="2" column="0">
-     <widget class="QComboBox" name="item_groupComboBox"/>
+     <widget class="QComboBox" name="groupComboBox"/>
     </item>
    </layout>
   </widget>

@@ -37,4 +37,4 @@ CLEAR_HANDLERS = {
     QDateEdit: lambda widget: widget.setDate(QDate(2000, 1, 1)),
     QLabel: lambda widget: widget.clear()
 }
-ORDERS_TABLE_COLS = ["id","order_date","customer","name","code","item","amount","ip","sp1","seg1","bond1","seg1_net","seg1_work","due_date","sp2","seg2","bond2","seg2_net","seg2_work","description"]
+ORDERS_TABLE_COLS = ["id","order_date","customer","name","code","item","amount","ip","sp_1","segment_1","bond_1","seg1_net","seg1_work","due_date","sp_2","segment_2","bond_2","seg2_net","seg2_work","description"]

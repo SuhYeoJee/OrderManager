@@ -37,7 +37,7 @@ class OrdersWidget(BaseUI):
         if not inner_widget_inputs:
             return # 입력 없음
         inputs.update(inner_widget_inputs)
-        pops = ['name','reg_date','update_date','item_group','engrave']
+        pops = ['name','reg_date','update_date','group','engrave']
         pops.extend([i for s in [[f'amount{x}', f'code{x}', f'item{x}'] for x in range(1, 5)] for i in s])
         [inputs.pop(x) for x in pops]
         self.data = self._add_request_header(inputs)
@@ -57,11 +57,11 @@ class OrdersWidget(BaseUI):
         items = self.pre_response[2][2]['item']
         ordersInnerWidget.item_loadBtn.clicked.connect(lambda: self.set_itemComboBoxs(ordersInnerWidget,items))
         item_groups = list(set([x.split(' ')[0] for x in items]))
-        ordersInnerWidget.item_groupComboBox.clear()
-        ordersInnerWidget.item_groupComboBox.addItems(['']+item_groups)
+        ordersInnerWidget.groupComboBox.clear()
+        ordersInnerWidget.groupComboBox.addItems(['']+item_groups)
     # --------------------------
     def set_itemComboBoxs(self,ordersInnerWidget,items):
-        item_group = ordersInnerWidget.item_groupComboBox.currentText()
+        item_group = ordersInnerWidget.groupComboBox.currentText()
         items = [i for i in items if i.startswith(item_group)]
 
         [getattr(ordersInnerWidget, f"item{i}ComboBox").clear() 

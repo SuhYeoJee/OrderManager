@@ -115,14 +115,14 @@
     <item row="2" column="3">
      <widget class="QDateTimeEdit" name="update_dateDateTimeEdit">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
     <item row="2" column="1">
      <widget class="QDateTimeEdit" name="reg_dateDateTimeEdit">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -141,19 +141,19 @@
      <x>20</x>
      <y>110</y>
      <width>911</width>
-     <height>151</height>
+     <height>201</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
-    <item row="2" column="1">
-     <widget class="QLabel" name="label_20">
+    <item row="0" column="1">
+     <widget class="QLabel" name="label_19">
       <property name="text">
-       <string>path</string>
+       <string>item_group</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="item_groupLineEdit">
+    <item row="3" column="0">
+     <widget class="QLineEdit" name="sp_1LineEdit">
       <property name="maximumSize">
        <size>
         <width>500</width>
@@ -162,10 +162,17 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
-     <widget class="QLabel" name="label_19">
+    <item row="2" column="1">
+     <widget class="QLabel" name="label_23">
       <property name="text">
-       <string>item_group</string>
+       <string>sp</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_22">
+      <property name="text">
+       <string>sp</string>
       </property>
      </widget>
     </item>
@@ -173,6 +180,16 @@
      <widget class="QLabel" name="label_14">
       <property name="text">
        <string>name</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="groupLineEdit">
+      <property name="maximumSize">
+       <size>
+        <width>500</width>
+        <height>16777215</height>
+       </size>
       </property>
      </widget>
     </item>
@@ -186,30 +203,30 @@
       </property>
      </widget>
     </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="label_21">
+      <property name="text">
+       <string>path</string>
+      </property>
+     </widget>
+    </item>
     <item row="3" column="1">
+     <widget class="QLineEdit" name="sp_2LineEdit">
+      <property name="maximumSize">
+       <size>
+        <width>500</width>
+        <height>16777215</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
      <widget class="QLineEdit" name="pathLineEdit">
       <property name="maximumSize">
        <size>
         <width>500</width>
         <height>16777215</height>
        </size>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QLineEdit" name="spLineEdit">
-      <property name="maximumSize">
-       <size>
-        <width>500</width>
-        <height>16777215</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_22">
-      <property name="text">
-       <string>sp</string>
       </property>
      </widget>
     </item>

@@ -44,7 +44,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
+      <y>-120</y>
       <width>1030</width>
       <height>1300</height>
      </rect>
@@ -111,7 +111,7 @@
        </widget>
       </item>
       <item row="25" column="2" colspan="2">
-       <widget class="QLineEdit" name="loads_segment_dia3LineEdit_2">
+       <widget class="QLineEdit" name="loads_segment_diamond_3LineEdit_2">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -147,7 +147,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -191,7 +191,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="maximum">
          <double>999999.000000000000000</double>
@@ -216,7 +216,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -347,7 +347,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -394,7 +394,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
@@ -501,7 +501,7 @@
        </widget>
       </item>
       <item row="14" column="2" colspan="2">
-       <widget class="QLineEdit" name="loads_segment_dia3LineEdit">
+       <widget class="QLineEdit" name="loads_segment_diamond_3LineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -606,7 +606,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -656,7 +656,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -684,7 +684,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -698,7 +698,7 @@
        </widget>
       </item>
       <item row="12" column="2" colspan="2">
-       <widget class="QLineEdit" name="loads_segment_dia1LineEdit">
+       <widget class="QLineEdit" name="loads_segment_diamond_1LineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -756,7 +756,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -823,7 +823,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="maximum">
          <double>999999.000000000000000</double>
@@ -889,7 +889,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
@@ -968,7 +968,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="maximum">
          <double>999999.000000000000000</double>
@@ -1001,7 +1001,7 @@
        </widget>
       </item>
       <item row="24" column="2" colspan="2">
-       <widget class="QLineEdit" name="loads_segment_dia2LineEdit_2">
+       <widget class="QLineEdit" name="loads_segment_diamond_2LineEdit_2">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1155,7 +1155,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="maximum">
          <double>999999.000000000000000</double>
@@ -1225,7 +1225,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="maximum">
          <number>999999</number>
@@ -1323,7 +1323,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -1388,7 +1388,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -1454,7 +1454,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -1485,7 +1485,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="maximum">
          <double>999999.000000000000000</double>
@@ -1510,7 +1510,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
@@ -1577,7 +1577,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="maximum">
          <number>999999</number>
@@ -1623,7 +1623,7 @@
        </widget>
       </item>
       <item row="13" column="2" colspan="2">
-       <widget class="QLineEdit" name="loads_segment_dia2LineEdit">
+       <widget class="QLineEdit" name="loads_segment_diamond_2LineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1723,7 +1723,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="maximum">
          <double>999999.000000000000000</double>
@@ -1751,7 +1751,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -1803,7 +1803,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -1854,7 +1854,7 @@ TEST</string>
        </widget>
       </item>
       <item row="23" column="2" colspan="2">
-       <widget class="QLineEdit" name="loads_segment_dia1LineEdit_2">
+       <widget class="QLineEdit" name="loads_segment_diamond_1LineEdit_2">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1890,7 +1890,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
@@ -1931,7 +1931,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -1942,7 +1942,7 @@ TEST</string>
        </widget>
       </item>
       <item row="5" column="1" colspan="3">
-       <widget class="QLineEdit" name="loads_segment_nameLineEdit">
+       <widget class="QLineEdit" name="loads_segment_fullnameLineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1997,7 +1997,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -2098,7 +2098,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="maximum">
          <double>999999.000000000000000</double>
@@ -2158,7 +2158,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -2243,7 +2243,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="maximum">
          <double>999999.000000000000000</double>
@@ -2271,7 +2271,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -2394,7 +2394,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="maximum">
          <double>99.989999999999995</double>
@@ -2422,7 +2422,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -2529,7 +2529,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -2630,7 +2630,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
        </widget>
       </item>
@@ -2652,7 +2652,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -2721,7 +2721,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -2790,7 +2790,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -2837,7 +2837,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -2931,7 +2931,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -3108,7 +3108,7 @@ TEST</string>
        </widget>
       </item>
       <item row="4" column="1" colspan="3">
-       <widget class="QLineEdit" name="loads_segment_codeLineEdit">
+       <widget class="QLineEdit" name="loads_segment_nameLineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -3141,7 +3141,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="suffix">
          <string>%</string>
