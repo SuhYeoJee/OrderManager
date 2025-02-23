@@ -16,7 +16,7 @@
   <property name="font">
    <font>
     <family>굴림</family>
-    <pointsize>16</pointsize>
+    <pointsize>14</pointsize>
    </font>
   </property>
   <property name="windowTitle">
@@ -28,61 +28,17 @@
      <x>20</x>
      <y>110</y>
      <width>911</width>
-     <height>351</height>
+     <height>371</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout" columnstretch="1,1,1,1">
     <property name="spacing">
      <number>0</number>
     </property>
-    <item row="3" column="2">
-     <widget class="QLabel" name="label_34">
+    <item row="0" column="3">
+     <widget class="QLabel" name="label_30">
       <property name="text">
-       <string>amount</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="0">
-     <widget class="QLineEdit" name="item_groupLineEdit">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QLineEdit" name="nameLineEdit">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1">
-     <widget class="QLabel" name="label_21">
-      <property name="text">
-       <string>item</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="1">
-     <widget class="QComboBox" name="bondComboBox">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="0">
-     <widget class="QLabel" name="label_23">
-      <property name="text">
-       <string>segment</string>
+       <string>order_date</string>
       </property>
      </widget>
     </item>
@@ -96,57 +52,27 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="1">
-     <widget class="QComboBox" name="itemComboBox">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLabel" name="label_27">
-      <property name="text">
-       <string>code</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="2">
-     <widget class="QSpinBox" name="amountSpinBox">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="2">
-     <widget class="QSpinBox" name="segment_netSpinBox">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
-     <widget class="QComboBox" name="segmentComboBox">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="0">
-     <widget class="QLineEdit" name="ipLineEdit">
+    <item row="4" column="0">
+     <widget class="QLineEdit" name="item_groupLineEdit">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
+     <widget class="QLabel" name="label_22">
+      <property name="text">
+       <string>engrave</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="3">
+     <widget class="QSpinBox" name="seg2_workSpinBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -163,8 +89,89 @@
       </property>
      </widget>
     </item>
-    <item row="12" column="0">
-     <widget class="QDateEdit" name="due_dateDateEdit">
+    <item row="9" column="0">
+     <widget class="QComboBox" name="seg2ComboBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QLabel" name="label_34">
+      <property name="text">
+       <string>amount</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLabel" name="label_24">
+      <property name="text">
+       <string>bond1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="label_27">
+      <property name="text">
+       <string>code</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="label_20">
+      <property name="text">
+       <string>item_group</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLabel" name="label_21">
+      <property name="text">
+       <string>item</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0">
+     <spacer name="verticalSpacer_4">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="6" column="1">
+     <widget class="QComboBox" name="bond1ComboBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="2">
+     <widget class="QSpinBox" name="seg2_netSpinBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -173,10 +180,44 @@
       </property>
      </widget>
     </item>
-    <item row="5" column="1">
-     <widget class="QLabel" name="label_24">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_14">
       <property name="text">
-       <string>bond</string>
+       <string>name</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="label_23">
+      <property name="text">
+       <string>seg1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QComboBox" name="seg1ComboBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="2">
+     <widget class="QSpinBox" name="seg1_netSpinBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="3">
+     <widget class="QLabel" name="label_38">
+      <property name="text">
+       <string>seg2_work</string>
       </property>
      </widget>
     </item>
@@ -188,12 +229,8 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
-     </widget>
-    </item>
-    <item row="8" column="2">
-     <widget class="QLabel" name="label_33">
-      <property name="text">
-       <string>sp2</string>
+      <property name="specialValueText">
+       <string> </string>
       </property>
      </widget>
     </item>
@@ -204,106 +241,24 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
-     <widget class="QLabel" name="label_20">
+    <item row="5" column="2">
+     <widget class="QLabel" name="label_25">
       <property name="text">
-       <string>item_group</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_14">
-      <property name="text">
-       <string>name</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="2">
-     <widget class="QLineEdit" name="sp2LineEdit">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="3">
-     <widget class="QLabel" name="label_30">
-      <property name="text">
-       <string>order_date</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="1">
-     <widget class="QLabel" name="label_29">
-      <property name="text">
-       <string>sp1</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="3">
-     <widget class="QLabel" name="label_22">
-      <property name="text">
-       <string>engrave</string>
-      </property>
-     </widget>
-    </item>
-    <item row="11" column="0">
-     <widget class="QLabel" name="label_31">
-      <property name="text">
-       <string>due_date</string>
+       <string>seg1_net</string>
       </property>
      </widget>
     </item>
     <item row="5" column="3">
      <widget class="QLabel" name="label_26">
       <property name="text">
-       <string>segment_work</string>
+       <string>seg1_work</string>
       </property>
      </widget>
     </item>
-    <item row="9" column="1">
-     <widget class="QLineEdit" name="sp1LineEdit">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="2">
-     <widget class="QLabel" name="label_25">
+    <item row="8" column="1">
+     <widget class="QLabel" name="label_36">
       <property name="text">
-       <string>segment_net</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="3">
-     <widget class="QSpinBox" name="segment_workSpinBox">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0">
-     <widget class="QLabel" name="label_28">
-      <property name="text">
-       <string>ip</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QLineEdit" name="codeLineEdit">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
+       <string>bond2</string>
       </property>
      </widget>
     </item>
@@ -320,8 +275,82 @@
       </property>
      </spacer>
     </item>
-    <item row="7" column="0">
-     <spacer name="verticalSpacer_4">
+    <item row="4" column="1">
+     <widget class="QComboBox" name="itemComboBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QSpinBox" name="amountSpinBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLineEdit" name="codeLineEdit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="1">
+     <widget class="QComboBox" name="bond2ComboBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="2">
+     <widget class="QLabel" name="label_37">
+      <property name="text">
+       <string>seg2_net</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="3">
+     <widget class="QSpinBox" name="seg1_workSpinBox">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0">
+     <widget class="QLabel" name="label_35">
+      <property name="text">
+       <string>seg2</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLineEdit" name="nameLineEdit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="13" column="0">
+     <spacer name="verticalSpacer">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
@@ -333,20 +362,54 @@
       </property>
      </spacer>
     </item>
-    <item row="2" column="0">
-     <spacer name="verticalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
+    <item row="15" column="0">
+     <widget class="QDateEdit" name="due_dateDateEdit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
+     </widget>
     </item>
-    <item row="11" column="1">
+    <item row="14" column="0">
+     <widget class="QLabel" name="label_31">
+      <property name="text">
+       <string>due_date</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="0">
+     <widget class="QLineEdit" name="ipLineEdit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0">
+     <widget class="QLabel" name="label_28">
+      <property name="text">
+       <string>ip</string>
+      </property>
+     </widget>
+    </item>
+    <item row="15" column="1">
+     <widget class="QDateEdit" name="shipping_dateDateEdit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
+     </widget>
+    </item>
+    <item row="14" column="1">
      <widget class="QLabel" name="label_32">
       <property name="text">
        <string>shipping_date</string>
@@ -354,12 +417,36 @@
      </widget>
     </item>
     <item row="12" column="1">
-     <widget class="QDateEdit" name="shipping_dateDateEdit">
+     <widget class="QLineEdit" name="sp1LineEdit">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="1">
+     <widget class="QLabel" name="label_29">
+      <property name="text">
+       <string>sp1</string>
+      </property>
+     </widget>
+    </item>
+    <item row="12" column="2">
+     <widget class="QLineEdit" name="sp2LineEdit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="2">
+     <widget class="QLabel" name="label_33">
+      <property name="text">
+       <string>sp2</string>
       </property>
      </widget>
     </item>

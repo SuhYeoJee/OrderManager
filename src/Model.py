@@ -187,7 +187,6 @@ class Model():
         select_col,select_type,select_str = select_request[3]
 
         try:
-
             if select_type in ['>','<','>=','<=','=','!=']:
                 col_type = self.get_table_col_type(select_request[1],select_col)
                 if col_type == "INTEGER":
@@ -210,7 +209,9 @@ class Model():
 
             elif select_type in ['존재']:
                 where_option = {'isnull':[(select_col,False)]}
-
+            else:
+                where_option = {}
+        
             query,bindings = self.qb.get_select_query(select_request[1],where_option=where_option,sort_option=select_request[2])
             res = [col_names] + self.sql.execute_query(query,bindings)
         except Exception as e: # 올바르지 않은 검색 쿼리
@@ -231,7 +232,7 @@ class Model():
     def get_all_table_items(self,table_request):
         if table_request[0] == "ordersTable":
             col_names = ORDERS_TABLE_COLS
-            query,bindings = self.qb.get_select_query('orders',col_names,{},('code','오름차순'))
+            query,bindings = self.qb.get_select_query('orders',col_names,{'isnull':[('shipping_date',True)]},('code','오름차순'))
         else:
             col_names = self.get_table_col_names(table_request[1])
             query,bindings = f"SELECT * FROM {table_request[1]}",[]

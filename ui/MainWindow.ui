@@ -225,6 +225,11 @@
          </property>
          <item>
           <property name="text">
+           <string> </string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
            <string>&gt;</string>
           </property>
          </item>

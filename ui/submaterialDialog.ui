@@ -13,7 +13,7 @@
   <property name="font">
    <font>
     <family>굴림</family>
-    <pointsize>16</pointsize>
+    <pointsize>14</pointsize>
    </font>
   </property>
   <property name="windowTitle">
