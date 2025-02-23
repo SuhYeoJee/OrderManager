@@ -158,8 +158,6 @@ class Model():
 
     # ===========================================================================================
 
-
-
     def get_json_data(self,json_request):
         table_name,json_path = json_request[1],json_request[2]
         res = self._read_json_file(json_path)

@@ -130,7 +130,8 @@ class View(QMainWindow):
                         # btn.clicked.connect(lambda _, v=view_request: self.set_view_dialog(v))
                         tableWidget.setCellWidget(row_idx, col_idx, btn)
                     else:
-                        # 셀 위치에 버튼이 있으면 삭제
+                        if tableWidget.cellWidget(row_idx, col_idx):
+                            tableWidget.removeCellWidget(row_idx, col_idx)
                         tableWidget.setItem(row_idx, col_idx,QTableWidgetItem(str(value)))
                 else:
                     tableWidget.setItem(row_idx, col_idx,QTableWidgetItem(str('')))
