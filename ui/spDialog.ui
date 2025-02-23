@@ -57,10 +57,18 @@
      </widget>
     </item>
     <item row="2" column="3">
-     <widget class="QDateTimeEdit" name="update_dateDateTimeEdit"/>
+     <widget class="QDateTimeEdit" name="update_dateDateTimeEdit">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
+     </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QDateTimeEdit" name="reg_dateDateTimeEdit"/>
+     <widget class="QDateTimeEdit" name="reg_dateDateTimeEdit">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
+     </widget>
     </item>
     <item row="0" column="0" colspan="4">
      <widget class="QLabel" name="label_15">
@@ -240,6 +248,9 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -287,6 +298,9 @@
       </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="specialValueText">
+       <string> </string>
       </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
@@ -357,6 +371,9 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -389,6 +406,9 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -404,6 +424,9 @@
       </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="specialValueText">
+       <string> </string>
       </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
@@ -501,6 +524,9 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -516,6 +542,9 @@
       </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="specialValueText">
+       <string> </string>
       </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
@@ -565,6 +594,9 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -580,6 +612,9 @@
       </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="specialValueText">
+       <string> </string>
       </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
@@ -597,6 +632,9 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -613,6 +651,9 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -628,6 +669,9 @@
       </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="specialValueText">
+       <string> </string>
       </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
@@ -677,6 +721,9 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -722,6 +769,9 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -737,6 +787,9 @@
       </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="specialValueText">
+       <string> </string>
       </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
@@ -754,6 +807,9 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -770,6 +826,9 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -785,6 +844,9 @@
       </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="specialValueText">
+       <string> </string>
       </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
@@ -834,6 +896,9 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -865,6 +930,9 @@
       </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="specialValueText">
+       <string> </string>
       </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
@@ -959,6 +1027,9 @@
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
      </widget>
     </item>
     <item row="0" column="7" colspan="2">
@@ -971,6 +1042,9 @@
       </property>
       <property name="buttonSymbols">
        <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="specialValueText">
+       <string> </string>
       </property>
      </widget>
     </item>

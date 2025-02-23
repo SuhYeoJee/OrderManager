@@ -106,10 +106,18 @@
      </widget>
     </item>
     <item row="2" column="3">
-     <widget class="QDateTimeEdit" name="update_dateDateTimeEdit"/>
+     <widget class="QDateTimeEdit" name="update_dateDateTimeEdit">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
+     </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QDateTimeEdit" name="reg_dateDateTimeEdit"/>
+     <widget class="QDateTimeEdit" name="reg_dateDateTimeEdit">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
+     </widget>
     </item>
     <item row="0" column="0" colspan="4">
      <widget class="QLabel" name="label_15">
@@ -171,6 +179,9 @@
     </item>
     <item row="3" column="3">
      <widget class="QSpinBox" name="inventorySpinBox">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <number>999999</number>
       </property>
@@ -188,6 +199,9 @@
     </item>
     <item row="1" column="3">
      <widget class="QDoubleSpinBox" name="densityDoubleSpinBox">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -221,6 +235,9 @@
     </item>
     <item row="3" column="2">
      <widget class="QDoubleSpinBox" name="priceDoubleSpinBox">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>

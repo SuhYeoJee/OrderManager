@@ -57,10 +57,18 @@
      </widget>
     </item>
     <item row="2" column="3">
-     <widget class="QDateTimeEdit" name="update_dateDateTimeEdit"/>
+     <widget class="QDateTimeEdit" name="update_dateDateTimeEdit">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
+     </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QDateTimeEdit" name="reg_dateDateTimeEdit"/>
+     <widget class="QDateTimeEdit" name="reg_dateDateTimeEdit">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
+     </widget>
     </item>
     <item row="0" column="0" colspan="4">
      <widget class="QLabel" name="label_15">
@@ -176,6 +184,9 @@
     </item>
     <item row="6" column="3">
      <widget class="QDoubleSpinBox" name="forming_heightDoubleSpinBox">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -193,6 +204,9 @@
     </item>
     <item row="10" column="1">
      <widget class="QDoubleSpinBox" name="dia2_rateDoubleSpinBox">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -247,6 +261,9 @@
     </item>
     <item row="4" column="3">
      <widget class="QDoubleSpinBox" name="vDoubleSpinBox">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -267,6 +284,9 @@
     </item>
     <item row="10" column="0">
      <widget class="QDoubleSpinBox" name="dia1_rateDoubleSpinBox">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -304,6 +324,9 @@
     </item>
     <item row="10" column="2">
      <widget class="QDoubleSpinBox" name="dia3_rateDoubleSpinBox">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -354,6 +377,9 @@
     </item>
     <item row="6" column="2">
      <widget class="QDoubleSpinBox" name="forming_pressureDoubleSpinBox">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>
@@ -367,6 +393,9 @@
     </item>
     <item row="6" column="1">
      <widget class="QDoubleSpinBox" name="concentDoubleSpinBox">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
       </property>

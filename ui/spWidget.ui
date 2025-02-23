@@ -10,7 +10,7 @@
     <height>853</height>
    </rect>
   </property>
-  <property name="font">ㅊ
+  <property name="font">
    <font>
     <family>굴림</family>
     <pointsize>14</pointsize>
@@ -44,7 +44,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
+      <y>-540</y>
       <width>1030</width>
       <height>1300</height>
      </rect>
@@ -147,7 +147,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string>-</string>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -190,6 +190,9 @@
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
+        <property name="specialValueText">
+         <string> </string>
+        </property>
         <property name="maximum">
          <double>999999.000000000000000</double>
         </property>
@@ -213,7 +216,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string>-</string>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -344,7 +347,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string>-</string>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -389,6 +392,9 @@
         </property>
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="specialValueText">
+         <string> </string>
         </property>
        </widget>
       </item>
@@ -662,6 +668,9 @@
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
+        <property name="specialValueText">
+         <string> </string>
+        </property>
         <property name="decimals">
          <number>1</number>
         </property>
@@ -686,6 +695,9 @@
         </property>
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="specialValueText">
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -969,7 +981,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string>-</string>
+         <string> </string>
         </property>
         <property name="maximum">
          <double>999999.000000000000000</double>
@@ -1156,7 +1168,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string>-</string>
+         <string> </string>
         </property>
         <property name="maximum">
          <double>999999.000000000000000</double>
@@ -1226,7 +1238,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="maximum">
          <number>999999</number>
@@ -1389,7 +1401,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string>-</string>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -1486,7 +1498,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string/>
+         <string> </string>
         </property>
         <property name="maximum">
          <double>999999.000000000000000</double>
@@ -1509,6 +1521,9 @@
         </property>
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="specialValueText">
+         <string> </string>
         </property>
        </widget>
       </item>
@@ -1573,6 +1588,9 @@
         </property>
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="specialValueText">
+         <string> </string>
         </property>
         <property name="maximum">
          <number>999999</number>
@@ -1746,7 +1764,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string>-</string>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -1798,7 +1816,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string>-</string>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -2091,6 +2109,9 @@ TEST</string>
         </property>
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="specialValueText">
+         <string> </string>
         </property>
         <property name="maximum">
          <double>999999.000000000000000</double>
@@ -2385,6 +2406,9 @@ TEST</string>
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
+        <property name="specialValueText">
+         <string> </string>
+        </property>
         <property name="maximum">
          <double>99.989999999999995</double>
         </property>
@@ -2641,7 +2665,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string>-</string>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -2710,7 +2734,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string>-</string>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -2920,7 +2944,7 @@ TEST</string>
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string>-</string>
+         <string> </string>
         </property>
         <property name="decimals">
          <number>1</number>
@@ -3128,6 +3152,9 @@ TEST</string>
         </property>
         <property name="buttonSymbols">
          <enum>QAbstractSpinBox::NoButtons</enum>
+        </property>
+        <property name="specialValueText">
+         <string> </string>
         </property>
         <property name="suffix">
          <string>%</string>

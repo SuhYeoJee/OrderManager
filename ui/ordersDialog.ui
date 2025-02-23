@@ -77,6 +77,9 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
      </widget>
     </item>
     <item row="4" column="3">
@@ -178,6 +181,9 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
      </widget>
     </item>
     <item row="0" column="0">
@@ -212,6 +218,9 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
      </widget>
     </item>
     <item row="8" column="3">
@@ -230,7 +239,7 @@
        </sizepolicy>
       </property>
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -293,6 +302,9 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="specialValueText">
+       <string> </string>
+      </property>
      </widget>
     </item>
     <item row="1" column="1">
@@ -329,6 +341,9 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="specialValueText">
+       <string> </string>
       </property>
      </widget>
     </item>
@@ -369,6 +384,9 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="specialValueText">
+       <string> </string>
       </property>
      </widget>
     </item>
@@ -539,10 +557,18 @@
      </widget>
     </item>
     <item row="2" column="3">
-     <widget class="QDateTimeEdit" name="update_dateDateTimeEdit"/>
+     <widget class="QDateTimeEdit" name="update_dateDateTimeEdit">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
+     </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QDateTimeEdit" name="reg_dateDateTimeEdit"/>
+     <widget class="QDateTimeEdit" name="reg_dateDateTimeEdit">
+      <property name="specialValueText">
+       <string> </string>
+      </property>
+     </widget>
     </item>
     <item row="0" column="0" colspan="4">
      <widget class="QLabel" name="label_15">
