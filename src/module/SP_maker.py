@@ -57,6 +57,7 @@ class SPMaker():
         sp['autos'].update(self.get_segment_density(sp))
         sp['autos'].update(self.get_workload(sp))
         sp['autos'].update(self.get_verification(sp))
+        sp['autos'].update(self.get_powder(sp))
         # --------------------------
         pprint(sp)
         return sp
@@ -149,6 +150,43 @@ class SPMaker():
         veri_count = total_weight * segment_work
         return {'veri_weight':veri_weight,'veri_count':veri_count}
         
+    def get_powder(self,sp):
+        powders = ["co","fe","cu_300","cu_600","ni","cusn_67","cusn_80","sn_300","sn_600","w","wc","w2c","s","ag","zn"]
+        idx = 1
+        powder_info = {}
+        total_rate, total_weight = 0,0
+        bond_workload = sp.get('autos',{}).get('bond_workload',0)
+
+        for p in powders:
+            if not (p_rate := sp.get('loads',{}).get('bond',{}).get(p)): continue
+            p_weight = (p_rate/100)*bond_workload
+            powder_info.update({
+                f'powder{idx}': p,
+                f'powder{idx}_rate': p_rate,
+                f'powder{idx}_weight': p_weight
+            })
+            total_rate += p_rate
+            total_weight += p_weight
+            idx += 1
+        powder_info.update({
+            'powder_total_rate': total_rate,
+            'powder_total_weight': total_weight
+        })
+
+        #p2o5
+        if p_rate := sp.get('loads',{}).get('bond',{}).get("p2o5"):
+            powder_info.update({
+                'powder6': p,
+                'powder6_rate': p_rate,
+                'powder6_weight': (p_rate/100)*bond_workload
+            })
+
+        return powder_info
+
+            
+            
+
+
     # -------------------------------------------------------------------------------------------
     def write_json_file(self,data,json_path)->None:
         with open(json_path, "w", encoding="utf-8") as json_file:
