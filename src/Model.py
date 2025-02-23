@@ -77,6 +77,10 @@ class Model():
             return 
         ip = self.ipm.get_new_ip(ip_inputs)# ip 생성
         sps = self._create_and_insert_sps(ip)# sp 생성 및 삽입
+        for idx,sp in enumerate(sps):
+            ip['autos'][f'sp{idx+1}'] = sp.get('autos', {}).get('name')
+        else:
+            ... #ip 파일 갱신
         self._insert_orders(items, infos, ip, sps)
         self._insert_ip(ip, sps)
 

@@ -29,16 +29,6 @@
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_4">
-    <item row="0" column="2">
-     <widget class="QPushButton" name="loadBtn">
-      <property name="text">
-       <string>load</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QComboBox" name="idComboBox"/>
-    </item>
     <item row="0" column="4">
      <spacer name="horizontalSpacer">
       <property name="orientation">
@@ -59,10 +49,27 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="5">
+    <item row="0" column="1">
+     <widget class="QComboBox" name="idComboBox"/>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="loadBtn">
+      <property name="text">
+       <string>load</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="6">
      <widget class="QPushButton" name="submitBtn">
       <property name="text">
        <string>SUBMIT</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="5">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>PushButton</string>
       </property>
      </widget>
     </item>

@@ -112,3 +112,29 @@ class SpWidget(BaseUI):
         if self.request_header[1] != json_response[1]: return 
         self.set_datas_from_json_response(json_response)
         self.set_request.emit(('widget','sp',json_response[2]))
+
+class IpWidget(BaseUI):
+    insert_request = pyqtSignal(tuple)
+    set_request = pyqtSignal(tuple)
+    def __init__(self,parent=None):
+        super().__init__('widget','ip',parent)
+        loadUi(f"./ui/ipWidget.ui", self) 
+        self.init_ip_dialog()
+        self.input_widgets = self.get_input_widgets()
+        [disable_wheel_event(x) for x in self.input_widgets]
+    
+    def init_ip_dialog(self):
+        # 배경색
+        palette = self.scrollAreaWidgetContents.palette()
+        palette.setColor(QPalette.Background, QColor(255, 255, 255))
+        self.scrollAreaWidgetContents.setPalette(palette)
+        self.scrollAreaWidgetContents.setAutoFillBackground(True)
+
+    def on_pre_response(self,pre_response): #pre_response 사용안함
+        '''다이얼로그 사전정보: 전체 cols,테이블에 존재하는 id목록, 외래키 제약'''
+        return 
+
+    def on_json_response(self,json_response):
+        if self.request_header[1] != json_response[1]: return 
+        self.set_datas_from_json_response(json_response)
+        self.set_request.emit(('widget','ip',json_response[2]))

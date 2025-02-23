@@ -20,10 +20,13 @@ class View(QMainWindow):
         self.dialogs['widget']={}
         self.dialogs['widget']['orders'] = OrdersWidget()
         self.dialogs['widget']['sp'] = SpWidget()
+        self.dialogs['widget']['ip'] = IpWidget()
         [self.dialogs[action]['sp'].pushButton.clicked.connect(lambda _, action=action: self.get_sp_widget(action)) for action in ['view', 'insert', 'delete', 'update']]
+        [self.dialogs[action]['ip'].pushButton.clicked.connect(lambda _, action=action: self.get_ip_widget(action)) for action in ['view', 'insert', 'delete', 'update']]
         self.disable_sp_dialog_infos()
         # --------------------------
         self.dialogs['widget']['sp'].set_request.connect(self.dialogs['view']['sp'].set_datas_from_json_response)
+        self.dialogs['widget']['ip'].set_request.connect(self.dialogs['view']['ip'].set_datas_from_json_response)
     # -------------------------------------------------------------------------------------------
     def get_dialog(self,dialog_type,table_name):
         dialog = self.dialogs[dialog_type][table_name]
@@ -74,6 +77,14 @@ class View(QMainWindow):
         if sp_path:
             self.json_request.emit(('widget','sp', sp_path))
             self.enable_sp_dialog_infos()
+
+    def get_ip_widget(self,action):
+        ip_widget = self.get_dialog('widget','ip')
+        ip_dialog = self.dialogs[action]['ip']
+        ip_path = ip_dialog.get_inputs()['path']
+        if ip_path:
+            self.json_request.emit(('widget','ip', ip_path))
+
 
     # [view에 값 표시] ===========================================================================================
     def set_table_names(self, table_names):
