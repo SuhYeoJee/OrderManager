@@ -72,19 +72,12 @@ class Model():
         return code
 
     def _handle_order_insert(self, items, infos):
-        # ip 생성
         ip_inputs = self._get_ip_inputs_from_orders_inputs(items, infos)
         if not any(ip_inputs.get(f'item{x}', {}) for x in range(1, 5)):
             return 
-        ip = self.ipm.get_new_ip(ip_inputs)
-
-        # sp 생성 및 삽입
-        sps = self._create_and_insert_sps(ip)
-
-        # orders 삽입
+        ip = self.ipm.get_new_ip(ip_inputs)# ip 생성
+        sps = self._create_and_insert_sps(ip)# sp 생성 및 삽입
         self._insert_orders(items, infos, ip, sps)
-        
-        # ip 삽입
         self._insert_ip(ip, sps)
 
     def _create_and_insert_sps(self, ip):

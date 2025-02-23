@@ -13,7 +13,7 @@
   <property name="font">
    <font>
     <family>굴림</family>
-    <pointsize>16</pointsize>
+    <pointsize>14</pointsize>
    </font>
   </property>
   <property name="windowTitle">
@@ -204,9 +204,9 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>270</y>
+     <y>280</y>
      <width>911</width>
-     <height>331</height>
+     <height>311</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="sp_infoGridLayout">
@@ -233,6 +233,15 @@
      <widget class="QDoubleSpinBox" name="autos_total_weightDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
       </property>
      </widget>
     </item>
@@ -272,6 +281,15 @@
      <widget class="QDoubleSpinBox" name="autos_bond_volume_rateDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
       </property>
      </widget>
     </item>
@@ -333,6 +351,15 @@
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
+      </property>
      </widget>
     </item>
     <item row="4" column="5">
@@ -356,12 +383,30 @@
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
+      </property>
      </widget>
     </item>
     <item row="4" column="6">
      <widget class="QDoubleSpinBox" name="autos_dia_volumeDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
       </property>
      </widget>
     </item>
@@ -450,12 +495,30 @@
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
+      </property>
      </widget>
     </item>
     <item row="6" column="6">
      <widget class="QDoubleSpinBox" name="autos_total_volumeDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
       </property>
      </widget>
     </item>
@@ -491,17 +554,19 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="2" colspan="2">
-     <widget class="QDoubleSpinBox" name="inputs_workloadDoubleSpinBox">
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </item>
     <item row="10" column="3">
      <widget class="QDoubleSpinBox" name="autos_final_rel_densityDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
       </property>
      </widget>
     </item>
@@ -510,12 +575,30 @@
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
+      </property>
      </widget>
     </item>
     <item row="9" column="1">
      <widget class="QDoubleSpinBox" name="autos_theo_density1DoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
       </property>
      </widget>
     </item>
@@ -524,12 +607,30 @@
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
+      </property>
      </widget>
     </item>
     <item row="4" column="7">
      <widget class="QDoubleSpinBox" name="autos_dia_volume_rateDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
       </property>
      </widget>
     </item>
@@ -570,6 +671,15 @@
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
+      </property>
      </widget>
     </item>
     <item row="1" column="4">
@@ -606,12 +716,30 @@
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
+      </property>
      </widget>
     </item>
     <item row="3" column="3">
      <widget class="QDoubleSpinBox" name="loads_bond_densityDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
       </property>
      </widget>
     </item>
@@ -620,6 +748,15 @@
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
+      </property>
      </widget>
     </item>
     <item row="10" column="1">
@@ -627,12 +764,30 @@
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
+      </property>
      </widget>
     </item>
     <item row="9" column="7" colspan="2">
      <widget class="QDoubleSpinBox" name="autos_veri_weightDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
       </property>
      </widget>
     </item>
@@ -673,6 +828,15 @@
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
+      </property>
      </widget>
     </item>
     <item row="2" column="0" colspan="4">
@@ -695,6 +859,15 @@
      <widget class="QDoubleSpinBox" name="loads_segment_vDoubleSpinBox">
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="maximum">
+       <double>999999.989999999990687</double>
       </property>
      </widget>
     </item>
@@ -726,13 +899,6 @@
        </size>
       </property>
      </spacer>
-    </item>
-    <item row="0" column="7" colspan="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_40">
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
     </item>
     <item row="2" column="5" colspan="4">
      <widget class="QLabel" name="label_7">
@@ -779,6 +945,32 @@
       </property>
       <property name="margin">
        <number>3</number>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2" colspan="2">
+     <widget class="QSpinBox" name="inputs_workloadSpinBox">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="7" colspan="2">
+     <widget class="QSpinBox" name="autos_segment_workSpinBox">
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
      </widget>
     </item>

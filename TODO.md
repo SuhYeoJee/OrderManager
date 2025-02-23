@@ -31,16 +31,6 @@ sp 파우더 정규
 sp 다이얼로그 디비 불일치
 - [ ] 이미지 뷰
 
-baseui.set_datas_from_json_response 최적화필
-
-
-##### 수주 동적 다이얼로그
-
-
-model._handle_order_insert 함수 최적화필
-net,work수가 수상해
-
-
 ## 나중에
 - 검색 안하고 sort만 하는 기능 쓰기 
 

@@ -58,37 +58,30 @@ class BaseUI(QDialog):
         [handler(widget,value) 
             for widget in self.input_widgets 
             if (handler := SET_HANDLERS.get(type(widget))) and (value := data_dict.get(self.get_key_from_object_name(widget.objectName()))) is not None]
-    # --------------------------
-    def set_datas_from_json_response(self,json_response):
+
+    def set_datas_from_json_response(self, json_response):
         json_doc = json_response[2]
-        excepts = ['qt_spinbox_lineedit','sp_infoGridLayoutWidget']
 
         for widget in self.input_widgets:
-            key = self.get_key_from_object_name(widget.objectName())
-            try:
-                data_type,data_name = key.split('_',1)
-            except:
+            objn = widget.objectName()
+            key = self.get_key_from_object_name(objn)
+            if "_" not in key:
                 continue
-            if data_name == 'spinbox_lineedit':
+            
+            data_type, data_name = key.split('_', 1)
+            if data_name in ['spinbox_lineedit','date']:
                 continue
+            
+            val = None
             if data_type == 'loads':
-                table_name,col_name = data_name.split('_',1)
-                try:
-                    val = json_doc[data_type][table_name][col_name]
-                except:
-                    continue
-            elif data_type in ['inputs','autos']:
-                try:
-                    val = json_doc[data_type][data_name]
-                except:
-                    print(data_type,data_name)
-                    val = None
-            else:
-                continue
-
-            val = val if val else 0
-            SET_HANDLERS.get(type(widget))(widget,val)
-
+                parts = data_name.split('_', 1)
+                if len(parts) == 2:
+                    table_name, col_name = parts
+                    val = json_doc.get(data_type, {}).get(table_name, {}).get(col_name)
+            elif data_type in ['inputs', 'autos']:
+                val = json_doc.get(data_type, {}).get(data_name)
+            
+            SET_HANDLERS.get(type(widget))(widget, val if val else 0)
 
     # --------------------------
     def get_key_from_object_name(self,object_name):

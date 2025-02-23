@@ -44,7 +44,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>-240</y>
+      <y>-420</y>
       <width>1030</width>
       <height>1300</height>
      </rect>
@@ -237,6 +237,9 @@ TEST</string>
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -657,6 +660,12 @@ TEST</string>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item row="13" column="2" colspan="2">
@@ -897,6 +906,9 @@ TEST</string>
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1359,7 +1371,7 @@ TEST</string>
        </widget>
       </item>
       <item row="5" column="7">
-       <widget class="QSpinBox" name="inputs_segment_workSpinBox">
+       <widget class="QSpinBox" name="autos_segment_workSpinBox">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1377,13 +1389,6 @@ TEST</string>
         </property>
         <property name="maximum">
          <number>999999</number>
-        </property>
-       </widget>
-      </item>
-      <item row="23" column="6">
-       <widget class="QCheckBox" name="checkBox_10">
-        <property name="text">
-         <string>징크</string>
         </property>
        </widget>
       </item>
@@ -1413,7 +1418,7 @@ TEST</string>
        </widget>
       </item>
       <item row="4" column="7">
-       <widget class="QSpinBox" name="inputs_segment_netSpinBox">
+       <widget class="QSpinBox" name="inputs_workloadSpinBox">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
           <horstretch>0</horstretch>
@@ -1518,6 +1523,9 @@ TEST</string>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item row="28" column="1">
@@ -1565,6 +1573,12 @@ TEST</string>
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1626,12 +1640,15 @@ TEST</string>
        </widget>
       </item>
       <item row="5" column="1" colspan="3">
-       <widget class="QLineEdit" name="inputs_segmentLineEdit">
+       <widget class="QLineEdit" name="loads_segment_nameLineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1710,6 +1727,9 @@ TEST</string>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -1745,12 +1765,18 @@ TEST</string>
        </widget>
       </item>
       <item row="10" column="4">
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="loads_bond_hrbLineEdit">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -1761,6 +1787,9 @@ TEST</string>
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
         <property name="readOnly">
          <bool>true</bool>
@@ -1913,6 +1942,12 @@ TEST</string>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item row="29" column="7">
@@ -2013,6 +2048,9 @@ TEST</string>
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
         </property>
         <property name="readOnly">
          <bool>true</bool>
@@ -2122,6 +2160,9 @@ TEST</string>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item row="19" column="5">
@@ -2207,6 +2248,9 @@ TEST</string>
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -2823,6 +2867,35 @@ TEST</string>
         <property name="margin">
          <number>5</number>
         </property>
+       </widget>
+      </item>
+      <item row="23" column="6">
+       <widget class="QFrame" name="frame">
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Plain</enum>
+        </property>
+        <widget class="QCheckBox" name="checkBox_10">
+         <property name="geometry">
+          <rect>
+           <x>4</x>
+           <y>0</y>
+           <width>108</width>
+           <height>34</height>
+          </rect>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>징크</string>
+         </property>
+        </widget>
        </widget>
       </item>
      </layout>
