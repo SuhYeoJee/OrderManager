@@ -183,10 +183,6 @@ class SPMaker():
 
         return powder_info
 
-            
-            
-
-
     # -------------------------------------------------------------------------------------------
     def write_json_file(self,data,json_path)->None:
         with open(json_path, "w", encoding="utf-8") as json_file:

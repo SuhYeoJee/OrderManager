@@ -81,7 +81,9 @@ class BaseUI(QDialog):
             elif data_type in ['inputs', 'autos']:
                 val = json_doc.get(data_type, {}).get(data_name)
             
-            SET_HANDLERS.get(type(widget))(widget, val if val else 0)
+            if val:
+                SET_HANDLERS.get(type(widget))(widget, val)
+
 
     # --------------------------
     def get_key_from_object_name(self,object_name):
