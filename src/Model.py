@@ -80,7 +80,7 @@ class Model():
         for idx,sp in enumerate(sps):
             ip['autos'][f'sp{idx+1}'] = sp.get('autos', {}).get('name')
         else:
-            ... #ip 파일 갱신
+            self.ipm.write_json_file(ip,f"./doc/ip/{ip['autos']['name']}.json")
         self._insert_orders(items, infos, ip, sps)
         self._insert_ip(ip, sps)
 

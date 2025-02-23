@@ -1,6 +1,7 @@
 from src.imports.pyqt5_imports import *
 DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
 DATE_FORMAT = "yyyy-MM-dd"
+DATE_KO_FORMAT = "yyyy년 M월 d일"
 DB_PATH='./config/NOVA.db'
 GET_HANDLERS = {
     QLineEdit: lambda widget: widget.text(),

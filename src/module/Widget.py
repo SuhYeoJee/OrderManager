@@ -42,7 +42,7 @@ class OrdersWidget(BaseUI):
         [inputs.pop(x) for x in pops]
         self.data = self._add_request_header(inputs)
         self.insert_request.emit(self.data)
-        # self.close()
+        self.close()
     # --------------------------
     def add_grid(self):
         """ordersInnerWidget을 복제하여 스크롤 영역에 추가 """
@@ -96,6 +96,7 @@ class SpWidget(BaseUI):
         self.init_sp_dialog()
         self.input_widgets = self.get_input_widgets()
         [disable_wheel_event(x) for x in self.input_widgets]
+        self.submitBtn.clicked.connect(self.close)
     
     def init_sp_dialog(self):
         # 배경색
@@ -122,6 +123,7 @@ class IpWidget(BaseUI):
         self.init_ip_dialog()
         self.input_widgets = self.get_input_widgets()
         [disable_wheel_event(x) for x in self.input_widgets]
+        self.submitBtn.clicked.connect(self.close)
     
     def init_ip_dialog(self):
         # 배경색

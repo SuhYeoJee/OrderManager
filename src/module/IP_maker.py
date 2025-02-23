@@ -2,7 +2,8 @@ if __debug__:
     import sys
     sys.path.append(r"X:\Github\OrderManager")
 # ===========================================================================================
-from datetime import datetime
+from src.imports.config import DATE_FORMAT, DATE_KO_FORMAT
+from src.imports.pyqt5_imports import QDate
 import json
 from pprint import pprint
 # ===========================================================================================
@@ -22,10 +23,11 @@ class IPMaker():
         except ValueError:
             year,no = "2000","IP0000"
 
-        if year == str(datetime.now().year):
+        now_year =str(QDate.currentDate().year())
+        if year == now_year:
             ip_name = f"{year}-IP{int(no[2:])+1:04}"
         else:
-            ip_name = f"{str(datetime.now().year)}-IP{1:04}"
+            ip_name = f"{now_year}-IP{1:04}"
         return ip_name
     
     def get_data_by_name(self,table_name,name):
@@ -50,8 +52,10 @@ class IPMaker():
         # --------------------------
         ip['autos'] = {}
         ip['autos']['name'] = self.get_new_ip_name()
-        ip['autos']['creation_date'] = datetime.now().strftime("%Y년 %m월 %d일")
+        ip['autos']['creation_date'] = QDate.currentDate().toString(DATE_KO_FORMAT)
+        ip['autos']['due_date'] = QDate.fromString("2000-01-01", DATE_FORMAT).toString(DATE_KO_FORMAT)
         ip['autos'].update(self._get_autos_from_loads(ip))
+        
         # --------------------------
         pprint(ip)
         return ip
@@ -81,6 +85,7 @@ class IPMaker():
             process_item(item, "shank", [""], shanks)  # shank: 단일
             process_item(item, "seg", range(1, 3), segs)  # segment: 최대 2개
             process_item(item, "sub", range(1, 3), subs)  # submaterial: 최대 2개
+            autos[f'item{item_idx}'] = item.get('name',' ').split(' ')[-1]
             
             engraves.append(item.get('engrave', ''))
             weldings.append(item.get('welding', ''))

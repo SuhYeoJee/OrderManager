@@ -73,7 +73,7 @@ class BaseUI(QDialog):
                 continue
             
             val = None
-            if data_type == 'loads':
+            if (data_type == 'loads')or (data_type=='inputs' and json_response[1]=='ip'):
                 parts = data_name.split('_', 1)
                 if len(parts) == 2:
                     table_name, col_name = parts
