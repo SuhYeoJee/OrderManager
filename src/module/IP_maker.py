@@ -67,25 +67,33 @@ class IPMaker():
 
         def process_item(item, category, idx_range, tracker):
             """autos에 등록, 수량 누산 (shank, seg, sub)"""
+            if category == 'seg':
+                db_name = 'segment'
+            elif category == 'sub':
+                db_name = 'submaterial'
+            elif category == 'sha':
+                db_name = 'shank'
+            else:
+                db_name = category
             for idx in idx_range:
-                name = item.get(f"{category}{idx}")
+                name = item.get(f"{db_name}_{idx}")
                 amount = item.get(f"{category}{idx}_amount", 0)
                 if name:
                     if name in tracker:
                         autos[f"{category}{tracker[name]}_amount"] += amount * item_amount
                     else:
                         tracker[name] = len(tracker) + 1
-                        autos[f"{category}{tracker[name]}"] = name
+                        autos[f"{db_name}_{tracker[name]}"] = name
                         autos[f"{category}{tracker[name]}_amount"] = amount * item_amount
 
         engraves, weldings, dressings, paints = [],[],[],[]
         for item_idx in range(1, 5):
             item = ip["loads"].get(f"item{item_idx}", {})
             item_amount = int(ip["inputs"].get(f"item{item_idx}", {}).get("amount", 0))
-            process_item(item, "shank", [""], shanks)  # shank: 단일
+            process_item(item, "sha", [""], shanks)  # shank: 단일
             process_item(item, "seg", range(1, 3), segs)  # segment: 최대 2개
             process_item(item, "sub", range(1, 3), subs)  # submaterial: 최대 2개
-            autos[f'item{item_idx}'] = item.get('name',' ').split(' ')[-1]
+            autos[f'item{item_idx}'] = item.get('fullname',' ').split(' ')[-1]
             
             engraves.append(item.get('engrave', ''))
             weldings.append(item.get('welding', ''))

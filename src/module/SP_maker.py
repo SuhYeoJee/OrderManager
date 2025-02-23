@@ -20,7 +20,7 @@ class SPMaker():
         response = self.model.get_select_data(request)
         return dict(zip(response[2][0],response[2][1]))
     
-    def get_new_sp_name(self,recent_sp_name):
+    def get_new_sp_name(self,sp_recent_name):
         try:
             [last_sp] = self.model.sql.execute_query('SELECT * FROM sp ORDER BY id DESC LIMIT 1;')
             year,no,_,_ = last_sp[1].split('-')
@@ -28,7 +28,7 @@ class SPMaker():
             year,no = "2000","SP0000"
 
         try:
-            r_year,r_no,_,_ = recent_sp_name.split('-')
+            r_year,r_no,_,_ = sp_recent_name.split('-')
             rec = f"{r_year[2:]}-{r_no[2:]}"
         except:
             rec = "00-SP0000"
@@ -44,11 +44,11 @@ class SPMaker():
         sp['inputs'] = inputs
         # --------------------------
         sp['loads'] = {}
-        sp['loads']['segment'] = self.get_data_by_name('segment','code',sp['inputs']['code'])
+        sp['loads']['segment'] = self.get_data_by_name('segment','name',sp['inputs']['name'])
         sp['loads']['bond'] = self.get_data_by_name('bond','name',sp['loads']['segment']['bond'])
         # --------------------------
         sp['autos'] = {}
-        sp['autos']['name'] = self.get_new_sp_name(sp['loads']['segment']['recent_sp'])
+        sp['autos']['name'] = self.get_new_sp_name(sp['loads']['segment']['sp_recent'])
         sp['autos']['creation_date'] = datetime.now().strftime("%Y년 %m월 %d일")
         sp['autos']['concent'] = float(sp['loads']['segment']['concent'])/4.4*100
         sp['autos']['loss'] = 1.01
@@ -195,7 +195,7 @@ class SPMaker():
 
     def get_test_inputs(self):
         inputs={
-            "code": "SQ0000",
+            "name": "SQ0000",
             "workload":120.0,
         }
         return inputs

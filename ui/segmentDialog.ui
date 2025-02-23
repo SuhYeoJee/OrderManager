@@ -59,14 +59,14 @@
     <item row="2" column="3">
      <widget class="QDateTimeEdit" name="update_dateDateTimeEdit">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
     <item row="2" column="1">
      <widget class="QDateTimeEdit" name="reg_dateDateTimeEdit">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
      </widget>
     </item>
@@ -161,14 +161,14 @@
     <item row="0" column="2">
      <widget class="QLabel" name="label_19">
       <property name="text">
-       <string>alias</string>
+       <string>별명</string>
       </property>
      </widget>
     </item>
     <item row="0" column="1">
      <widget class="QLabel" name="label_18">
       <property name="text">
-       <string>code</string>
+       <string>이름</string>
       </property>
      </widget>
     </item>
@@ -180,12 +180,12 @@
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QLineEdit" name="codeLineEdit"/>
+     <widget class="QLineEdit" name="fullnameLineEdit"/>
     </item>
     <item row="6" column="3">
      <widget class="QDoubleSpinBox" name="forming_heightDoubleSpinBox">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
@@ -205,7 +205,7 @@
     <item row="10" column="1">
      <widget class="QDoubleSpinBox" name="dia2_rateDoubleSpinBox">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
@@ -226,7 +226,7 @@
      </widget>
     </item>
     <item row="9" column="0">
-     <widget class="QComboBox" name="dia1ComboBox"/>
+     <widget class="QComboBox" name="diamond_1ComboBox"/>
     </item>
     <item row="3" column="1">
      <widget class="QLabel" name="label_20">
@@ -262,7 +262,7 @@
     <item row="4" column="3">
      <widget class="QDoubleSpinBox" name="vDoubleSpinBox">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
@@ -273,7 +273,7 @@
      </widget>
     </item>
     <item row="9" column="2">
-     <widget class="QComboBox" name="dia3ComboBox"/>
+     <widget class="QComboBox" name="diamond_3ComboBox"/>
     </item>
     <item row="3" column="2">
      <widget class="QLabel" name="label_21">
@@ -285,7 +285,7 @@
     <item row="10" column="0">
      <widget class="QDoubleSpinBox" name="dia1_rateDoubleSpinBox">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
@@ -315,17 +315,17 @@
     <item row="0" column="0">
      <widget class="QLabel" name="label_14">
       <property name="text">
-       <string>name</string>
+       <string>세그멘트 NO.</string>
       </property>
      </widget>
     </item>
     <item row="1" column="3">
-     <widget class="QLineEdit" name="recent_spLineEdit"/>
+     <widget class="QLineEdit" name="sp_recentLineEdit"/>
     </item>
     <item row="10" column="2">
      <widget class="QDoubleSpinBox" name="dia3_rateDoubleSpinBox">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
@@ -378,7 +378,7 @@
     <item row="6" column="2">
      <widget class="QDoubleSpinBox" name="forming_pressureDoubleSpinBox">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
@@ -394,7 +394,7 @@
     <item row="6" column="1">
      <widget class="QDoubleSpinBox" name="concentDoubleSpinBox">
       <property name="specialValueText">
-       <string> </string>
+       <string/>
       </property>
       <property name="maximum">
        <double>999999.989999999990687</double>
@@ -412,7 +412,7 @@
      </widget>
     </item>
     <item row="9" column="1">
-     <widget class="QComboBox" name="dia2ComboBox"/>
+     <widget class="QComboBox" name="diamond_2ComboBox"/>
     </item>
     <item row="2" column="0">
      <spacer name="verticalSpacer_3">

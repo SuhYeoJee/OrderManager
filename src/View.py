@@ -124,12 +124,14 @@ class View(QMainWindow):
                     view_request = (response[1],columns,row)
                     btn.clicked.connect(lambda _, v=view_request: self.set_view_dialog(v))
                     tableWidget.setCellWidget(row_idx, col_idx, btn)
-                # elif 단독 조회가 가능한 col인 경우:
-                    # 버튼 생성
-                    # 클릭시 함수 연결 - select 리퀘스트 항목일치
-                    #                   다이얼로그 띄우기. 
                 elif value:
-                    tableWidget.setItem(row_idx, col_idx,QTableWidgetItem(str(value)))
+                    if columns[col_idx].split('_')[0] in self.dialogs.get('view',{}).keys():
+                        btn = QPushButton(str(value))
+                        # btn.clicked.connect(lambda _, v=view_request: self.set_view_dialog(v))
+                        tableWidget.setCellWidget(row_idx, col_idx, btn)
+                    else:
+                        # 셀 위치에 버튼이 있으면 삭제
+                        tableWidget.setItem(row_idx, col_idx,QTableWidgetItem(str(value)))
                 else:
                     tableWidget.setItem(row_idx, col_idx,QTableWidgetItem(str('')))
 

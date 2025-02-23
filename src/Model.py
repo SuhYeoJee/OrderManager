@@ -87,24 +87,24 @@ class Model():
     def _create_and_insert_sps(self, ip):
         sps = []
         for i in range(1, 3):
-            seg_key = f"seg{i}"
+            seg_key = f"segment_{i}"
             if seg_key not in ip["autos"]:
                 break
             sp = self.spm.get_new_sp({
-                "code": ip["autos"].get(seg_key),
-                "workload": ip["autos"].get(f"{seg_key}_amount")
+                "name": ip["autos"].get(seg_key),
+                "workload": ip["autos"].get(f"seg{i}_amount")
             })
             sps.append(sp)
             
             sp_data = {
                 'name': sp.get('autos', {}).get('name'),
-                'segment': sp.get('inputs', {}).get('code'),
+                'segment': sp.get('inputs', {}).get('name'),
                 'ip': ip.get('autos', {}).get('name'),
                 'path': f"./doc/sp/{sp.get('autos', {}).get('name', 'unknown')}.json"
             }
             self._execute_insert('sp', sp_data)
-            self._execute_update('segment', {'recent_sp': sp_data['name']},
-                                 {'comparison': [('code', '=', sp_data['segment'])]})
+            self._execute_update('segment', {'sp_recent': sp_data['name']},
+                                 {'comparison': [('name', '=', sp_data['segment'])]})
         return sps
 
     def _insert_orders(self, items, infos, ip, sps):
@@ -127,7 +127,7 @@ class Model():
             
             for j, sp in enumerate(sps[:2]):
                 order.update({
-                    f"seg{j+1}": sp.get("inputs", {}).get("code"),
+                    f"segment_{j+1}": sp.get("inputs", {}).get("name"),
                     f"bond{j+1}": sp.get("loads", {}).get("bond", {}).get("name"),
                     f"seg{j+1}_net": sp.get("inputs", {}).get("workload"),
                     f"seg{j+1}_work": sp.get("autos", {}).get("segment_work"),
@@ -135,7 +135,7 @@ class Model():
                 })
             
             self._execute_insert('orders', order)
-            self._execute_update('item', {'recent_ip': ip.get('autos', {}).get('name')},
+            self._execute_update('item', {'ip_recent': ip.get('autos', {}).get('name')},
                                  {'comparison': [('name', '=', order['item'])]})
     
     def _insert_ip(self, ip, sps):
@@ -276,43 +276,3 @@ class Model():
     def _add_response_header(self,request,data):
         return request[:2]+(data,)
     
-if __name__ == "__main__":
-    m = Model()
-    orders_request = (
-        'widget','orders',
-        {
-            0: {'amount1': 3,
-                'amount2': 0,
-                'amount3': 0,
-                'amount4': 0,
-                'code1': '',
-                'code2': '',
-                'code3': '',
-                'code4': '',
-                'engrave': 'sdf',
-                'item1': '5"CUPT OVAL60',
-                'item2': '',
-                'item3': '',
-                'item4': '',
-                'item_group': '5"CUPT'},
-            1: {'amount1': 1,
-                'amount2': 2,
-                'amount3': 0,
-                'amount4': 0,
-                'code1': '',
-                'code2': '',
-                'code3': '',
-                'code4': '',
-                'engrave': '',
-                'item1': 'TEST ITEM',
-                'item2': 'TEST ITEM2',
-                'item3': '',
-                'item4': '',
-                'item_group': 'TEST'},
-            'customer': '강낭콩',
-            'description': '',
-            'due_date': '2025-02-28',
-            'order_date': '2025-02-14'
-        }
-    )
-    m.get_orders_insert_request(orders_request)
