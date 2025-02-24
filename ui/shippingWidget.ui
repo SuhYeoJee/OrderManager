@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>950</width>
+    <height>800</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>굴림</family>
+    <pointsize>14</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="gridLayoutWidget_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>911</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="0" column="2">
+     <widget class="QPushButton" name="submitBtn">
+      <property name="text">
+       <string>SUBMIT</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>600</y>
+     <width>911</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="1" column="0" colspan="4">
+     <widget class="QPlainTextEdit" name="descriptionPlainTextEdit">
+      <property name="plainText">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QLabel" name="label_17">
+      <property name="text">
+       <string>update</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_16">
+      <property name="text">
+       <string>create</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QDateTimeEdit" name="update_dateDateTimeEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="specialValueText">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QDateTimeEdit" name="reg_dateDateTimeEdit">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="specialValueText">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="4">
+     <widget class="QLabel" name="label_15">
+      <property name="text">
+       <string>description</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>120</y>
+     <width>911</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_14">
+      <property name="text">
+       <string>name</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QComboBox" name="nameLineEdit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="label">
+      <property name="text">
+       <string>shipping_date</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QDateEdit" name="shipping_dateDateEdit">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="specialValueText">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

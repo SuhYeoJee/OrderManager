@@ -44,8 +44,7 @@ innerwidget
 
 #### 수주마감 
 수주 번호 입력, 날짜 입력 -> 일괄처리
-
-
+class ShippingWidget(BaseUI):
 
 
 #### 계산기
