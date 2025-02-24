@@ -36,7 +36,6 @@ class Model():
             i += 1
         return self._add_response_header(insert_request,True) 
 
-
     def _get_ip_inputs_from_orders_inputs(self,items,infos):
         ip_inputs =  {
             'infos': {

@@ -185,10 +185,10 @@ class View(QMainWindow):
             if end_row > merge_start:
                 tableWidget.setSpan(merge_start, col, end_row - merge_start + 1, 1)
 
-    def set_view_dialog(self,view_response):
-        dialog = self.get_dialog('view',view_response[1])
-        dialog.cols = view_response[2][0]
-        dialog.set_datas(view_response[2][1])
+    def set_view_dialog(self, view_response):
+        dialog = self.get_dialog('view', view_response[1] if len(view_response) > 1 else None)
+        dialog.cols, dialog_data = (view_response[2] if len(view_response) > 2 and isinstance(view_response[2], (list, tuple)) else [None, None])[:2]
+        dialog.set_datas(dialog_data)
 
 # ===========================================================================================
 import sys

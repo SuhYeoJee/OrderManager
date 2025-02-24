@@ -33,11 +33,11 @@ class BaseUI(QDialog):
         self.idComboBox.clear()
         self.idComboBox.addItems(map(str,['']+ids))
     # --------------------------
-    def clear(self,keep_combos:bool=False)->None:
+    def clear(self, keep_combos: bool = False) -> None:
         '''모든 입력위젯 비우기'''
         input_widgets = [w for w in self.input_widgets if w.objectName() != "idComboBox"] if keep_combos else self.input_widgets
         [handler(w) for w in input_widgets if (handler := CLEAR_HANDLERS.get(type(w)))]
-        [w.clear() for w in input_widgets if (type(w)==QComboBox) and not keep_combos]
+        [w.setCurrentIndex(0) if keep_combos else w.clear() for w in input_widgets if isinstance(w, QComboBox)]
 
     # --------------------------
     def get_inputs(self,widget=None)->dict:

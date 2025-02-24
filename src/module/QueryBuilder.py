@@ -1,5 +1,6 @@
 
 import re
+from src.imports.config import DEFAULT_VALS
 
 class QueryBuilder():
     def __init__(self):...
@@ -84,6 +85,7 @@ class QueryBuilder():
     # -------------------------------------------------------------------------------------------
     def get_insert_query(self,table_name:str,items:dict):
         '''INSERT INTO 테이블명 (키1, 키2, ...) VALUES (?,?,...);, (값1,값2,...)'''
+        items = self._remove_invalid_values(items)
         bindings = list(items.values())
         return f'''INSERT INTO "{table_name}" ({",".join([f'"{x}"' for x in items.keys()])}) VALUES ({",".join(['?']*len(bindings))});''',bindings
     # --------------------------
@@ -95,6 +97,7 @@ class QueryBuilder():
     # --------------------------
     def get_update_query(self,table_name:str,items:dict,where_option:dict={}):
         '''UPDATE 테이블명 SET 키1 = 값1, 키2 = 값2 ... WHERE 조건;,bindings'''
+        items = self._remove_invalid_values(items)
         where_str,where_bindings = self._get_where_str(**where_option) if where_option else ('',[])
         bindings = list(items.values()) + where_bindings
         return f'''UPDATE "{table_name}" SET {','.join([f'''"{k}" = ?''' for k in items.keys()])} {where_str};''',bindings
@@ -106,11 +109,15 @@ class QueryBuilder():
     # --------------------------
     def get_delete_query_by_item(self,table_name:str,items:dict):
         '''DELETE FROM 테이블명 WHERE 조건 - 모두 일치하는 항목 삭제'''
+        items = self._remove_invalid_values(items)
         sub_where_str = 'WHERE ' + " AND ".join([f'''"{k}" = ?''' for k in items.keys()])
         bindings = list(items.values())
         where_str = f'''WHERE id = (SELECT MAX(id) FROM {table_name} {sub_where_str})''' # 중복이 있으면 id가 가장 큰 것을 삭제
         return f'''DELETE FROM "{table_name}" {where_str};''',bindings
-
+    # --------------------------
+    def _remove_invalid_values(self,d: dict) -> dict:
+        '''무효값/기본값 키:값쌍 제거'''
+        return {k: v for k, v in d.items() if v not in DEFAULT_VALS}
 # ===========================================================================================
 if __name__ == '__main__':
     qb = QueryBuilder()
