@@ -25,6 +25,18 @@ class Model():
         res = self.sql.execute_query(query,bindings)
         return self._add_response_header(insert_request,res)
     
+    def get_print_request(self,print_request):
+        table_name = print_request[1]
+        start_date,end_date = print_request[2].get('start',None),print_request[2].get('end',None)
+        where_option = {'between':[('order_date',start_date,end_date)],'isnull':[('shipping_date',True)]}
+        col_names = self.get_table_col_names(table_name)
+        query,bindings = self.qb.get_select_query(table_name,[],where_option)
+        try:
+            res = [col_names] + self.sql.execute_query(query,bindings)
+        except Exception as e: # 올바르지 않은 검색 쿼리
+            res = [('error',)] + [('올바르지 않은 검색 쿼리.',),(e.__str__(),),(e.__doc__,)]
+        return self._add_response_header(print_request,res)
+
     def get_orders_insert_request(self,insert_request):
         datas = insert_request[2]
         infos = {k:v for k,v in datas.items() if not isinstance(k,int)}

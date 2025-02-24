@@ -1,5 +1,6 @@
 
 from src.imports.pyqt5_imports import *
+from src.imports.config import GET_HANDLERS
 # --------------------------
 from src.module.Dialog import *
 from src.module.Widget import *
@@ -9,13 +10,17 @@ class View(QMainWindow):
     pre_request = pyqtSignal(tuple)
     json_request = pyqtSignal(tuple)
     select_request = pyqtSignal(tuple)
+    print_request = pyqtSignal(tuple)
+
     def __init__(self,tables):
         super().__init__()
         loadUi("./ui/MainWindow.ui", self)
         self.ordersTableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
-        self.pushButton.clicked.connect(lambda: self.get_dialog('widget','orders'))
-        self.pushButton_2.clicked.connect(lambda: self.get_dialog('update','shipping'))
+        self.newordersBtn.clicked.connect(lambda: self.get_dialog('widget','orders'))
+        self.shippingBtn.clicked.connect(lambda: self.get_dialog('update','shipping'))
+        self.printBtn.clicked.connect(self.on_print_click)
+
         # --------------------------
         self.dialog_infos = {table: globals().get(f"{table.capitalize()}Dialog") for table in tables}
         self.dialogs = {action: {key: cls(action, key) for key, cls in self.dialog_infos.items()} for action in ['view', 'insert', 'delete', 'update']}
@@ -43,6 +48,20 @@ class View(QMainWindow):
         dialog.raise_()
         return dialog
     
+    def on_print_click(self):
+        # 기간 읽어서 시그널 전송
+        time_span = {w.objectName().split('D')[0]: handler(w) 
+                for w in (self.startDateEdit,self.endDateEdit)
+                if (handler := GET_HANDLERS.get(type(w)))}
+        print(time_span)
+        self.print_request.emit(('print','orders', time_span))
+
+    def on_print_response(self,print_response):
+        # 딱히 할 건 없음
+        from pprint import pprint 
+        pprint(print_response)
+
+
     def show_error(self, message:str):
         """에러 메시지 표시"""
         QMessageBox.critical(self, "Error", str(message))

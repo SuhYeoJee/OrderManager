@@ -37,6 +37,7 @@ class Controller():
         self.view.dialogs['delete']['bond'].density_request.connect(self.on_density_request)
         self.view.dialogs['update']['bond'].density_request.connect(self.on_density_request)
         self.view.select_request.connect(self.on_table_item_btn)
+        self.view.print_request.connect(self.on_print_request)
 
     # [view에서 model 호출] -------------------------------------------------------------------------------------------
     def on_orders_insert_request(self,insert_request):
@@ -48,6 +49,11 @@ class Controller():
         worker_func = "get_pre_infos"
         callback_func = self.view.dialogs[pre_request[0]][pre_request[1]].on_pre_response
         self.launch_worker(worker_func,callback_func,pre_request)
+
+    def on_print_request(self,print_request):
+        worker_func = f"get_print_request"
+        callback_func = self.view.on_print_response
+        self.launch_worker(worker_func,callback_func,print_request)
 
     def on_table_request(self,request_type,request):
         worker_func = f"get_{request_type}_data"
