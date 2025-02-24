@@ -19,486 +19,6 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QFrame" name="frame_4">
-   <property name="geometry">
-    <rect>
-     <x>-850</x>
-     <y>80</y>
-     <width>881</width>
-     <height>242</height>
-    </rect>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Raised</enum>
-   </property>
-   <widget class="QLabel" name="label_38">
-    <property name="geometry">
-     <rect>
-      <x>156</x>
-      <y>163</y>
-      <width>17</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>S</string>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="sDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>156</x>
-      <y>196</y>
-      <width>136</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="cu_600DoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>156</x>
-      <y>120</y>
-      <width>136</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_31">
-    <property name="geometry">
-     <rect>
-      <x>156</x>
-      <y>87</y>
-      <width>102</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Cu#600</string>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="wDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>589</x>
-      <y>44</y>
-      <width>137</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_40">
-    <property name="geometry">
-     <rect>
-      <x>589</x>
-      <y>11</y>
-      <width>24</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>W</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_37">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>163</y>
-      <width>33</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Ag</string>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="agDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>196</y>
-      <width>137</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="niDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>11</x>
-      <y>196</y>
-      <width>137</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_39">
-    <property name="geometry">
-     <rect>
-      <x>11</x>
-      <y>163</y>
-      <width>26</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Ni</string>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="cu_300DoubleSpinBox_2">
-    <property name="geometry">
-     <rect>
-      <x>156</x>
-      <y>44</y>
-      <width>136</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_32">
-    <property name="geometry">
-     <rect>
-      <x>156</x>
-      <y>11</y>
-      <width>102</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Cu#300</string>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="znDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>445</x>
-      <y>196</y>
-      <width>136</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_43">
-    <property name="geometry">
-     <rect>
-      <x>445</x>
-      <y>163</y>
-      <width>33</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Zn</string>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="w2cDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>589</x>
-      <y>196</y>
-      <width>137</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_42">
-    <property name="geometry">
-     <rect>
-      <x>589</x>
-      <y>163</y>
-      <width>59</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>W2C</string>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="sn_300DoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>445</x>
-      <y>44</y>
-      <width>136</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_36">
-    <property name="geometry">
-     <rect>
-      <x>445</x>
-      <y>11</y>
-      <width>101</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Sn#300</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_34">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>11</y>
-      <width>119</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>CuSn#67</string>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="cusn_67DoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>44</y>
-      <width>137</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_41">
-    <property name="geometry">
-     <rect>
-      <x>589</x>
-      <y>87</y>
-      <width>43</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>WC</string>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="wcDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>589</x>
-      <y>120</y>
-      <width>137</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="p2o5DoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>734</x>
-      <y>44</y>
-      <width>136</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_44">
-    <property name="geometry">
-     <rect>
-      <x>734</x>
-      <y>11</y>
-      <width>70</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>P2O5</string>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="cusn_80DoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>120</y>
-      <width>137</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_33">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>87</y>
-      <width>119</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>CuSn#80</string>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="sn_600DoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>445</x>
-      <y>120</y>
-      <width>136</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_35">
-    <property name="geometry">
-     <rect>
-      <x>445</x>
-      <y>87</y>
-      <width>101</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Sn#600</string>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="feDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>11</x>
-      <y>120</y>
-      <width>137</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_30">
-    <property name="geometry">
-     <rect>
-      <x>11</x>
-      <y>87</y>
-      <width>31</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Fe</string>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="coDoubleSpinBox">
-    <property name="geometry">
-     <rect>
-      <x>11</x>
-      <y>44</y>
-      <width>137</width>
-      <height>35</height>
-     </rect>
-    </property>
-    <property name="maximum">
-     <double>999999.989999999990687</double>
-    </property>
-    <property name="singleStep">
-     <double>0.100000000000000</double>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_29">
-    <property name="geometry">
-     <rect>
-      <x>11</x>
-      <y>11</y>
-      <width>35</width>
-      <height>27</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Co</string>
-    </property>
-   </widget>
-  </widget>
   <widget class="QWidget" name="gridLayoutWidget_3">
    <property name="geometry">
     <rect>
@@ -614,10 +134,13 @@
      <x>20</x>
      <y>110</y>
      <width>911</width>
-     <height>421</height>
+     <height>141</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout" columnstretch="1,1,1,1">
+    <item row="1" column="2">
+     <widget class="QLineEdit" name="hrbLineEdit"/>
+    </item>
     <item row="3" column="1">
      <widget class="QDoubleSpinBox" name="sint_timeDoubleSpinBox">
       <property name="specialValueText">
@@ -631,33 +154,10 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
-     <widget class="QLabel" name="label_23">
+    <item row="0" column="3">
+     <widget class="QLabel" name="label_20">
       <property name="text">
-       <string>sint_time</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QLabel" name="label_22">
-      <property name="text">
-       <string>sint_temp</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="1">
-     <widget class="QComboBox" name="comboBox_2"/>
-    </item>
-    <item row="5" column="0">
-     <widget class="QDoubleSpinBox" name="priceDoubleSpinBox">
-      <property name="specialValueText">
-       <string/>
-      </property>
-      <property name="maximum">
-       <double>999999.989999999990687</double>
-      </property>
-      <property name="singleStep">
-       <double>0.100000000000000</double>
+       <string>color</string>
       </property>
      </widget>
     </item>
@@ -668,31 +168,8 @@
       </property>
      </widget>
     </item>
-    <item row="11" column="1">
-     <widget class="QComboBox" name="comboBox_5"/>
-    </item>
     <item row="3" column="2">
      <widget class="QDoubleSpinBox" name="ballmill_timeDoubleSpinBox">
-      <property name="specialValueText">
-       <string/>
-      </property>
-      <property name="maximum">
-       <double>999999.989999999990687</double>
-      </property>
-      <property name="singleStep">
-       <double>0.100000000000000</double>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLabel" name="label_21">
-      <property name="text">
-       <string>density</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="0">
-     <widget class="QDoubleSpinBox" name="sint_tempDoubleSpinBox">
       <property name="specialValueText">
        <string/>
       </property>
@@ -717,47 +194,39 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="3">
-     <widget class="QLabel" name="label_20">
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_22">
       <property name="text">
-       <string>color</string>
+       <string>sint_temp</string>
       </property>
      </widget>
     </item>
-    <item row="9" column="1">
-     <widget class="QComboBox" name="comboBox_3"/>
-    </item>
-    <item row="1" column="2">
-     <widget class="QLineEdit" name="hrbLineEdit"/>
-    </item>
-    <item row="10" column="0">
-     <widget class="QLabel" name="label_2">
+    <item row="2" column="2">
+     <widget class="QLabel" name="label_25">
       <property name="text">
-       <string>TextLabel</string>
+       <string>ballmill_time</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="0">
-     <widget class="QLineEdit" name="nameLineEdit"/>
-    </item>
-    <item row="11" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_5"/>
-    </item>
-    <item row="4" column="0">
-     <widget class="QLabel" name="label_13">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_14">
       <property name="text">
-       <string>price</string>
+       <string>name</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QLabel" name="label_24">
+      <property name="text">
+       <string>mixing_time</string>
       </property>
      </widget>
     </item>
     <item row="1" column="3">
      <widget class="QLineEdit" name="colorLineEdit"/>
     </item>
-    <item row="8" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
-    </item>
-    <item row="1" column="1">
-     <widget class="QDoubleSpinBox" name="densityDoubleSpinBox">
+    <item row="3" column="0">
+     <widget class="QDoubleSpinBox" name="sint_tempDoubleSpinBox">
       <property name="specialValueText">
        <string/>
       </property>
@@ -769,97 +238,40 @@
       </property>
      </widget>
     </item>
-    <item row="7" column="0">
-     <widget class="QLabel" name="label">
+    <item row="1" column="0">
+     <widget class="QLineEdit" name="nameLineEdit"/>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLabel" name="label_23">
       <property name="text">
-       <string>TextLabel</string>
+       <string>sint_time</string>
       </property>
      </widget>
-    </item>
-    <item row="9" column="0">
-     <widget class="QLabel" name="label_3">
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="0">
-     <widget class="QLabel" name="label_4">
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="2">
-     <widget class="QLabel" name="label_25">
-      <property name="text">
-       <string>ballmill_time</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0">
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="11" column="0">
-     <widget class="QLabel" name="label_5">
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-    </item>
-    <item row="10" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_4"/>
-    </item>
-    <item row="10" column="1">
-     <widget class="QComboBox" name="comboBox_4"/>
-    </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_14">
-      <property name="text">
-       <string>name</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_2"/>
-    </item>
-    <item row="8" column="1">
-     <widget class="QComboBox" name="comboBox"/>
-    </item>
-    <item row="2" column="3">
-     <widget class="QLabel" name="label_24">
-      <property name="text">
-       <string>mixing_time</string>
-      </property>
-     </widget>
-    </item>
-    <item row="9" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_3"/>
-    </item>
-    <item row="12" column="0">
-     <widget class="QLabel" name="label_6">
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="1">
-     <widget class="QComboBox" name="comboBox_6"/>
-    </item>
-    <item row="12" column="2">
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_6"/>
     </item>
    </layout>
+  </widget>
+  <widget class="QScrollArea" name="scrollArea">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>260</y>
+     <width>911</width>
+     <height>331</height>
+    </rect>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>909</width>
+      <height>329</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
