@@ -8,6 +8,7 @@ from src.module.Widget import *
 class View(QMainWindow):
     pre_request = pyqtSignal(tuple)
     json_request = pyqtSignal(tuple)
+    select_request = pyqtSignal(tuple)
     def __init__(self,tables):
         super().__init__()
         loadUi("./ui/MainWindow.ui", self)
@@ -86,6 +87,9 @@ class View(QMainWindow):
         if ip_path:
             self.json_request.emit(('widget','ip', ip_path))
 
+    def on_item_btn(self, table_name, item_name):
+        select_request = ('view',table_name,('id','오름차순'),('name','=',item_name))
+        self.select_request.emit(select_request)
 
     # [view에 값 표시] ===========================================================================================
     def set_table_names(self, table_names):
@@ -121,13 +125,14 @@ class View(QMainWindow):
             for col_idx, value in enumerate(row):
                 if col_idx == 0:
                     btn = QPushButton(str(value))
-                    view_request = (response[1],columns,row)
-                    btn.clicked.connect(lambda _, v=view_request: self.set_view_dialog(v))
+                    view_response = (response[0],response[1],(columns,row))
+                    btn.clicked.connect(lambda _, v=view_response: self.set_view_dialog(v))
                     tableWidget.setCellWidget(row_idx, col_idx, btn)
                 elif value:
-                    if columns[col_idx].split('_')[0] in self.dialogs.get('view',{}).keys():
+                    table_name = columns[col_idx].split('_')[0]
+                    if table_name in self.dialogs.get('view',{}).keys():
                         btn = QPushButton(str(value))
-                        # btn.clicked.connect(lambda _, v=view_request: self.set_view_dialog(v))
+                        btn.clicked.connect(lambda _, table_name=table_name, val=str(value): self.on_item_btn(table_name, val))
                         tableWidget.setCellWidget(row_idx, col_idx, btn)
                     else:
                         if tableWidget.cellWidget(row_idx, col_idx):
@@ -177,11 +182,10 @@ class View(QMainWindow):
             if end_row > merge_start:
                 tableWidget.setSpan(merge_start, col, end_row - merge_start + 1, 1)
 
-
-    def set_view_dialog(self,view_request):
-        dialog = self.get_dialog('view',view_request[0])
-        dialog.cols = view_request[1]
-        dialog.set_datas(view_request[2])
+    def set_view_dialog(self,view_response):
+        dialog = self.get_dialog('view',view_response[1])
+        dialog.cols = view_response[2][0]
+        dialog.set_datas(view_response[2][1])
 
 # ===========================================================================================
 import sys

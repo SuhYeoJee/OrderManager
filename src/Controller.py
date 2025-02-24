@@ -31,8 +31,10 @@ class Controller():
                 dialog.data_request.connect(self.on_data_request)
         self.view.dialogs['widget']['orders'].data_request.connect(self.on_data_request)
         self.view.dialogs['widget']['orders'].insert_request.connect(self.on_orders_insert_request)
+        
+        self.view.dialogs['widget']['orders'].insert_request.connect(self.on_orders_insert_request)
 
-
+        self.view.select_request.connect(self.on_table_item_btn)
 
     # [view에서 model 호출] -------------------------------------------------------------------------------------------
     def on_orders_insert_request(self,insert_request):
@@ -87,6 +89,10 @@ class Controller():
         except (IndexError, KeyError):
             self.on_table_name()
 
+    def on_table_item_btn(self,select_request):
+        worker_func = "get_select_data"
+        callback_func = self.view.set_view_dialog
+        self.launch_worker(worker_func,callback_func,select_request)
 
     def on_table_select_btn(self):
         worker_func = "get_select_data"

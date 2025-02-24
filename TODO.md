@@ -7,8 +7,8 @@
 
 ## TODO
 - [ ] DB 뷰어
-  - [ ] 테이블에서 버튼 눌러서 세부정보 보기
-    - [ ]  View.update_table_data
+  - [x] 테이블에서 버튼 눌러서 세부정보 보기
+    - [x]  View.update_table_data
   - [x] 이미지 처리
 - [ ] 수주 관리
   - [x] 수주 입력
@@ -19,24 +19,12 @@
 - [ ] ~~재고 관리~~
 
 ### 진행중 
-  - [ ] 테이블에서 버튼 눌러서 세부정보 보기
-    - [ ]  View.update_table_data
-
-  일단 버튼을 다 깔았다
-  이제 버튼을 매핑하면 된다. 
-  어캐함
-  이거 모델호출 해야함
-
-시그널을 하나 더 박고. 
-셀렉트 네임일치로 값 받은다음에 뷰 부르기 
-
-콜백: view.set_view_dialog
 
 
-아 본드 입력기에 파우더가 없음
+#### 아 본드 입력기에 파우더가 없음
 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
 
-nONE 선택 
+#### nONE 선택 
 이거 그냥 코드에서 '', 0값이나 2000-1-1이면 예외처리 해야겠는데
 
 
@@ -67,7 +55,7 @@ nONE 선택
  `on_json_response(self,json_response)`
 4. 모델함수 정의(model)
  `json_data(self,json_request)`
-5. 시그널 매핑(ctrl) 
-`self.view.json_request.connect(self.on_json_request)`
-6. 매핑함수 작성(ctrl)
+5. 매핑함수 작성(ctrl)
 `on_json_request(self,json_reqeust)`
+6. 시그널 매핑(ctrl) 
+`self.view.json_request.connect(self.on_json_request)`
