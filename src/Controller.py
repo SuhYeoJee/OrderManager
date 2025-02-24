@@ -33,6 +33,9 @@ class Controller():
         self.view.dialogs['update']['shipping'].data_request.connect(self.on_data_request)
         self.view.dialogs['widget']['orders'].data_request.connect(self.on_data_request)
         self.view.dialogs['widget']['orders'].insert_request.connect(self.on_orders_insert_request)
+        self.view.dialogs['insert']['bond'].density_request.connect(self.on_density_request)
+        self.view.dialogs['delete']['bond'].density_request.connect(self.on_density_request)
+        self.view.dialogs['update']['bond'].density_request.connect(self.on_density_request)
         self.view.select_request.connect(self.on_table_item_btn)
 
     # [view에서 model 호출] -------------------------------------------------------------------------------------------
@@ -61,6 +64,14 @@ class Controller():
         callback_func = self.view.dialogs[data_request[0]][data_request[1]].on_data_response
         self.launch_worker(worker_func,callback_func,data_request)
         
+
+    def on_density_request(self,density_request):
+        worker_func = "get_density_request"
+        callback_func = self.view.dialogs[density_request[0]][density_request[1]].on_density_response
+        self.launch_worker(worker_func,callback_func,density_request)
+        
+
+
     def on_table_name(self):
         worker_func = "get_all_table_items"
         callback_func = self.view.update_table_data

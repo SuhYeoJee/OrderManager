@@ -50,6 +50,26 @@ class Model():
         ip_inputs['infos'].update(infos)
         return ip_inputs
 
+    def get_density_request(self,density_request):
+        powder = {density_request[2][f"powder_{i}"]: density_request[2][f"pow{i}_rate"] for i in range(1, 7)}
+        densitys = {}
+        for name in powder:
+            query,bindings = self.qb.get_select_query('powder',['density'],{'comparison':[('name','=',name)]})
+            res = self.sql.execute_query(query,bindings)
+            try:
+                [(density,)] = res
+            except:
+                density = 0
+            densitys[name] = density
+        # 아무튼 밀도계산
+        res = self.calculate_mixed_density(powder,densitys)
+        return self._add_response_header(density_request,res)
+    
+    def calculate_mixed_density(self,powder, densitys):
+        total_weight = sum(powder.values())  # 전체 혼합비 합계
+        total_density = sum(powder[p] * densitys.get(p, 0) for p in powder)  # 가중 합계
+        
+        return total_density / total_weight if total_weight > 0 else 0  # 혼합비 합이 0이면 0 반환
 
     def _get_new_order_name(self):
         try:

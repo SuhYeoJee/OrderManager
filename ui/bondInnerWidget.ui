@@ -142,7 +142,7 @@
      <widget class="QComboBox" name="powder_2ComboBox"/>
     </item>
     <item row="7" column="1">
-     <widget class="QPushButton" name="item_loadBtn">
+     <widget class="QPushButton" name="densityBtn">
       <property name="text">
        <string>밀도 계산</string>
       </property>

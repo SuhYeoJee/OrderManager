@@ -59,10 +59,12 @@ for table_name in TABLES:
 
 
 class BondDialog(BaseDialog):
+    density_request = pyqtSignal(tuple)
     def __init__(self, dialog_type, table_name, parent=None):
         super().__init__(dialog_type, table_name, parent)
         self._set_inner_widget()
         self.input_widgets = self.get_input_widgets()
+        self.bondInnerWidget.densityBtn.clicked.connect(self.on_density_submit)
 
     def _set_inner_widget(self):
         self.bondInnerWidget = QWidget()
@@ -84,10 +86,15 @@ class BondDialog(BaseDialog):
         super().set_fks(datas)
         self._set_powder_combobox()
 
-    # 시그널 박아서 밀도 가져오기 
-
-
-
+    def on_density_submit(self):
+        data = self.get_inputs()
+        sub_dict = {k: v for k, v in data.items() if any(k == f"pow{i}_rate" or k == f"powder_{i}" for i in range(1, 7))}
+        self.data = self._add_request_header(sub_dict)
+        self.density_request.emit(self.data)
+    
+    def on_density_response(self,density_response):
+        density = density_response[2]
+        self.bondInnerWidget.densityDoubleSpinBox.setValue(float(density))
 
 class ShippingDialog(BaseDialog):
     def __init__(self,parent=None):
