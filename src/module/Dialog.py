@@ -63,7 +63,6 @@ class BondDialog(BaseDialog):
         super().__init__(dialog_type, table_name, parent)
         self._set_inner_widget()
         self.input_widgets = self.get_input_widgets()
-        self.set_powder_combobox()
 
     def _set_inner_widget(self):
         self.bondInnerWidget = QWidget()
@@ -85,6 +84,18 @@ class BondDialog(BaseDialog):
         super().set_fks(datas)
         self._set_powder_combobox()
 
-
     # 시그널 박아서 밀도 가져오기 
-    
+
+
+
+
+class ShippingDialog(BaseDialog):
+    def __init__(self,parent=None):
+        super().__init__('update','shipping',parent)
+
+    def on_update_submit(self):
+        inputs = self.get_inputs()
+        inputs.pop('reg_date')
+        inputs.pop('update_date')
+        self.update_request.emit(('update','orders',inputs))
+        self.close()

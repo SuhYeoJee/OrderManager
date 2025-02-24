@@ -82,13 +82,6 @@ class OrdersWidget(BaseUI):
         self.cols = pre_response[2][0]
         self.set_fks(pre_response[2][2])
 
-class ShippingWidget(BaseUI):
-    update_request = pyqtSignal(tuple)
-    def __init__(self,parent=None):
-        super().__init__('widget','shipping',parent)
-        loadUi(f"./ui/shippingWidget.ui", self) 
-        # --------------------------
-
 class SpWidget(BaseUI):
     insert_request = pyqtSignal(tuple)
     set_request = pyqtSignal(tuple)

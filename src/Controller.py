@@ -29,6 +29,8 @@ class Controller():
                 dialog = self.view.dialogs[action][table_name]
                 getattr(dialog, f'{action}_request').connect(lambda x, action=action: self.on_table_request(action, x))
                 dialog.data_request.connect(self.on_data_request)
+        self.view.dialogs['update']['shipping'].update_request.connect(lambda x: self.on_table_request('update', x))
+        self.view.dialogs['update']['shipping'].data_request.connect(self.on_data_request)
         self.view.dialogs['widget']['orders'].data_request.connect(self.on_data_request)
         self.view.dialogs['widget']['orders'].insert_request.connect(self.on_orders_insert_request)
         self.view.select_request.connect(self.on_table_item_btn)

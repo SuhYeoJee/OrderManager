@@ -15,6 +15,7 @@ class View(QMainWindow):
         self.ordersTableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
         self.tableWidget.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
         self.pushButton.clicked.connect(lambda: self.get_dialog('widget','orders'))
+        self.pushButton_2.clicked.connect(lambda: self.get_dialog('update','shipping'))
         # --------------------------
         self.dialog_infos = {table: globals().get(f"{table.capitalize()}Dialog") for table in tables}
         self.dialogs = {action: {key: cls(action, key) for key, cls in self.dialog_infos.items()} for action in ['view', 'insert', 'delete', 'update']}
@@ -22,6 +23,7 @@ class View(QMainWindow):
         self.dialogs['widget']['orders'] = OrdersWidget()
         self.dialogs['widget']['sp'] = SpWidget()
         self.dialogs['widget']['ip'] = IpWidget()
+        self.dialogs['update']['shipping'] = ShippingDialog()
         [self.dialogs[action]['sp'].pushButton.clicked.connect(lambda _, action=action: self.get_sp_widget(action)) for action in ['view', 'insert', 'delete', 'update']]
         [self.dialogs[action]['ip'].pushButton.clicked.connect(lambda _, action=action: self.get_ip_widget(action)) for action in ['view', 'insert', 'delete', 'update']]
         self.disable_sp_dialog_infos()
@@ -32,10 +34,11 @@ class View(QMainWindow):
     def get_dialog(self,dialog_type,table_name):
         dialog = self.dialogs[dialog_type][table_name]
         dialog.clear()
-        if dialog_type != 'view': # 추가 db 조회 없음
-            self.pre_request.emit((dialog_type,table_name))
         if dialog_type=="widget" and table_name == 'orders':
             dialog.clear_grids()
+        if dialog_type != 'view': # 추가 db 조회 없음
+            self.pre_request.emit((dialog_type,table_name))
+
         dialog.show()
         dialog.raise_()
         return dialog

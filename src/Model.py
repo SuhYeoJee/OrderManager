@@ -218,7 +218,8 @@ class Model():
         return self._add_response_header(select_request,res)
 
     def get_data_by_id(self,data_request):
-        query,bindings = self.qb.get_select_query(data_request[1],where_option={'comparison':[('id','=',data_request[2])]})
+        table_name = data_request[1] if data_request[1] != 'shipping' else 'orders'
+        query,bindings = self.qb.get_select_query(table_name,where_option={'comparison':[('id','=',data_request[2])]})
         res = self.sql.execute_query(query,bindings)
         return self._add_response_header(data_request,res)
 
@@ -265,7 +266,7 @@ class Model():
 
     def get_pre_infos(self,pre_request):
         '''다이얼로그 사전정보: 전체 cols,테이블에 존재하는 id목록, 외래키 제약'''
-        table_name = pre_request[1]
+        table_name = pre_request[1] if pre_request[1] != 'shipping' else 'orders'
         cols = self.get_table_col_names(table_name)
         ids = self.get_table_ids(table_name)
         fks = self.get_foreign_key_values(table_name)
