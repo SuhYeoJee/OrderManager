@@ -1,33 +1,33 @@
 import sqlite3
+import threading
 
 class SqlliteInterface():
     def __init__(self,db_path:str='mydatabase.db'):
         self.db_path = db_path
-        self.connect = None
-        self.cursor = None
+        self.local = threading.local()
     # -------------------------------------------------------------------------------------------
     def ensure_connect(func):
         def wrapper(self, *args, **kwargs):
-            self.connect = sqlite3.connect(self.db_path)
-            self.cursor = self.connect.cursor()
+            self.local.connect = sqlite3.connect(self.db_path)
+            self.local.cursor = self.local.connect.cursor()
             result = func(self, *args, **kwargs)
-            self.connect.commit()
-            self.connect.close()
+            self.local.connect.commit()
+            self.local.connect.close()
             return result
         return wrapper
     
     @ensure_connect
     def get_table_names(self):
-        self.cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-        res = [table[0] for table in self.cursor.fetchall()]
+        self.local.cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+        res = [table[0] for table in self.local.cursor.fetchall()]
         res.remove("sqlite_sequence")
         return res 
 
     @ensure_connect
     def execute_query(self,query,bindings:list=[]):
         try:
-            self.cursor.execute(query,bindings)
-            rows = self.cursor.fetchall()
+            self.local.cursor.execute(query,bindings)
+            rows = self.local.cursor.fetchall()
         except Exception as e:
             rows = [('DB error',e.__str__())]
         print('# ------------------------------------------')

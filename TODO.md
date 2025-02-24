@@ -2,7 +2,6 @@
 
 # Order Manager
 
-> bond 테이블 powder명 정규화함 (소문자, #->_)
 > 테이블 cols 반드시 소문자요구 (다이얼로그 자동화)
 
 ## TODO
@@ -43,8 +42,6 @@
 밀도를 자동으로 보여줘야함 
 innerwidget
 
-이거 본드 db도 정규화해서 powder_1, powder1_rate 하면 안되나 
-그게 낫겠는데요 
 
 #### 계산기
 - 가격테이블 
