@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QDialog, QPushButton, QVBoxLayout, QApplication, QScrollArea
 from PyQt5.QtGui import QPixmap, QPainter
-from PyQt5.QtPrintSupport import QPrinter, QPrintDialog
+from PyQt5.QtPrintSupport import QPrinter, QPrintDialog,QPrintPreviewDialog
 from PyQt5.QtCore import Qt
 from PyQt5.uic import loadUi
 
@@ -19,7 +19,7 @@ class MyDialog(QDialog):
         layout.addWidget(self.print_button)
 
         # 프린트 버튼 클릭 시 동작할 연결
-        self.print_button.clicked.connect(self.print_dialog)
+        self.print_button.clicked.connect(self.print_image)
 
     def save_scroll_area_as_image(self):
         # 스크롤 영역의 내용을 캡처하려면 스크롤 영역의 크기와 위치를 고려해야 합니다.
@@ -41,24 +41,24 @@ class MyDialog(QDialog):
 
         return pixmap
 
-    def print_dialog(self):
-        pixmap = self.save_scroll_area_as_image()  # 스크롤 영역을 이미지로 저장
-        print_image(pixmap)  # 이미지를 A4 용지 크기로 프린트
 
+    def print_image(self):
+        # 프린터 설정]
+        pixmap = self.save_scroll_area_as_image()
+        printer = QPrinter(QPrinter.HighResolution)
+        printer.setPageSize(QPrinter.A4)  # A4 크기
+        printer.setOrientation(QPrinter.Portrait)  # 세로 모드
 
-def print_image(pixmap):
-    # 프린터 설정
-    printer = QPrinter(QPrinter.HighResolution)
-    printer.setPageSize(QPrinter.A4)  # A4 크기
-    printer.setOrientation(QPrinter.Portrait)  # 세로 모드
+        # 프린트 미리보기 다이얼로그 생성
+        preview_dialog = QPrintPreviewDialog(printer)
+        preview_dialog.paintRequested.connect(lambda p: self.draw_pixmap_on_paper(p, pixmap))
+        preview_dialog.exec_()
 
-    # 프린트 다이얼로그 표시 (사용자가 선택한 프린터로 출력)
-    print_dialog = QPrintDialog(printer)
-    if print_dialog.exec_() == QPrintDialog.Accepted:
-        painter = QPainter(printer)  # QPainter를 사용하여 프린터에 그림을 그리기
+    def draw_pixmap_on_paper(self,printer, pixmap):
+        painter = QPainter(printer)
 
-        # A4 페이지의 크기 (너비와 높이)
-        page_rect = painter.viewport()
+        # A4 페이지 크기
+        page_rect = printer.pageRect()
         page_width = page_rect.width()
         page_height = page_rect.height()
 
@@ -71,16 +71,14 @@ def print_image(pixmap):
         scaled_width = int(image_width * scale_factor)
         scaled_height = int(image_height * scale_factor)
 
-        # 중앙에 배치하려면 x, y 좌표를 계산
-        x_offset = (page_width - scaled_width) // 2
+        # 중앙 배치 좌표 계산
+        x_offset = (page_width - scaled_width) // 2 +30
         y_offset = (page_height - scaled_height) // 2
 
-        # 이미지 크기를 원본 비율을 유지하면서 스케일링하고 중앙에 배치
-        pixmap = pixmap.scaled(scaled_width, scaled_height, Qt.KeepAspectRatio)
-
-        # A4 페이지에 이미지를 그리기 (중앙 배치)
-        painter.drawPixmap(x_offset, 0, pixmap) 
+        # 스케일링된 이미지 그리기
+        painter.drawPixmap(x_offset, 0, pixmap.scaled(scaled_width, scaled_height, Qt.KeepAspectRatio))
         painter.end()
+
 
 
 if __name__ == "__main__":

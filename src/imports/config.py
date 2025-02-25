@@ -3,7 +3,7 @@ DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss"
 DATE_FORMAT = "yyyy-MM-dd"
 DATE_KO_FORMAT = "yyyy년 M월 d일"
 DB_PATH='./config/NOVA.db'
-DEFAULT_VALS = ("", " ",None, 0, QDateTime(2000, 1, 1, 0, 0),QDate(2000, 1, 1))
+DEFAULT_VALS = ("", " ","2000-01-01","2000-01-01 00:00:00",None, 0, QDateTime(2000, 1, 1, 0, 0),QDate(2000, 1, 1))
 GET_HANDLERS = {
     QLineEdit: lambda widget: widget.text(),
     QComboBox: lambda widget: widget.currentText(),
