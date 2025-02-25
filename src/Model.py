@@ -206,7 +206,10 @@ class Model():
     
     def get_update_data(self,update_request):
         id_val = update_request[2].pop('id')
-        query,bindings = self.qb.get_update_query(update_request[1],update_request[2],where_option={'comparison':[('id','=',id_val)]})
+        if update_request[1] == "orders" and update_request[2].get('shipping_date',None) and not update_request[2].get('group',None):
+            query,bindings = self.qb.get_update_query(update_request[1],update_request[2],where_option={'comparison':[('name','=',update_request[2].get('name'))]})
+        else:
+            query,bindings = self.qb.get_update_query(update_request[1],update_request[2],where_option={'comparison':[('id','=',id_val)]})
         res = self.sql.execute_query(query,bindings)
         return self._add_response_header(update_request,res)
     

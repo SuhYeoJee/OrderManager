@@ -188,12 +188,17 @@ class View(QMainWindow):
 
     def _merge_row_range(self, tableWidget, start_row, end_row):
         """주어진 범위에 대해 모든 열의 값이 동일하면 병합"""
+
+        def get_text_from_cell(row, col)->str:
+            return tableWidget.item(row, col).text() if tableWidget.item(row, col) else (tableWidget.cellWidget(row, col).text() if isinstance(tableWidget.cellWidget(row, col), QPushButton) else '')
+
+
         for col in range(1, tableWidget.columnCount()):  # col(1)부터 (id 제외)
-            current_text = tableWidget.item(start_row, col).text() if tableWidget.item(start_row, col) else ''
+            current_text = get_text_from_cell(start_row, col)
             merge_start = start_row  # 병합 시작 지점
 
             for row in range(start_row + 1, end_row + 1):  # start_row+1부터 비교
-                item_text = tableWidget.item(row, col).text() if tableWidget.item(row, col) else ''
+                item_text = get_text_from_cell(row, col)
                 if item_text != current_text:
                     if row - merge_start > 1:  
                         tableWidget.setSpan(merge_start, col, row - merge_start, 1)
