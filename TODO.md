@@ -3,6 +3,8 @@
 # Order Manager
 > 테이블 cols 반드시 소문자요구 (다이얼로그 자동화)
 
+`pyinstaller --onefile main.py`
+
 ## TODO
 - [ ] 문서 인쇄
   - [ ] 수주 인쇄
