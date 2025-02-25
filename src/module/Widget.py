@@ -4,6 +4,7 @@ from src.imports.config import DATETIME_FORMAT
 import types
 # --------------------------
 from src.module.BaseUI import BaseUI
+from src.module.WidgetPrinter import WidgetPrinter
 # ===========================================================================================
 def disable_wheel_event(widget):
     """ 기존 위젯의 wheelEvent를 덮어씌워서 포커스가 없을 때 휠 이벤트를 무시함 """
@@ -93,6 +94,7 @@ class SpWidget(BaseUI):
         self.input_widgets.append(self.loads_segment_model_imgLabel)
         [disable_wheel_event(x) for x in self.input_widgets]
         self.submitBtn.clicked.connect(self.close)
+        self.printBtn.clicked.connect(self.print_image)
     
     def init_sp_dialog(self):
         # 배경색
@@ -110,6 +112,13 @@ class SpWidget(BaseUI):
         self.set_datas_from_json_response(json_response)
         self.set_request.emit(('widget','sp',json_response[2]))
 
+    def print_image(self):
+        scroll_area = self.findChild(QScrollArea, "scrollArea")
+        scroll_contents = scroll_area.widget()  # 실제 컨텐츠 위젯 가져오기
+
+        printer = WidgetPrinter(scroll_contents, self)
+        printer.print_widget()
+
 class IpWidget(BaseUI):
     insert_request = pyqtSignal(tuple)
     set_request = pyqtSignal(tuple)
@@ -121,6 +130,7 @@ class IpWidget(BaseUI):
         self.input_widgets.append(self.loads_item1_imageLabel)
         [disable_wheel_event(x) for x in self.input_widgets]
         self.submitBtn.clicked.connect(self.close)
+        self.printBtn.clicked.connect(self.print_image)
     
     def init_ip_dialog(self):
         # 배경색
@@ -137,3 +147,10 @@ class IpWidget(BaseUI):
         if self.request_header[1] != json_response[1]: return 
         self.set_datas_from_json_response(json_response)
         self.set_request.emit(('widget','ip',json_response[2]))
+
+    def print_image(self):
+        scroll_area = self.findChild(QScrollArea, "scrollArea")
+        scroll_contents = scroll_area.widget()  # 실제 컨텐츠 위젯 가져오기
+
+        printer = WidgetPrinter(scroll_contents, self)
+        printer.print_widget()

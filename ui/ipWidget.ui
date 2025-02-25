@@ -46,19 +46,19 @@
       <x>0</x>
       <y>0</y>
       <width>1030</width>
-      <height>1300</height>
+      <height>1440</height>
      </rect>
     </property>
     <widget class="QWidget" name="gridLayoutWidget_5">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>0</y>
+       <x>10</x>
+       <y>10</y>
        <width>1001</width>
-       <height>1481</height>
+       <height>1281</height>
       </rect>
      </property>
-     <layout class="QGridLayout" name="gridLayout_5" columnstretch="1,1,1,1,1,1,1,1,1">
+     <layout class="QGridLayout" name="gridLayout_5" rowstretch="10,2,3,3,1,3,3,3,3,3,1,3,3,3,3,1,3,3,3,3,3,3,3,3,1,7,7,7,1,15" columnstretch="1,1,1,1,1,1,1,1,1">
       <property name="spacing">
        <number>0</number>
       </property>
@@ -186,6 +186,12 @@
       </item>
       <item row="2" column="6" colspan="3">
        <widget class="QLineEdit" name="autos_creation_dateLineEdit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -307,7 +313,7 @@
          <string>공구 제조 지시서</string>
         </property>
         <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
         </property>
         <property name="margin">
          <number>4</number>
@@ -316,6 +322,12 @@
       </item>
       <item row="22" column="7" colspan="2">
        <widget class="QLineEdit" name="lineEdit_16">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -457,12 +469,18 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
       <item row="3" column="1" colspan="3">
        <widget class="QLineEdit" name="loads_item1_ip_recentLineEdit_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -486,7 +504,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -505,6 +523,12 @@
       </item>
       <item row="2" column="1" colspan="3">
        <widget class="QLineEdit" name="autos_nameLineEdit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -676,7 +700,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -711,7 +735,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -787,6 +811,12 @@
       </item>
       <item row="23" column="7" colspan="2">
        <widget class="QLineEdit" name="lineEdit_17">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -794,6 +824,12 @@
       </item>
       <item row="20" column="7" colspan="2">
        <widget class="QLineEdit" name="lineEdit_14">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -849,7 +885,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -884,7 +920,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -925,7 +961,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -979,7 +1015,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -1020,7 +1056,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -1039,6 +1075,12 @@
       </item>
       <item row="21" column="7" colspan="2">
        <widget class="QLineEdit" name="lineEdit_15">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -1081,7 +1123,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -1190,6 +1232,12 @@
       </item>
       <item row="5" column="3">
        <widget class="QLineEdit" name="lineEdit_3">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -1213,12 +1261,18 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
       <item row="5" column="1" colspan="2">
        <widget class="QLineEdit" name="inputs_infos_groupLineEdit_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -1274,7 +1328,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -1296,7 +1350,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -1366,6 +1420,12 @@
       </item>
       <item row="3" column="6" colspan="3">
        <widget class="QLineEdit" name="autos_due_dateLineEdit_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="readOnly">
          <bool>true</bool>
         </property>
@@ -1408,7 +1468,7 @@
          <enum>QAbstractSpinBox::NoButtons</enum>
         </property>
         <property name="specialValueText">
-         <string> </string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -1449,6 +1509,104 @@
         <property name="text">
          <string>loads_item1_imageLabel</string>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="gridLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>670</x>
+       <y>30</y>
+       <width>301</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout" rowstretch="1,3" columnstretch="1,3,3,3">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item row="0" column="3">
+       <widget class="QLabel" name="label_4">
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="text">
+         <string>사장</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="label_2">
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="text">
+         <string>담당</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_3">
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="text">
+         <string>부서장</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" rowspan="2">
+       <widget class="QLabel" name="label">
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="text">
+         <string>결
+재</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLabel" name="label_5">
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLabel" name="label_6">
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3">
+       <widget class="QLabel" name="label_7">
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
        </widget>
       </item>
      </layout>
@@ -1465,6 +1623,13 @@
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label_12">
+      <property name="text">
+       <string>id</string>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="1">
      <widget class="QComboBox" name="idComboBox">
       <property name="editable">
@@ -1472,17 +1637,10 @@
       </property>
      </widget>
     </item>
-    <item row="0" column="4">
+    <item row="0" column="5">
      <widget class="QPushButton" name="submitBtn">
       <property name="text">
        <string>SUBMIT</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0">
-     <widget class="QLabel" name="label_12">
-      <property name="text">
-       <string>id</string>
       </property>
      </widget>
     </item>
@@ -1498,6 +1656,13 @@
        </size>
       </property>
      </spacer>
+    </item>
+    <item row="0" column="4">
+     <widget class="QPushButton" name="printBtn">
+      <property name="text">
+       <string>PRINT</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

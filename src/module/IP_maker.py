@@ -101,7 +101,7 @@ class IPMaker():
             paints.append(item.get('paint', ''))
 
         for key, values in zip(["engrave", "welding", "dressing", "paint"], [engraves, weldings, dressings, paints]):
-            ip["autos"][key] = "\n".join(x or "" for x in values)
+            ip["autos"][key] = ("\n".join(x or "" for x in values)).strip()
 
         return autos
 
