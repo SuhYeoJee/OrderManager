@@ -10,6 +10,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     model = Model()
     view = View(model.table_names)
+    view.setWindowTitle("OrderManager - v0.00.0")
     controller = Controller(model, view)
     # --------------------------
     view.show()
