@@ -1,7 +1,7 @@
 import sqlite3
 import threading
 
-class SqlliteDB():
+class SqliteDB():
     def __init__(self,db_path:str='mydatabase.db'):
         self.db_path = db_path
         self.local = threading.local()
@@ -38,7 +38,7 @@ class SqlliteDB():
     
 # ===========================================================================================
 if __name__ == '__main__':
-    sqli = SqlliteDB()
+    sqli = SqliteDB()
     sqli.execute_query('SELECT id FROM users')
     # sqli.execute_query("INSERT INTO users (name, age, city) VALUES ('Bob', '25', 'Busan')")
     # sqli.execute_query('SELECT * FROM users')
