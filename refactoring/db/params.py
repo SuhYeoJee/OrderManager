@@ -39,7 +39,7 @@ class WhereParams:
     def to_dict(self): return asdict(self)
     def get_conditions(self):
         conditions = {k: v for k, v in asdict(self).items() if v is not None}
-        conditions.pop('logic')
+        conditions.pop('logic',None)
         return conditions
 
 @dataclass

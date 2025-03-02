@@ -17,18 +17,11 @@ class SqliteDB():
         return wrapper
     
     @ensure_connect
-    # 삭제
-    def get_table_names(self):
-        self.local.cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
-        res = [table[0] for table in self.local.cursor.fetchall()]
-        res.remove("sqlite_sequence")
-        return res 
-
-    @ensure_connect
     def execute_query(self,query,bindings:list=[]):
         try:
             self.local.cursor.execute(query,bindings)
             rows = self.local.cursor.fetchall()
+            return rows
         except Exception as e:
             rows = [('DB error',e.__str__())]
         print('# ------------------------------------------')

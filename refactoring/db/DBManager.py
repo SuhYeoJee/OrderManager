@@ -4,8 +4,8 @@ from refactoring.db.params import *
 from config import DB_PATH
 
 class DBManager():
-    def __init__(self):
-        self.db = SqliteDB(DB_PATH)
+    def __init__(self, db_path:str=None):
+        self.db = SqliteDB(db_path if db_path else DB_PATH)
         self.qb = SqliteQueryBuilder()
     # [CRUD] ===========================================================================================
     def insert_record(self,params:InsertParams):
@@ -18,8 +18,7 @@ class DBManager():
         return self._execute_crud('update',params)
     
     def delete_record(self,params:DeleteParams):
-        operation = 'delete' if params.where else 'delete_by_column_value_pairs_query'
-        return self._execute_crud(operation,params)
+        return self._execute_crud('delete',params)
     # -------------------------------------------------------------------------------------------
     def _execute_crud(self,operation,params):
         qb_func = getattr(self.qb,f"build_{operation}_query")

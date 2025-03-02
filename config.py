@@ -1,1 +1,1 @@
-DB_PATH='../NOVA.db'
+DB_PATH='./test/test.db'
