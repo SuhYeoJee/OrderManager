@@ -3,6 +3,7 @@ import re
 from src.imports.config import DEFAULT_VALS
 from itertools import chain # 리스트 평탄화
 from refactoring.utils.SafeList import SafeList
+from refactoring.db.params import *
 
 class SqliteQueryBuilder():
     def __init__(self):...
@@ -14,67 +15,59 @@ class SqliteQueryBuilder():
         return f"PRAGMA table_info({table_name})"
 
     # --------------------------
-    def build_insert_query(self,table_name:str,column_value_pairs:dict):
+    def build_insert_query(self,p:InsertParams):
         '''INSERT INTO 테이블명 (키1, 키2, ...) VALUES (?,?,...);, (값1,값2,...)'''
-        column_value_pairs = self._remove_invalid_values(column_value_pairs)
+        column_value_pairs = p.get_filtered_column_value_pairs()
         bindings = SafeList(column_value_pairs.values())
-        return f'''INSERT INTO "{table_name}" ({",".join([f'"{column}"' for column in column_value_pairs.keys()])}) VALUES ({",".join(['?']*len(bindings))});''',bindings
+        return f'''INSERT INTO "{p.table_name}" ({",".join([f'"{column}"' for column in column_value_pairs.keys()])}) VALUES ({",".join(['?']*len(bindings))});''',bindings
     # --------------------------
-    def build_select_query(self,table_name:str,columns:list=[],where:dict={},sort:tuple=('id','ASC')):
+    def build_select_query(self,p:SelectParams):
         '''SELECT col1, col2 ... FROM 테이블명 WHERE 조건 ORDER BY col ASC/DESC;,bindings'''
-        where_clause,where_bindings = self._build_where_clause(where) if where else ('',SafeList())
-        sort_clause = self._build_sort_clause(sort)
-        return f'''SELECT {",".join([f'"{x}"' for x in columns]) if columns else "*"} FROM "{table_name}" {where_clause} {sort_clause};''',where_bindings
+        where_clause,where_bindings = self._build_where_clause(p.where)
+        sort_clause = self._build_sort_clause(p.sort)
+        return f'''SELECT {",".join([f'"{x}"' for x in p.columns]) if p.columns else "*"} FROM "{p.table_name}" {where_clause} {sort_clause};''',where_bindings
     # --------------------------
-    def build_update_query(self,table_name:str,column_value_pairs:dict,where:dict={}):
+    def build_update_query(self,p:UpdateParams):
         '''UPDATE 테이블명 SET 키1 = 값1, 키2 = 값2 ... WHERE 조건;,bindings'''
-        column_value_pairs = self._remove_invalid_values(column_value_pairs)
-        where_clause,where_bindings = self._build_where_clause(where) if where else ('',SafeList())
+        column_value_pairs = p.get_filtered_column_value_pairs()
+        where_clause,where_bindings = self._build_where_clause(p.where) if p.where else ('',SafeList())
         bindings = SafeList(column_value_pairs.values()) + where_bindings
-        return f'''UPDATE "{table_name}" SET {','.join([f'''"{column}" = ?''' for column in column_value_pairs.keys()])} {where_clause};''',bindings
+        return f'''UPDATE "{p.table_name}" SET {','.join([f'''"{column}" = ?''' for column in column_value_pairs.keys()])} {where_clause};''',bindings
     # --------------------------
-    def build_delete_query(self,table_name:str,where:dict={}):
+    def build_delete_query(self,p:DeleteParams):
         '''DELETE FROM 테이블명 WHERE 조건'''
-        where_clause,where_bindings = self._build_where_clause(where) if where else ('',SafeList())
-        return f'''DELETE FROM "{table_name}" {where_clause};''',where_bindings
-    # --------------------------
-    def build_delete_by_column_value_pairs_query(self,table_name:str,column_value_pairs:dict):
-        '''DELETE FROM 테이블명 WHERE 조건 - column_value_pairs 일치하는 항목 삭제'''
-        column_value_pairs = self._remove_invalid_values(column_value_pairs)
-        sub_where_clause = 'WHERE ' + " AND ".join([f'''"{column}" = ?''' for column in column_value_pairs.keys()])
-        bindings = SafeList(column_value_pairs.values())
-        where_str = f'''WHERE id = (SELECT MAX(id) FROM {table_name} {sub_where_clause})''' # 중복이 있으면 id가 가장 큰 것을 삭제
-        return f'''DELETE FROM "{table_name}" {where_str};''',bindings
+        if p.where:
+            where_clause,where_bindings = self._build_where_clause(p.where)
+        else:
+            column_value_pairs = p.get_filtered_column_value_pairs()
+            sub_where_clause = 'WHERE ' + " AND ".join([f'''"{column}" = ?''' for column in column_value_pairs.keys()])
+            where_bindings = SafeList(column_value_pairs.values())
+            where_clause = f'''WHERE id = (SELECT MAX(id) FROM {p.table_name} {sub_where_clause})''' # 중복이 있으면 id가 가장 큰 것을 삭제
+        return f'''DELETE FROM "{p.table_name}" {where_clause};''',where_bindings
     # ===========================================================================================
-    def _build_sort_clause(self,sort:tuple)->str:
+    def _build_sort_clause(self,p:SortParams)->str:
         '''sort절 작성: sort:{column_name:str, is_desc:bool}'''
-        sort_clause = f'''ORDER BY {SafeList(sort).safe_get(0)} {"DESC" if SafeList(sort).safe_get(1,'').upper() == "DESC" else "ASC"}'''
+        if p:
+            sort_clause = f'''ORDER BY "{p.column_name}" {"DESC" if p.is_desc else "ASC"}'''
+        else:
+            sort_clause = ''
         return sort_clause
     # --------------------------
-    def _build_where_clause(self,where:dict)->str:
+    def _build_where_clause(self,p:WhereParams)->str:
         '''
-        comparison: >,<,=,!=,>=,<=
-            [(컬럼,연산자,값)]
-        between: BETWEEN ... AND ...
-            [(컬럼,시작값,끝값)]
-        inlist: IN (...)
-            [(컬럼,[목록])]
-        likepattern: LIKE
-            [(컬럼,패턴)]
-        isnull: IS NULL / IS NOT NULL
-            [(컬럼,True(값 부재)),(컬럼,False(값 존재))]
-
         조건식 논리를 스트링으로 입력 (기본: AND 연결)
         논리: AND, OR, NOT
         logic = '{comparison[0]} AND {comparison[1]} OR NOT {between[0]}'
         '''
-        logic = where.pop('logic',None)
+        if p :
+            conditions = {}
+            for condition_type,options in p.get_conditions().items():
+                conditions[f'{condition_type}s'], conditions[f'{condition_type}_bindings'] \
+                    = getattr(self, f'_build_{condition_type}_clause')(options)
 
-        conditions = {}
-        for key,val in where.items():
-            conditions[f'{key}s'], conditions[f'{key}_bindings'] = getattr(self, f'_build_{key}_clause')(val)
-
-        where_clause, bindings = self._combine_where_clauses(conditions,logic)
+            where_clause, bindings = self._combine_where_clauses(conditions,p.logic)
+        else:
+            where_clause, bindings = '',[]
 
         return where_clause, bindings
     # -------------------------------------------------------------------------------------------
@@ -162,7 +155,3 @@ class SqliteQueryBuilder():
             col,flag = option
             isnulls.append(f'''"{col}" IS {'' if flag else 'NOT '}NULL''')
         return isnulls,bindings
-    # -------------------------------------------------------------------------------------------
-    def _remove_invalid_values(self,d: dict) -> dict:
-        '''무효값/기본값 키:값쌍 제거'''
-        return {k: v for k, v in d.items() if v not in DEFAULT_VALS}

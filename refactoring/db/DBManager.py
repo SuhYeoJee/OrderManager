@@ -9,21 +9,21 @@ class DBManager():
         self.qb = SqliteQueryBuilder()
     # [CRUD] ===========================================================================================
     def insert_record(self,params:InsertParams):
-        return self._execute_crud('insert',params.to_dict())
+        return self._execute_crud('insert',params)
     
     def select_records(self,params:SelectParams):
-        return self._execute_crud('select',params.to_dict())
+        return self._execute_crud('select',params)
     
     def update_record(self,params:UpdateParams):
-        return self._execute_crud('update',params.to_dict())
+        return self._execute_crud('update',params)
     
     def delete_record(self,params:DeleteParams):
         operation = 'delete' if params.where else 'delete_by_column_value_pairs_query'
-        return self._execute_crud(operation,params.to_dict())
+        return self._execute_crud(operation,params)
     # -------------------------------------------------------------------------------------------
     def _execute_crud(self,operation,params):
         qb_func = getattr(self.qb,f"build_{operation}_query")
-        query,bindings = qb_func(**params)
+        query,bindings = qb_func(params)
         result = self.db.execute_query(query,bindings)
         return result
     # ===========================================================================================
