@@ -9,7 +9,8 @@ class SqliteQueryBuilder():
     def __init__(self):...
     # -------------------------------------------------------------------------------------------
     def get_select_table_name_query(self)->str:
-        return '''SELECT name FROM sqlite_sequence;'''
+        return '''SELECT name FROM sqlite_master WHERE type='table';'''
+    
     
     def get_table_info_query(self,table_name:str)->str:
         return f"PRAGMA table_info({table_name})"

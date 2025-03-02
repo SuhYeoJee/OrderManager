@@ -33,11 +33,11 @@ class DBManager():
         return table_names 
     
     def get_table_ids(self,table_name):
-        SelectParams(
+        p = SelectParams(
             table_name=table_name,
-            columns='id',
+            columns=['id'],
         )
-        result = self.select_records(SelectParams)
+        result = self.select_records(p)
         ids = self._extract_fields_by_index(result)
         return ids
     
@@ -52,13 +52,12 @@ class DBManager():
         result = self.db.execute_query(query)
         return next((col[2] for col in result if col[1] == col_name), None)
 
-
     def select_records_by_comparison(self,table_name,column_name,value):
-        SelectParams(
+        p = SelectParams(
             table_name=table_name,
-            where={'comparison':[(column_name,'=',value)]}
+            where=WhereParams([(column_name,'=',value)])
         )
-        return self.select_records(SelectParams)
+        return self.select_records(p)
 
     # -------------------------------------------------------------------------------------------
     def _extract_fields_by_index(self,records,index:int=0):
