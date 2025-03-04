@@ -22,13 +22,13 @@ class IPDocParam:
     engrave: str = ''
     customer: str = ''
     description: str = ''
-    due_date: Optional[QDate]
-    order_date: Optional[QDate]
+    due_date: Optional[QDate] = None
+    order_date: Optional[QDate] = None
 
     item1: IPDocItemParam
-    item2: Optional[IPDocItemParam]
-    item3: Optional[IPDocItemParam]
-    item4: Optional[IPDocItemParam]
+    item2: Optional[IPDocItemParam] = None
+    item3: Optional[IPDocItemParam] = None
+    item4: Optional[IPDocItemParam] = None
 
     def to_dict(self): 
         return {k:v for k,v in asdict(self).items() if k != 'dbm'}
