@@ -6,16 +6,18 @@ from src.imports.config import DATE_FORMAT, DATE_KO_FORMAT
 from src.imports.pyqt5_imports import QDate
 from refactoring.docs.JsonManager import *
 from refactoring.db.DBManager import *
-from refactoring.docs.params import IPDocParam
+from refactoring.docs.params import IPDocParam,IPDocItemParam
 from pprint import pprint
 # ===========================================================================================
 class IPDoc(JsonManager):
-    def __init__(self, dbm:DBManager, p:IPDocParam):
-        self.dbm = dbm
+    def __init__(self,dbm,p:IPDocParam):
+        self.dbm =dbm
         self.p = p
         self.name = self._get_new_ip_name()
+        self.file_path = f'./test/{self.name}.json'
+        super().__init__(self.file_path)
         self.max_item_idx = self._get_max_item_idx()
-        self.file_path = f'./doc/ip/{self.name}.json'
+        # self.file_path = f'./doc/ip/{self.name}.json'
 
         self.build_ip()
     # --------------------------
@@ -45,7 +47,8 @@ class IPDoc(JsonManager):
         items = {}
         for item_idx in range(1, self.max_item_idx):
             item_param = getattr(self.p,f'item{item_idx}')
-            items['item{i}'] = self.dbm.select_records_by_comparison('ip','name',item_param.name)
+            items[f'item{item_idx}'] = self.dbm.select_records_by_comparison('item','name',item_param.name)
+        
         return items
 
     def _build_autos(self):
@@ -102,3 +105,58 @@ class IPDoc(JsonManager):
         return autos
 
     # ===========================================================================================
+
+
+CREATE_ITEM_TABLE = '''CREATE TABLE item (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE,
+    segment1_name TEXT REFERENCES segment(name),
+    segment1_amount INTEGER,
+    segment2_name TEXT REFERENCES segment(name),
+    segment2_amount INTEGER,
+    shank_name TEXT REFERENCES shank(name),
+    shank_amount INTEGER,
+    submaterial1_name TEXT REFERENCES submaterial(name),
+    submaterial1_amount INTEGER,
+    submaterial2_name TEXT REFERENCES submaterial(name),
+    submaterial2_amount INTEGER
+);'''
+
+CREATE_IP_TABLE = '''CREATE TABLE ip (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL UNIQUE
+);'''
+
+def dbm():
+    dbm = DBManager("./test.db")
+    dbm.db.execute_query("DROP TABLE IF EXISTS item")
+    dbm.db.execute_query("DROP TABLE IF EXISTS ip")
+    dbm.db.execute_query(CREATE_ITEM_TABLE)
+    dbm.db.execute_query(CREATE_IP_TABLE)
+    dbm.insert_record(InsertParam("item", 
+                                  {"name": "TEST-G1 A",
+                                    "segment1_name": "SQTEST1",
+                                    "segment1_amount": 3,
+                                    "shank_name":"DBS-CCW",
+                                    "shank_amount": 1,
+                                    "submaterial1_name": "PCD10",
+                                    "submaterial1_amount": 1
+                                   }))
+    dbm.insert_record(InsertParam("item", 
+                                  {"name": "TEST-G2 A",
+                                    "segment1_name": "SQTEST1",
+                                    "segment1_amount": 1,
+                                    "segment2_name": "SQTEST2",
+                                    "segment2_amount": 2,
+                                    "shank_name":"SQ948-CW",
+                                    "shank_amount": 1,
+                                    "submaterial1_name": "PCD10",
+                                    "submaterial1_amount": 1,
+                                    "submaterial2_name": "PCD12",
+                                    "submaterial2_amount": 2,
+                                   }))
+    return dbm
+
+if __name__ == '__main__':
+    ipd = IPDoc(dbm(),IPDocParam(item1=IPDocItemParam("TEST-G1 A", 1)))
+ 

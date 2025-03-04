@@ -13,16 +13,16 @@ def new_dbm():
     "test_input, expected",
     [
         # 기본적인 데이터 삽입
-        (InsertParam("users", {"id": 1, "name": "Alice"}), (1, "Alice")),
+        (InsertParam("users", {"id": 1, "name": "Alice"}), ({'id':1, 'name':"Alice"})),
 
         # 다른 데이터 삽입
-        (InsertParam("users", {"id": 2, "name": "Bob"}), (2, "Bob")),
+        (InsertParam("users", {"id": 2, "name": "Bob"}), ({'id':2, 'name':"Bob"})),
 
         # 빈 문자열 삽입
-        (InsertParam("users", {"id": 3, "name": ""}), (3, "")),
+        (InsertParam("users", {"id": 3, "name": ""}), ({'id':3, 'name':""})),
 
         # NULL 값 삽입 (id 자동 증가)
-        (InsertParam("users", {"name": "Charlie"}), (1, "Charlie")),
+        (InsertParam("users", {"name": "Charlie"}), ({'id':1, 'name':"Charlie"})),
     ]
 )
 
@@ -49,16 +49,16 @@ def dbm():
     "test_input, expected",
     [
         # 기본적인 SELECT (모든 데이터 조회)
-        (SelectParam("users", ["id", "name"]), [(1, "Alice"), (2, "Bob"), (3, ""), (4, "Charlie")]),
+        (SelectParam("users", ["id", "name"]), [{'id':1, 'name':"Alice"}, {'id':2, 'name':"Bob"}, {'id':3, 'name':""}, {'id':4, 'name':"Charlie"}]),
 
         # 특정 조건으로 SELECT (id=2인 데이터 조회)
-        (SelectParam("users", ["id", "name"], WhereParam(comparison=[("id", "=", 2)])), [(2, "Bob")]),
+        (SelectParam("users", ["id", "name"], WhereParam(comparison=[("id", "=", 2)])), [{'id':2, 'name':"Bob"}]),
 
         # SELECT 후 ORDER BY 적용
-        (SelectParam("users", ["id", "name"], sort=SortParam("name", False)), [(3, ""), (1, "Alice"), (2, "Bob"),(4, "Charlie")]),
+        (SelectParam("users", ["id", "name"], sort=SortParam("name", False)), [{'id':3, 'name':""},{'id':1, 'name':"Alice"}, {'id':2, 'name':"Bob"},  {'id':4, 'name':"Charlie"}]),
 
         # 특정 컬럼만 SELECT
-        (SelectParam("users", ["id"]), [(1,), (2,), (3,), (4,)]),
+        (SelectParam("users", ["id"]), [{'id':1},{'id':2},{'id':3},{'id':4}]),
     ]
 )
 def test_select_record(dbm, test_input, expected):
@@ -66,9 +66,9 @@ def test_select_record(dbm, test_input, expected):
     assert result == expected
 
 @pytest.mark.parametrize("test_input, expected", [
-    (UpdateParam("users", {"name": "Updated Name"}, WhereParam(comparison=[("id", "=", 2)])), [(2, "Updated Name")]),
-    (UpdateParam("users", {"name": "New Alice"}, WhereParam(comparison=[("id", "=", 1)])), [(1, "New Alice")]),
-    (UpdateParam("users", {"name": "Anonymous"}, WhereParam(comparison=[("id", "=", 3)])), [(3, "Anonymous")]),
+    (UpdateParam("users", {"name": "Updated Name"}, WhereParam(comparison=[("id", "=", 2)])), [{'id':2, 'name':"Updated Name"}]),
+    (UpdateParam("users", {"name": "New Alice"}, WhereParam(comparison=[("id", "=", 1)])), [{'id':1, 'name':"New Alice"}]),
+    (UpdateParam("users", {"name": "Anonymous"}, WhereParam(comparison=[("id", "=", 3)])), [{'id':3, 'name':"Anonymous"}]),
 ])
 def test_update_record(dbm, test_input, expected):
     dbm.update_record(test_input)
@@ -82,7 +82,7 @@ def test_update_record(dbm, test_input, expected):
 ])
 def test_delete_record(dbm, test_input, expected):
     dbm.delete_record(test_input)
-    result = [row[0] for row in dbm.select_records(SelectParam("users", ["id"]))]
+    result = [row['id'] for row in dbm.select_records(SelectParam("users", ["id"]))]
     assert sorted(result) == sorted(expected)
 
 # -------------------------------------------------------------------------------------------
@@ -105,4 +105,4 @@ def test_get_table_col_type(dbm):
 
 def test_select_records_by_comparison(dbm):
     result = dbm.select_records_by_comparison('users','name','Bob')
-    assert result == [(2, 'Bob')]
+    assert result == [{'id': 2, 'name': 'Bob'}]

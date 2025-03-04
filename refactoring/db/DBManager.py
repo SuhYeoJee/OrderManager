@@ -29,7 +29,7 @@ class DBManager():
     def get_table_names(self):
         query = self.qb.get_select_table_name_query()
         result = self.db.execute_query(query)
-        table_names = self._extract_fields_by_index(result)
+        table_names = self._extract_fields_by_key(result,'name')
         return table_names 
     
     def get_table_ids(self,table_name):
@@ -38,19 +38,19 @@ class DBManager():
             columns=['id'],
         )
         result = self.select_records(p)
-        ids = self._extract_fields_by_index(result)
+        ids = self._extract_fields_by_key(result,'id')
         return ids
     
     def get_table_col_names(self,table_name):
         query = self.qb.get_table_info_query(table_name)
         result = self.db.execute_query(query)
-        col_names = self._extract_fields_by_index(result,1)
+        col_names = self._extract_fields_by_key(result,'name')
         return col_names
     
     def get_table_col_type(self,table_name,col_name):
         query = self.qb.get_table_info_query(table_name)
         result = self.db.execute_query(query)
-        return next((col[2] for col in result if col[1] == col_name), None)
+        return next((col['type'] for col in result if col['name'] == col_name), None)
 
     def select_records_by_comparison(self,table_name,column_name,value):
         p = SelectParam(
@@ -60,6 +60,6 @@ class DBManager():
         return self.select_records(p)
 
     # -------------------------------------------------------------------------------------------
-    def _extract_fields_by_index(self,records,index:int=0):
-        return [record[index] for record in records]
+    def _extract_fields_by_key(self,records,key:str):
+        return [record[key] for record in records]
     

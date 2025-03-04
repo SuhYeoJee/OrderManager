@@ -10,6 +10,7 @@ class SqliteDB():
         def wrapper(self, *args, **kwargs):
             self.local.connect = sqlite3.connect(self.db_path)
             self.local.cursor = self.local.connect.cursor()
+            self.local.cursor.row_factory = sqlite3.Row 
             result = func(self, *args, **kwargs)
             self.local.connect.commit()
             self.local.connect.close()
@@ -21,13 +22,13 @@ class SqliteDB():
         try:
             self.local.cursor.execute(query,bindings)
             rows = self.local.cursor.fetchall()
-            return rows
+            result = [dict(row) for row in rows] 
         except Exception as e:
-            rows = [('DB error',e.__str__())]
+            result = [{'DB error':e.__str__()}]
         print('# ------------------------------------------')
         print(query,bindings)
-        print(rows)
-        return rows
+        print(result)
+        return result
     
 # ===========================================================================================
 if __name__ == '__main__':
