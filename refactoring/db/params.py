@@ -6,7 +6,7 @@ from typing import Optional, Union, Literal, List, Dict, Tuple
 from src.imports.pyqt5_imports import *
 
 @dataclass
-class WhereParams:
+class WhereParam:
     comparison: Optional[List[Tuple[
         str, # column_name
         Literal['>','<','=','!=','>=','<='], # operator
@@ -43,12 +43,12 @@ class WhereParams:
         return conditions
 
 @dataclass
-class SortParams:
+class SortParam:
     column_name: str = 'id'
     is_desc: bool = True
 
 @dataclass
-class InsertParams:
+class InsertParam:
     table_name :str
     column_value_pairs: Dict[str, Union[str, int, float,QDate,QDateTime]]
 
@@ -58,20 +58,21 @@ class InsertParams:
         return {k: v for k, v in self.column_value_pairs.items() if v is not None}
 
 @dataclass
-class SelectParams:
+class SelectParam:
     table_name :str
     columns: Optional[List[str]] = None
-    where: Optional[WhereParams] = None
-    sort: Optional[SortParams] = None
+    where: Optional[WhereParam] = None
+    sort: Optional[SortParam] = None
+    limit: Optional[int] = None
 
     def to_dict(self): 
         return asdict(self)
 
 @dataclass
-class UpdateParams:
+class UpdateParam:
     table_name :str
     column_value_pairs: Dict[str, Union[str, int, float,QDate,QDateTime]]
-    where: Optional[WhereParams] = None
+    where: Optional[WhereParam] = None
 
     def to_dict(self): return asdict(self)
 
@@ -79,10 +80,10 @@ class UpdateParams:
         return {k: v for k, v in self.column_value_pairs.items() if v is not None}
 
 @dataclass
-class DeleteParams:
+class DeleteParam:
     table_name :str
     column_value_pairs: Optional[Dict[str, Union[str, int, float,QDate,QDateTime]]] = None
-    where: Optional[WhereParams] = None
+    where: Optional[WhereParam] = None
 
     def __post_init__(self):
             # column_value_pairs와 where 둘 중 하나만
@@ -99,6 +100,6 @@ class DeleteParams:
 
 # ===========================================================================================
 if __name__=="__main__":
-    w = WhereParams(comparison=[('as','>',2)])
-    p = asdict(DeleteParams('as',where=w))
+    w = WhereParam(comparison=[('as','>',2)])
+    p = asdict(DeleteParam('as',where=w))
     print(isinstance(p['where'],dict))

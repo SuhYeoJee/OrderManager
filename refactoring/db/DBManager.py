@@ -8,16 +8,16 @@ class DBManager():
         self.db = SqliteDB(db_path if db_path else DB_PATH)
         self.qb = SqliteQueryBuilder()
     # [CRUD] ===========================================================================================
-    def insert_record(self,params:InsertParams):
+    def insert_record(self,params:InsertParam):
         return self._execute_crud('insert',params)
     
-    def select_records(self,params:SelectParams):
+    def select_records(self,params:SelectParam):
         return self._execute_crud('select',params)
     
-    def update_record(self,params:UpdateParams):
+    def update_record(self,params:UpdateParam):
         return self._execute_crud('update',params)
     
-    def delete_record(self,params:DeleteParams):
+    def delete_record(self,params:DeleteParam):
         return self._execute_crud('delete',params)
     # -------------------------------------------------------------------------------------------
     def _execute_crud(self,operation,params):
@@ -33,7 +33,7 @@ class DBManager():
         return table_names 
     
     def get_table_ids(self,table_name):
-        p = SelectParams(
+        p = SelectParam(
             table_name=table_name,
             columns=['id'],
         )
@@ -53,9 +53,9 @@ class DBManager():
         return next((col[2] for col in result if col[1] == col_name), None)
 
     def select_records_by_comparison(self,table_name,column_name,value):
-        p = SelectParams(
+        p = SelectParam(
             table_name=table_name,
-            where=WhereParams([(column_name,'=',value)])
+            where=WhereParam([(column_name,'=',value)])
         )
         return self.select_records(p)
 

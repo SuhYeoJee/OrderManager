@@ -6,27 +6,35 @@ from typing import Optional, Union, Literal, List, Dict, Tuple
 from src.imports.pyqt5_imports import *
 from refactoring.db.DBManager import DBManager
 
+
 @dataclass
-class IPDocParams:
+class IPDocItemParam:
+    item:str
+    amount:int
+    # code:str # 안쓰는거같음 리팩토링 완료후 확인좀 
+    def to_dict(self): return asdict(self)
+
+@dataclass
+class IPDocParam:
     dbm: DBManager
 
     group: str = ''
     engrave: str = ''
+    customer: str = ''
     description: str = ''
     due_date: Optional[QDate]
-    customer: str = ''
     order_date: Optional[QDate]
 
-    item1: Dict[str,Union[str,int]] = {}
-    item2: Dict[str,Union[str,int]] = {}
-    item3: Dict[str,Union[str,int]] = {}
-    item4: Dict[str,Union[str,int]] = {}
+    item1: IPDocItemParam
+    item2: Optional[IPDocItemParam]
+    item3: Optional[IPDocItemParam]
+    item4: Optional[IPDocItemParam]
 
     def to_dict(self): 
         return {k:v for k,v in asdict(self).items() if k != 'dbm'}
 
 @dataclass
-class SPDocParams:
+class SPDocParam:
     dbm: DBManager
 
     name: str = ''

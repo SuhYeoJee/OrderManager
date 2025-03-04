@@ -10,31 +10,33 @@ class SqliteQueryBuilder():
     def get_select_table_name_query(self)->str:
         return '''SELECT name FROM sqlite_master WHERE type='table';'''
     
-    
     def get_table_info_query(self,table_name:str)->str:
         return f"PRAGMA table_info({table_name})"
 
     # --------------------------
-    def build_insert_query(self,p:InsertParams):
+    def build_insert_query(self,p:InsertParam):
         '''INSERT INTO 테이블명 (키1, 키2, ...) VALUES (?,?,...);, (값1,값2,...)'''
         column_value_pairs = p.get_filtered_column_value_pairs()
         bindings = SafeList(column_value_pairs.values())
         return f'''INSERT INTO "{p.table_name}" ({",".join([f'"{column}"' for column in column_value_pairs.keys()])}) VALUES ({",".join(['?']*len(bindings))});''',bindings
     # --------------------------
-    def build_select_query(self,p:SelectParams):
-        '''SELECT col1, col2 ... FROM 테이블명 WHERE 조건 ORDER BY col ASC/DESC;,bindings'''
+    def build_select_query(self,p:SelectParam):
+        '''SELECT col1, col2 ... FROM 테이블명 WHERE 조건 ORDER BY col ASC/DESC LIMIT 값;,bindings'''
         where_clause,where_bindings = self._build_where_clause(p.where)
         sort_clause = self._build_sort_clause(p.sort)
-        return f'''SELECT {",".join([f'"{x}"' for x in p.columns]) if p.columns else "*"} FROM "{p.table_name}" {where_clause} {sort_clause};''',where_bindings
+        limit_clause = self._build_limit_clause(p.limit)
+        clauses = (" "+ clauses) if (clauses:=" ".join([c for c in [where_clause,sort_clause,limit_clause] if c])) else ''
+        return f'''SELECT {",".join([f'"{x}"' for x in p.columns]) if p.columns else "*"} FROM "{p.table_name}"{clauses};''',where_bindings
     # --------------------------
-    def build_update_query(self,p:UpdateParams):
+    def build_update_query(self,p:UpdateParam):
         '''UPDATE 테이블명 SET 키1 = 값1, 키2 = 값2 ... WHERE 조건;,bindings'''
         column_value_pairs = p.get_filtered_column_value_pairs()
         where_clause,where_bindings = self._build_where_clause(p.where) if p.where else ('',SafeList())
         bindings = SafeList(column_value_pairs.values()) + where_bindings
-        return f'''UPDATE "{p.table_name}" SET {','.join([f'''"{column}" = ?''' for column in column_value_pairs.keys()])} {where_clause};''',bindings
+        clauses= " "+where_clause if where_clause else ""
+        return f'''UPDATE "{p.table_name}" SET {','.join([f'''"{column}" = ?''' for column in column_value_pairs.keys()])}{clauses};''',bindings
     # --------------------------
-    def build_delete_query(self,p:DeleteParams):
+    def build_delete_query(self,p:DeleteParam):
         '''DELETE FROM 테이블명 WHERE 조건'''
         if p.where:
             where_clause,where_bindings = self._build_where_clause(p.where)
@@ -43,9 +45,12 @@ class SqliteQueryBuilder():
             sub_where_clause = 'WHERE ' + " AND ".join([f'''"{column}" = ?''' for column in column_value_pairs.keys()])
             where_bindings = SafeList(column_value_pairs.values())
             where_clause = f'''WHERE id = (SELECT MAX(id) FROM {p.table_name} {sub_where_clause})''' # 중복이 있으면 id가 가장 큰 것을 삭제
-        return f'''DELETE FROM "{p.table_name}" {where_clause};''',where_bindings
+        clauses= " "+where_clause if where_clause else ""
+        return f'''DELETE FROM "{p.table_name}"{clauses};''',where_bindings
     # ===========================================================================================
-    def _build_sort_clause(self,p:SortParams)->str:
+    def _build_limit_clause(self,limit:int=None)->str:
+        return f'''LIMIT {limit}''' if limit else ''
+    def _build_sort_clause(self,p:SortParam)->str:
         '''sort절 작성: sort:{column_name:str, is_desc:bool}'''
         if p:
             sort_clause = f'''ORDER BY "{p.column_name}" {"DESC" if p.is_desc else "ASC"}'''
@@ -53,7 +58,7 @@ class SqliteQueryBuilder():
             sort_clause = ''
         return sort_clause
     # --------------------------
-    def _build_where_clause(self,p:WhereParams)->str:
+    def _build_where_clause(self,p:WhereParam)->str:
         '''
         조건식 논리를 스트링으로 입력 (기본: AND 연결)
         논리: AND, OR, NOT
