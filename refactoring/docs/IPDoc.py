@@ -4,10 +4,11 @@ if __debug__:
 # ===========================================================================================
 from src.imports.config import DATE_FORMAT, DATE_KO_FORMAT
 from src.imports.pyqt5_imports import QDate
-from refactoring.docs.JsonManager import *
-from refactoring.db.DBManager import *
+
+from refactoring.db import DBManager,InsertParam,SelectParam,SortParam
+from refactoring.docs.JsonManager import JsonManager
 from refactoring.docs.params import IPDocParam,IPDocItemParam
-from pprint import pprint
+from refactoring.utils.SafeList import SafeList
 # ===========================================================================================
 class IPDoc(JsonManager):
     def __init__(self,dbm,p:IPDocParam):
@@ -15,9 +16,9 @@ class IPDoc(JsonManager):
         self.p = p
         self.name = self._get_new_ip_name()
         self.file_path = f'./test/{self.name}.json'
+        # self.file_path = f'./doc/ip/{self.name}.json'
         super().__init__(self.file_path)
         self.max_item_idx = self._get_max_item_idx()
-        # self.file_path = f'./doc/ip/{self.name}.json'
 
         self.build_ip()
     # --------------------------
@@ -47,7 +48,7 @@ class IPDoc(JsonManager):
         items = {}
         for item_idx in range(1, self.max_item_idx):
             item_param = getattr(self.p,f'item{item_idx}')
-            items[f'item{item_idx}'] = self.dbm.select_records_by_comparison('item','name',item_param.name)
+            items[f'item{item_idx}'] = SafeList(self.dbm.select_records_by_comparison('item','name',item_param.name)).safe_get(0)
         
         return items
 
@@ -89,7 +90,7 @@ class IPDoc(JsonManager):
     def _extract_component_name_amount_pairs(self,item,item_amount):
         for key in ['segment1','segment2','shank','submaterial1','submaterial2','submaterial3','submaterial4']:
             component_name = item.get(f'{key}_name', None)
-            component_amount = item.get(f'{key}_amount', 0) * item_amount
+            component_amount = key_amount if (key_amount:=item.get(f'{key}_amount')) else 0 * item_amount
             if component_name in self.component_name_amount_pairs.keys():
                 self.component_name_amount_pairs[component_name]+= component_amount
             else:

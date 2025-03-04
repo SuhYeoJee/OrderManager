@@ -1,1 +1,44 @@
-{}
+{
+    "inputs": {
+        "item1": {
+            "name": "TEST-G1 A",
+            "amount": 1
+        },
+        "item2": null,
+        "item3": null,
+        "item4": null,
+        "group": "",
+        "engrave": "",
+        "customer": "",
+        "description": "",
+        "due_date": null,
+        "order_date": null
+    },
+    "loads": {
+        "item1": {
+            "id": 1,
+            "name": "TEST-G1 A",
+            "segment1_name": "SQTEST1",
+            "segment1_amount": 3,
+            "segment2_name": null,
+            "segment2_amount": null,
+            "shank_name": "DBS-CCW",
+            "shank_amount": 1,
+            "submaterial1_name": "PCD10",
+            "submaterial1_amount": 1,
+            "submaterial2_name": null,
+            "submaterial2_amount": null
+        }
+    },
+    "autos": {
+        "segment1_name": "SQTEST1",
+        "segment1_amount": 3,
+        "shank1_name": "DBS-CCW",
+        "shank1_amount": 1,
+        "submaterial1_name": "PCD10",
+        "submaterial1_amount": 1,
+        "name": "2025-IP0001",
+        "due_date": "",
+        "creation_date": "2025년 3월 5일"
+    }
+}

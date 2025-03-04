@@ -1,6 +1,3 @@
-if __debug__:
-    import sys
-    sys.path.append(r"X:\Github\OrderManager")
 from dataclasses import dataclass, asdict
 from typing import Optional, Union, Literal, List, Dict, Tuple
 from src.imports.pyqt5_imports import *

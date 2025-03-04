@@ -1,10 +1,7 @@
-if __debug__:
-    import sys
-    sys.path.append(r"X:\Github\OrderManager")
 from dataclasses import dataclass, asdict
 from typing import Optional, Union, Literal, List, Dict, Tuple
 from src.imports.pyqt5_imports import *
-from refactoring.db.DBManager import DBManager
+from refactoring.db import DBManager
 
 
 @dataclass
@@ -25,8 +22,8 @@ class IPDocParam:
     engrave: str = ''
     customer: str = ''
     description: str = ''
-    # due_date: Optional[QDate] = None
-    # order_date: Optional[QDate] = None
+    due_date: Optional[QDate] = None
+    order_date: Optional[QDate] = None
 
     def to_dict(self): 
         asdf = asdict(self)

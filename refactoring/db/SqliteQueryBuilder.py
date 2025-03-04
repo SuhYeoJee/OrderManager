@@ -2,7 +2,7 @@
 import re
 from itertools import chain # 리스트 평탄화
 from refactoring.utils.SafeList import SafeList
-from refactoring.db.params import *
+from refactoring.db.params import InsertParam,SelectParam,UpdateParam,DeleteParam,WhereParam,SortParam
 
 class SqliteQueryBuilder():
     def __init__(self):...

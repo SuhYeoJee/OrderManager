@@ -1,6 +1,5 @@
 import pytest
-from refactoring.db.DBManager import DBManager
-from refactoring.db.params import *
+from refactoring.db import DBManager,InsertParam,SelectParam,UpdateParam,DeleteParam,WhereParam,SortParam
 
 @pytest.fixture
 def new_dbm():

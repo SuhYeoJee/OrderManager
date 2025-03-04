@@ -1,6 +1,7 @@
 import pytest
-from refactoring.db.SqliteQueryBuilder import SqliteQueryBuilder
-from refactoring.db.params import *
+from refactoring.db import SqliteQueryBuilder, InsertParam,SelectParam,UpdateParam,DeleteParam,WhereParam,SortParam
+from src.imports.pyqt5_imports import QDate,QDateTime
+
 
 @pytest.fixture
 def sqb():

@@ -1,6 +1,7 @@
 from refactoring.db.SqliteDB import SqliteDB
+from refactoring.db.params import InsertParam,SelectParam,UpdateParam,DeleteParam,WhereParam,SortParam
 from refactoring.db.SqliteQueryBuilder import SqliteQueryBuilder
-from refactoring.db.params import *
+
 from config import DB_PATH
 
 class DBManager():
