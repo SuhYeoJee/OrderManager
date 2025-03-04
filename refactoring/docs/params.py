@@ -25,16 +25,11 @@ class IPDocParam:
     due_date: Optional[QDate] = None
     order_date: Optional[QDate] = None
 
-    def to_dict(self): 
-        asdf = asdict(self)
-        return {k:v for k,v in asdict(self).items() if k != 'dbm'}
+    def to_dict(self): return asdict(self)
 
 @dataclass
 class SPDocParam:
-    dbm: DBManager
-
     name: str = ''
     workload: int = 0
 
-    def to_dict(self): 
-        return {k:v for k,v in asdict(self).items() if k != 'dbm'}
+    def to_dict(self): return asdict(self)

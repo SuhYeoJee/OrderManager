@@ -54,16 +54,14 @@ def dbm():
     return dbm
 
 
-# @pytest.mark.parametrize(
-#     "test_input, expected",
-#     [
-#         (IPDocItemParam("TEST-G1 A", 1), '2025-IP0001.json'),
-#     ]
-# )
+@pytest.mark.parametrize(
+    "test_input, expected",
+    [
+        (IPDocItemParam("TEST-G1 A", 1), '2025-IP0001'),
+    ]
+)
 
-# def test_build_ip(dbm, test_input, expected):
-#     ipd = IPDoc(dbm,IPDocParam(item1=test_input))
-#     result = ipd.name
-#     assert expected in result
- 
-# 작성중 
+def test_build_ip(dbm, test_input, expected):
+    ipd = IPDoc(dbm,IPDocParam(item1=test_input))
+    result = ipd.name
+    assert expected in result
